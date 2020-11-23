@@ -9,7 +9,7 @@ const {
  * GET route template
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
-  const queryPet = `SELECT * FROM "pet" ORDER BY "id";`;
+  const queryPet = `SELECT * FROM "pet" WHERE user_id=${req.user.id};`;
   pool
     .query(queryPet)
     .then((result) => {
@@ -21,28 +21,24 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
-/**
- * POST route template
- */
-
 router.post('/', rejectUnauthenticated, (req, res) => {
+  //mmm, sweet dopamine
   const pet = req.body;
-  console.log('HEY THIS IS IMPORTANT', req.user.id);
   const insertPetQuery = `
 INSERT INTO "pet" 
 ("name", "species", "breed", "weight", "birthdate", "sex", "image", "microchip", "user_id")
 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`;
   pool
     .query(insertPetQuery, [
-      pet.name,
-      pet.species,
+      pet.name, //required
+      pet.species, //required
       pet.breed,
       pet.weight,
       pet.birthdate,
       pet.sex,
       pet.image,
       pet.microchip,
-      req.user.id,
+      req.user.id, // required/ Using logged in user for User_ID
     ])
     .then((result) => {
       console.log('new pet:', result.rows);
