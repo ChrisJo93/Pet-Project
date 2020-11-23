@@ -8,33 +8,21 @@ const {
 /**
  * GET route template
  */
-router.get('/', rejectUnauthenticated, (req, res) => {
-  const queryPet = `SELECT "pet".id FROM "pet"
-  WHERE "pet".user_id = $1;`;
-  const userID = req.user.id;
-  console.log('look here', userID);
-
+router.get('/:id', rejectUnauthenticated, (req, res) => {
+  const queryGroomer = `SELECT 
+  "groomer".groomer , "groomer".date , "pet".name FROM "groomer"
+  JOIN "pet" ON "groomer".pet_id = "pet".id
+  WHERE "groomer".pet_id = $1;`;
   pool
-    .query(queryPet, [userID])
-    .then((petResult) => {
-      //only pets of logged in user
-      const queryGroomer = `SELECT * 
-  FROM "groomer" 
-  WHERE pet_id = $1;`;
-      console.log('important', petResult.rows[0].id);
-      pool
-        .query(queryGroomer, [petResult.rows])
-        .then((groomerResult) => {
-          const petGroomer = groomerResult.rows;
-          res.send(petGroomer);
-        })
-        .catch((error) => {
-          console.log('problem in groomer get', error);
-          res.sendStatus(500);
-        });
+    .query(queryGroomer, [req.params.id])
+    .then((result) => {
+      console.log(req.params.id);
+      console.log(result);
+      res.send(result.rows);
+      res.sendStatus(200);
     })
-    .catch((error) => {
-      console.log(error);
+    .catch((err) => {
+      console.log('error in get', err);
       res.sendStatus(500);
     });
 });
@@ -42,7 +30,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code here
 });
 
