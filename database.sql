@@ -81,3 +81,15 @@ INSERT INTO "groomer" ("groomer" , "date" , "location" , "pet_id")
 VALUES ('Cindy' , '5-5-2020' , 'Cindy Clip and Snip' , 2);
 ----
 
+CREATE TABLE "vet" (
+	"id" SERIAL PRIMARY KEY,
+	"doctor" VARCHAR (120) NOT NULL,
+	"reason" VARCHAR (1000),
+	"date" DATE,
+	"location" VARCHAR (200) NOT NULL,
+	"pet_id" INT REFERENCES "pet" NOT NULL
+	);
+
+--test values for vet
+INSERT INTO "vet" ("doctor" , "reason" , "date" , "location" , "pet_id")
+VALUES ('Dr. Powers', 'Routine Checkup' , '7-7-2020' , 'Dr. Powers Clinic' , 2);
