@@ -9,7 +9,7 @@ const {
  * GET route template
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
-  const queryPet = `SELECT * FROM "pet"
+  const queryPet = `SELECT "pet".id FROM "pet"
   WHERE "pet".user_id = $1;`;
   const userID = req.user.id;
   console.log('look here', userID);
@@ -23,7 +23,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   WHERE pet_id = $1;`;
       console.log('important', petResult.rows[0].id);
       pool
-        .query(queryGroomer, [petResult.rows[0].id])
+        .query(queryGroomer, [petResult.rows])
         .then((groomerResult) => {
           const petGroomer = groomerResult.rows;
           res.send(petGroomer);
