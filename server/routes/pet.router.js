@@ -9,11 +9,10 @@ const {
  * GET route template
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
-  const queryPet = `SELECT * FROM "pet" WHERE user_id=${req.user.id};`;
-
+  const queryPet = `SELECT * FROM "pet" WHERE user_id=$1;`;
   //users will only see pets they own
   pool
-    .query(queryPet)
+    .query(queryPet, [req.user.id])
     .then((result) => {
       res.send(result.rows);
     })
