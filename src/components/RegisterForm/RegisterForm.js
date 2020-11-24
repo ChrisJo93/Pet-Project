@@ -62,6 +62,7 @@ class RegisterForm extends Component {
               onChange={this.handleInputChangeFor('password')}
             />
           </label>
+          <br />
           <label htmlFor="email">
             Email:
             <input
@@ -72,6 +73,7 @@ class RegisterForm extends Component {
               onChange={this.handleInputChangeFor('email')}
             />
           </label>
+          <br />
           <label htmlFor="phone">
             Phone#:
             <input
