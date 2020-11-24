@@ -38,4 +38,18 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  const deleteFoodQuery = `DELETE FROM "food" WHERE "id" =$1;`;
+  const foodID = [req.params.id];
+  pool
+    .query(deleteFoodQuery, foodID)
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
