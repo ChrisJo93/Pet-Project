@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import RegForm1 from './RegForm1';
+import RegForm2 from './RegForm2';
+import RegForm3 from './RegForm3';
 
 class RegisterForm extends Component {
   state = {
+    step: 1,
     username: '',
     password: '',
     email: '',
@@ -31,6 +35,12 @@ class RegisterForm extends Component {
   };
 
   render() {
+    const currentStepContent = <RegForm1 />;
+    if (this.state.step === 2) {
+      return <RegForm2 />;
+    } else if (this.state.step === 3) {
+      return <RegForm3 />;
+    }
     return (
       <form className="formPanel" onSubmit={this.registerUser}>
         <h2>Register User</h2>
@@ -40,28 +50,7 @@ class RegisterForm extends Component {
           </h3>
         )}
         <div>
-          <label htmlFor="username">
-            Username:
-            <input
-              type="text"
-              name="username"
-              value={this.state.username}
-              required
-              onChange={this.handleInputChangeFor('username')}
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="password">
-            Password:
-            <input
-              type="password"
-              name="password"
-              value={this.state.password}
-              required
-              onChange={this.handleInputChangeFor('password')}
-            />
-          </label>
+          {currentStepContent}
           <br />
           <label htmlFor="email">
             Email:

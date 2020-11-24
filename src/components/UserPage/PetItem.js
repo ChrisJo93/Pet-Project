@@ -9,7 +9,14 @@ class PetItem extends Component {
   }
 
   render() {
-    return <div>{this.props.item.name}</div>;
+    return (
+      <div>
+        <div>{this.props.item.name}</div>
+        <div>
+          <img src={this.props.item.image} />
+        </div>
+      </div>
+    );
   }
 }
 
