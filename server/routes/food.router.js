@@ -38,6 +38,10 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// router.put('/editFood/:id', rejectUnauthenticated, (req, res) => {
+//   const editFoodQuery = `UPDATE food SET name=$1 WHERE id=$2`
+// })
+
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const deleteFoodQuery = `DELETE FROM "food" WHERE "id" =$1;`;
   const foodID = [req.params.id];
