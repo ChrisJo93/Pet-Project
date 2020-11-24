@@ -1,4 +1,4 @@
-const userReducer = (state = {}, action) => {
+const registrationReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_REGISTRATION':
       return { ...action.payload };
@@ -8,3 +8,5 @@ const userReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export default registrationReducer;

@@ -8,29 +8,17 @@ import RegForm3 from './RegForm3';
 class RegisterForm extends Component {
   state = {
     step: 1,
-    username: '',
-    password: '',
-    email: '',
-    phone: '',
   };
-
-  registerUser = (event) => {
-    event.preventDefault();
-
-    this.props.dispatch({
-      type: 'REGISTER',
-      payload: {
-        username: this.state.username,
-        password: this.state.password,
-        email: this.state.email,
-        phone: this.state.phone,
-      },
-    });
-  }; // end registerUser
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
+    });
+  };
+
+  nextStep = (event) => {
+    this.setState({
+      step: 2,
     });
   };
 
@@ -49,33 +37,20 @@ class RegisterForm extends Component {
             {this.props.store.errors.registrationMessage}
           </h3>
         )}
+        <div>{currentStepContent}</div>
         <div>
-          {currentStepContent}
-          <br />
-          <label htmlFor="email">
-            Email:
+          {this.state.step === 3 ? (
             <input
-              type="email"
-              name="email"
-              value={this.state.email}
-              required
-              onChange={this.handleInputChangeFor('email')}
+              className="btn"
+              type="submit"
+              name="submit"
+              value="Register"
             />
-          </label>
-          <br />
-          <label htmlFor="phone">
-            Phone#:
-            <input
-              type="phone"
-              name="phone"
-              value={this.state.phone}
-              required
-              onChange={this.handleInputChangeFor('phone')}
-            />
-          </label>
-        </div>
-        <div>
-          <input className="btn" type="submit" name="submit" value="Register" />
+          ) : (
+            <button className="btn" value="Next" onClick={this.nextStep}>
+              Next
+            </button>
+          )}
         </div>
       </form>
     );
