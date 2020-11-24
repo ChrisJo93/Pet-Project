@@ -9,6 +9,7 @@ const {
  * GET route template
  */
 router.get('/:id', rejectUnauthenticated, (req, res) => {
+  //Grabbing groomer by pet ID
   const queryGroomer = `SELECT 
   "groomer".groomer , "groomer".date , "pet".name FROM "groomer"
   JOIN "pet" ON "groomer".pet_id = "pet".id
@@ -16,8 +17,6 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   pool
     .query(queryGroomer, [req.params.id])
     .then((result) => {
-      console.log(req.params.id);
-      console.log(result);
       res.send(result.rows);
       res.sendStatus(200);
     })
@@ -30,8 +29,41 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 /**
  * POST route template
  */
-router.post('/', rejectUnauthenticated, (req, res) => {
-  // POST route code here
+router.post('/:id', rejectUnauthenticated, (req, res) => {
+  //inserting pet_id into groomer table
+  const groomer = req.body;
+  const insertGroomerQuery = `
+  INSERT INTO "groomer" 
+  ("groomer", "date", "location", "pet_id")
+  VALUES ($1, $2, $3, $4);`;
+  pool
+    .query(insertGroomerQuery, [
+      groomer.groomer,
+      groomer.date,
+      groomer.location,
+      req.params.id,
+    ])
+    .then((result) => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log('Error in groomer POST', error);
+      res.sendStatus(500);
+    });
+});
+
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  const deleteGroomerQuery = `DELETE FROM "groomer" WHERE "id" =$1;`;
+  const groomerID = [req.params.id];
+  pool
+    .query(deleteGroomerQuery, groomerID)
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
