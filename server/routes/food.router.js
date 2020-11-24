@@ -5,18 +5,37 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-/**
- * GET route template
- */
-router.get('/', (req, res) => {
-  // GET route code here
+router.get('/:id', rejectUnauthenticated, (req, res) => {
+  const queryGroomer = `SELECT "food".name, "food".barcode, "food".pet_id FROM "food"
+    JOIN "pet" ON "food".pet_id = "pet".id
+    WHERE "food".pet_id = $1;`;
+  pool
+    .query(queryGroomer, [req.params.id])
+    .then((result) => {
+      res.send(result.rows);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log('error in get', err);
+      res.sendStatus(500);
+    });
 });
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
+router.post('/:id', rejectUnauthenticated, (req, res) => {
+  const food = req.body;
+  const insertFoodQuery = `INSERT INTO "food" 
+  ("name" , "barcode" , "pet_id")
+  VALUES ($1, $2, $3);`;
+  pool
+    .query(insertFoodQuery, [food.name, food.barcode, req.params.id])
+    .then((result) => {
+      console.log(result.rows);
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log('Error in FOOD POST', error);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
