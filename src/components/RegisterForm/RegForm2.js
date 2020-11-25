@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-class RegForm1 extends Component {
+class RegForm2 extends Component {
   state = {
     step: 2,
     email: '',
@@ -17,12 +17,16 @@ class RegForm1 extends Component {
       step: 3,
     });
     this.props.dispatch({
-      type: 'SET_REGISTRATION',
+      type: 'SET_USER_REGISTRATION',
       payload: {
         email: this.state.email,
         phone: this.state.phone,
       },
     });
+    // this.props.dispatch({
+    //   type: 'REGISTER',
+    //   payload: this.props.store.registrationReducer,
+    // });
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -49,7 +53,7 @@ class RegForm1 extends Component {
             </label>
             <br />
             <label htmlFor="phone">
-              Phone#:
+              Phone:
               <input
                 type="phone"
                 name="phone"
@@ -66,4 +70,4 @@ class RegForm1 extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(RegForm1);
+export default connect(mapStoreToProps)(RegForm2);

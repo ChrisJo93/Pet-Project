@@ -18,7 +18,7 @@ class RegForm1 extends Component {
       step: 2,
     });
     this.props.dispatch({
-      type: 'SET_REGISTRATION',
+      type: 'SET_USER_REGISTRATION',
       payload: {
         username: this.state.username,
         password: this.state.password,

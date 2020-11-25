@@ -2,32 +2,63 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-class RegForm1 extends Component {
-  registerUser = (event) => {
+class RegForm3 extends Component {
+  state = {
+    step: 3,
+    name: '',
+    species: '',
+    breed: '',
+  };
+
+  addStepThree = (event) => {
+    //on click sets step state to 3 and dispatches this
+    //form info to registration reducer.
     event.preventDefault();
-
-    // else if (this.state.step === 3) {
-    //     return <RegForm3 />;
-    //   }
-
+    this.setState({
+      step: 4,
+    });
     this.props.dispatch({
-      type: 'REGISTER',
+      type: 'SET_PET_REGISTRATION',
       payload: {
-        username: this.props.store.registerReducer.username,
-        password: this.props.store.registerReducer.password,
-        email: this.props.store.registerReducer.email,
-        phone: this.props.store.registerReducer.phone,
+        name: this.state.name,
+        species: this.state.species,
+        breed: this.state.breed,
       },
     });
-  }; // end registerUser
-
+  };
   render() {
     return (
       <div>
-        <form onSubmit={this.registerUser}>Testing but make it 3</form>
+        <form onSubmit={this.addStepTwo}>
+          <h2>Register User 2/3</h2>
+          <div>
+            <label htmlFor="email">
+              Email:
+              <input
+                type="email"
+                name="email"
+                value={this.state.email}
+                required
+                onChange={this.handleInputChangeFor('email')}
+              />
+            </label>
+            <br />
+            <label htmlFor="phone">
+              Phone:
+              <input
+                type="phone"
+                name="phone"
+                value={this.state.phone}
+                required
+                onChange={this.handleInputChangeFor('phone')}
+              />
+            </label>
+          </div>
+          <input className="btn" type="submit" name="submit" value="Next" />
+        </form>
       </div>
     );
   }
 }
 
-export default connect(mapStoreToProps)(RegForm1);
+export default connect(mapStoreToProps)(RegForm3);
