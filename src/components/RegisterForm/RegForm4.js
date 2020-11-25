@@ -55,7 +55,7 @@ class RegForm4 extends Component {
                 type="text"
                 name="birthdate"
                 value={this.state.birthdate}
-                placeholder="dd/mm/yy"
+                placeholder="dd-mm-yy"
                 onChange={this.handleInputChangeFor('birthdate')}
               />
             </label>
