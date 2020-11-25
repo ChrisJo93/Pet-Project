@@ -61,7 +61,7 @@ class RegForm1 extends Component {
               <label htmlFor="password">
                 Password:
                 <input
-                  type="password"
+                  type="text"
                   name="password"
                   value={this.state.password}
                   required

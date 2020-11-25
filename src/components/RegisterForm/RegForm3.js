@@ -26,31 +26,49 @@ class RegForm3 extends Component {
       },
     });
   };
+
+  handleInputChangeFor = (propertyName) => (event) => {
+    this.setState({
+      [propertyName]: event.target.value,
+    });
+  };
+
   render() {
     return (
       <div>
-        <form onSubmit={this.addStepTwo}>
-          <h2>Register User 2/3</h2>
+        <form onSubmit={this.addStepThree}>
+          <h2>Register User 3/4</h2>
           <div>
-            <label htmlFor="email">
-              Email:
+            <label htmlFor="name">
+              Pet Name:
               <input
-                type="email"
-                name="email"
-                value={this.state.email}
+                type="text"
+                name="name"
+                value={this.state.name}
                 required
-                onChange={this.handleInputChangeFor('email')}
+                onChange={this.handleInputChangeFor('name')}
               />
             </label>
             <br />
-            <label htmlFor="phone">
-              Phone:
+            <label htmlFor="Species">
+              Species:
               <input
-                type="phone"
-                name="phone"
-                value={this.state.phone}
+                type="text"
+                name="species"
+                value={this.state.species}
                 required
-                onChange={this.handleInputChangeFor('phone')}
+                onChange={this.handleInputChangeFor('species')}
+              />
+            </label>
+            <br />
+            <label htmlFor="Breed">
+              Breed:
+              <input
+                type="text"
+                name="breed"
+                value={this.state.breed}
+                required
+                onChange={this.handleInputChangeFor('breed')}
               />
             </label>
           </div>
