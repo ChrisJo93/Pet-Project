@@ -26,7 +26,7 @@ class RegForm4 extends Component {
     });
     setTimeout(() => {
       this.registerPet();
-    }, 5000);
+    }, 2000);
   };
 
   registerPet = () => {
