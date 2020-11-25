@@ -62,6 +62,13 @@ class App extends Component {
               component={InfoPage}
             />
 
+            <ProtectedRoute
+              // TEMPLATE FOR ALL PAGES
+              exact
+              path="/info"
+              component={InfoPage}
+            />
+
             {/* When a value is supplied for the authRedirect prop the user will
             be redirected to the path supplied when logged in, otherwise they will
             be taken to the component and path supplied. */}

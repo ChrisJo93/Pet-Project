@@ -14,25 +14,15 @@ class RegForm4 extends Component {
     event.preventDefault();
     this.props.dispatch({
       type: 'REGISTER',
-      payload: this.props.store.registrationReducer,
-    });
-    this.props.dispatch({
-      type: 'SET_PET_REGISTRATION',
       payload: {
-        weight: this.state.weight,
-        birthdate: this.state.birthdate,
-        sex: this.state.sex,
+        user: this.props.store.registrationReducer,
+        pet: {
+          ...this.props.store.petReducer,
+          weight: this.state.weight,
+          birthdate: this.state.birthdate,
+          sex: this.state.sex,
+        },
       },
-    });
-    setTimeout(() => {
-      this.registerPet();
-    }, 2000);
-  };
-
-  registerPet = () => {
-    this.props.dispatch({
-      type: 'POST_PET',
-      payload: this.props.store.petReducer,
     });
   };
 
