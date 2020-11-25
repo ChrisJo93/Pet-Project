@@ -24,8 +24,9 @@ class RegForm4 extends Component {
         sex: this.state.sex,
       },
     });
-
-    // setTimeout(this.registerPet(), 2000);
+    setTimeout(() => {
+      this.registerPet();
+    }, 5000);
   };
 
   registerPet = () => {
