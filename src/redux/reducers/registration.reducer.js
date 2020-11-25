@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux';
-
 const registrationReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_REGISTRATION':
@@ -11,16 +9,4 @@ const registrationReducer = (state = {}, action) => {
   }
 };
 
-const registrationStepReducer = (state = 1, action) => {
-  switch (action.type) {
-    case 'NEXT_STEP':
-      return state + 1;
-    case 'BACK_STEP':
-      return state - 1;
-  }
-};
-
-export default combineReducers({
-  registrationReducer,
-  registrationStepReducer,
-});
+export default registrationReducer;

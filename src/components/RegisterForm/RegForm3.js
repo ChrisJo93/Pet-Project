@@ -6,6 +6,10 @@ class RegForm1 extends Component {
   registerUser = (event) => {
     event.preventDefault();
 
+    // else if (this.state.step === 3) {
+    //     return <RegForm3 />;
+    //   }
+
     this.props.dispatch({
       type: 'REGISTER',
       payload: {
@@ -18,7 +22,11 @@ class RegForm1 extends Component {
   }; // end registerUser
 
   render() {
-    return <div>Testing but make it 3</div>;
+    return (
+      <div>
+        <form onSubmit={this.registerUser}>Testing but make it 3</form>
+      </div>
+    );
   }
 }
 
