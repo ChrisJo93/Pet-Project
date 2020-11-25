@@ -8,11 +8,11 @@ class RegForm1 extends Component {
     password: '',
   };
 
-  registerUser = (event) => {
+  addStepOne = (event) => {
     event.preventDefault();
 
     this.props.dispatch({
-      type: 'REGISTER',
+      type: 'ADD_REGISTRATION',
       payload: {
         username: this.state.username,
         password: this.state.password,
@@ -29,30 +29,34 @@ class RegForm1 extends Component {
   render() {
     return (
       <div>
-        <div>
-          <label htmlFor="username">
-            Username:
-            <input
-              type="text"
-              name="username"
-              value={this.props.store.registrationReducer.username}
-              required
-              onChange={this.handleInputChangeFor('username')}
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="password">
-            Password:
-            <input
-              type="password"
-              name="password"
-              value={this.props.store.registrationReducer.password}
-              required
-              onChange={this.handleInputChangeFor('password')}
-            />
-          </label>
-        </div>
+        <form onSubmit={this.addStepOne}>
+          <h2>Register User 1/3</h2>
+          <div>
+            <label htmlFor="username">
+              Username:
+              <input
+                type="text"
+                name="username"
+                value={this.state.username}
+                required
+                onChange={this.handleInputChangeFor('username')}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="password">
+              Password:
+              <input
+                type="password"
+                name="password"
+                value={this.state.password}
+                required
+                onChange={this.handleInputChangeFor('password')}
+              />
+            </label>
+          </div>
+          <input className="btn" type="submit" name="submit" value="Save" />
+        </form>
       </div>
     );
   }

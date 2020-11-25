@@ -18,7 +18,7 @@ class RegisterForm extends Component {
 
   nextStep = (event) => {
     this.setState({
-      step: 2,
+      step: this.state.step + 1,
     });
   };
 
@@ -31,7 +31,6 @@ class RegisterForm extends Component {
     }
     return (
       <form className="formPanel" onSubmit={this.registerUser}>
-        <h2>Register User</h2>
         {this.props.store.errors.registrationMessage && (
           <h3 className="alert" role="alert">
             {this.props.store.errors.registrationMessage}
