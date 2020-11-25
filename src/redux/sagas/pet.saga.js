@@ -22,4 +22,8 @@ function* getPet(action) {
   }
 }
 
+// function* postPet(action) {
+//     try{}
+// }
+
 export default petSaga;

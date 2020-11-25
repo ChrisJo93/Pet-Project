@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import RegForm4 from './RegForm4';
 
 class RegForm3 extends Component {
   state = {
@@ -36,44 +37,49 @@ class RegForm3 extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.addStepThree}>
-          <h2>Register User 3/4</h2>
-          <div>
-            <label htmlFor="name">
-              Pet Name:
-              <input
-                type="text"
-                name="name"
-                value={this.state.name}
-                required
-                onChange={this.handleInputChangeFor('name')}
-              />
-            </label>
-            <br />
-            <label htmlFor="Species">
-              Species:
-              <input
-                type="text"
-                name="species"
-                value={this.state.species}
-                required
-                onChange={this.handleInputChangeFor('species')}
-              />
-            </label>
-            <br />
-            <label htmlFor="Breed">
-              Breed:
-              <input
-                type="text"
-                name="breed"
-                value={this.state.breed}
-                required
-                onChange={this.handleInputChangeFor('breed')}
-              />
-            </label>
-          </div>
-          <input className="btn" type="submit" name="submit" value="Next" />
-        </form>
+        {this.state.step === 3 ? (
+          <form onSubmit={this.addStepThree}>
+            <h2>Register User 3/4</h2>
+            <div>
+              <label htmlFor="name">
+                Pet Name:
+                <input
+                  type="text"
+                  name="name"
+                  value={this.state.name}
+                  required
+                  onChange={this.handleInputChangeFor('name')}
+                />
+              </label>
+              <br />
+              <label htmlFor="Species">
+                Species:
+                <input
+                  type="text"
+                  name="species"
+                  value={this.state.species}
+                  required
+                  placeholder="Dog? Cat?"
+                  onChange={this.handleInputChangeFor('species')}
+                />
+              </label>
+              <br />
+              <label htmlFor="Breed">
+                Breed:
+                <input
+                  type="text"
+                  name="breed"
+                  value={this.state.breed}
+                  placeholder="(optional)"
+                  onChange={this.handleInputChangeFor('breed')}
+                />
+              </label>
+            </div>
+            <input className="btn" type="submit" name="submit" value="Next" />
+          </form>
+        ) : (
+          <RegForm4 />
+        )}
       </div>
     );
   }

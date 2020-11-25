@@ -24,10 +24,6 @@ class RegForm2 extends Component {
         phone: this.state.phone,
       },
     });
-    // this.props.dispatch({
-    //   type: 'REGISTER',
-    //   payload: this.props.store.registrationReducer,
-    // });
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
