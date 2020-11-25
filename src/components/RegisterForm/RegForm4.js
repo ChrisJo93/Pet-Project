@@ -19,10 +19,19 @@ class RegForm4 extends Component {
     this.props.dispatch({
       type: 'SET_PET_REGISTRATION',
       payload: {
-        name: this.state.weight,
-        species: this.state.birthdate,
-        breed: this.state.sex,
+        weight: this.state.weight,
+        birthdate: this.state.birthdate,
+        sex: this.state.sex,
       },
+    });
+
+    // setTimeout(this.registerPet(), 2000);
+  };
+
+  registerPet = () => {
+    this.props.dispatch({
+      type: 'POST_PET',
+      payload: this.props.store.petReducer,
     });
   };
 

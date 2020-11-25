@@ -41,7 +41,8 @@ class RegForm1 extends Component {
     }
     return (
       <div>
-        {/* condition that renders reg form 1 if step state is 1. Else it renders reg form 2. */}
+        {/* condition that renders reg form 1 if step state is 1. 
+        Else it renders reg form 2. */}
         {this.state.step === 1 ? (
           <form onSubmit={this.addStepOne}>
             <h2>Register User 1/4</h2>

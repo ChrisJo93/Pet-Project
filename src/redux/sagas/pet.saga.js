@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function* petSaga() {
   yield takeLatest('GET_PET', getPet);
+  yield takeLatest('POST_PET', postPet);
 }
 
 function* getPet(action) {
@@ -22,8 +23,13 @@ function* getPet(action) {
   }
 }
 
-// function* postPet(action) {
-//     try{}
-// }
+function* postPet(action) {
+  try {
+    yield axios.post('/api/pet', action.payload);
+    yield put({ type: 'GET_PET' });
+  } catch (err) {
+    console.log('ERROR POSTING PET:', action.payload);
+  }
+}
 
 export default petSaga;
