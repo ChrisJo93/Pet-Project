@@ -4,18 +4,23 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class RegForm1 extends Component {
   state = {
+    step: 2,
     email: '',
     phone: '',
   };
 
-  addStepOne = (event) => {
+  addStepTwo = (event) => {
+    //on click sets step state to 3 and dispatches this
+    //form info to registration reducer.
     event.preventDefault();
-
+    this.setState({
+      step: 3,
+    });
     this.props.dispatch({
-      type: 'ADD_REGISTRATION',
+      type: 'SET_REGISTRATION',
       payload: {
-        username: this.state.email,
-        password: this.state.phone,
+        email: this.state.email,
+        phone: this.state.phone,
       },
     });
   };
@@ -25,10 +30,11 @@ class RegForm1 extends Component {
       [propertyName]: event.target.value,
     });
   };
+
   render() {
     return (
       <div>
-        <form className="formPanel">
+        <form onSubmit={this.addStepTwo}>
           <h2>Register User 2/3</h2>
           <div>
             <label htmlFor="email">
@@ -53,6 +59,7 @@ class RegForm1 extends Component {
               />
             </label>
           </div>
+          <input className="btn" type="submit" name="submit" value="Next" />
         </form>
       </div>
     );

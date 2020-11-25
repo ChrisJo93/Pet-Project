@@ -1,7 +1,7 @@
 const registrationReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_REGISTRATION':
-      return { ...action.payload };
+      return { ...state, ...action.payload };
     case 'UNSET_REGISTRATION':
       return {};
     default:

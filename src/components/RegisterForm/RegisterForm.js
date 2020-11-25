@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import RegForm1 from './RegForm1';
 
-// import RegForm3 from './RegForm3';
-
 class RegisterForm extends Component {
   render() {
     return (
@@ -15,6 +13,7 @@ class RegisterForm extends Component {
           </h3>
         )}
         <div>
+          {/* Rendering form in 3 parts starting here */}
           <RegForm1 />
         </div>
         <div></div>

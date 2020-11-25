@@ -11,12 +11,14 @@ class RegForm1 extends Component {
   };
 
   addStepOne = (event) => {
+    //on click sets step state to 2 and dispatches this
+    //forms info to registration reducer.
     event.preventDefault();
     this.setState({
       step: 2,
     });
     this.props.dispatch({
-      type: 'ADD_REGISTRATION',
+      type: 'SET_REGISTRATION',
       payload: {
         username: this.state.username,
         password: this.state.password,
@@ -31,13 +33,15 @@ class RegForm1 extends Component {
   };
 
   render() {
+    //  this conditional renders RegForm 2 on click
+    //by setting step state to 2.
     const nextStepContent = '';
     if (this.state.step === 2) {
       return <RegForm2 />;
     }
     return (
       <div>
-        {' '}
+        {/* condition that renders reg form 1 if step state is 1. Else it renders reg form 2. */}
         {this.state.step === 1 ? (
           <form onSubmit={this.addStepOne}>
             <h2>Register User 1/3</h2>
