@@ -6,7 +6,7 @@ import RegForm1 from './RegForm1';
 class RegisterForm extends Component {
   render() {
     return (
-      <form className="formPanel">
+      <div className="formPanel">
         {this.props.store.errors.registrationMessage && (
           <h3 className="alert" role="alert">
             {this.props.store.errors.registrationMessage}
@@ -16,8 +16,7 @@ class RegisterForm extends Component {
           {/* Rendering form in 3 parts starting here */}
           <RegForm1 />
         </div>
-        <div></div>
-      </form>
+      </div>
     );
   }
 }

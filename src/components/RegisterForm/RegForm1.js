@@ -35,10 +35,6 @@ class RegForm1 extends Component {
   render() {
     //  this conditional renders RegForm 2 on click
     //by setting step state to 2.
-    const nextStepContent = '';
-    if (this.state.step === 2) {
-      return <RegForm2 />;
-    }
     return (
       <div>
         {/* condition that renders reg form 1 if step state is 1. 
@@ -73,7 +69,7 @@ class RegForm1 extends Component {
             <input className="btn" type="submit" name="submit" value="Next" />
           </form>
         ) : (
-          nextStepContent
+          <RegForm2 />
         )}
       </div>
     );

@@ -13,12 +13,12 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
-import LandingPage from '../LandingPage/LandingPage';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
+import AboutPage from '../../pages/AboutPage/AboutPage';
+import UserPage from '../../pages/UserPage/UserPage';
+import InfoPage from '../../pages/InfoPage/InfoPage';
+import LandingPage from '../../pages/LandingPage/LandingPage';
+import LoginPage from '../../pages/LoginPage/LoginPage';
+import RegisterPage from '../../pages/RegisterPage/RegisterPage';
 
 import './App.css';
 
@@ -26,7 +26,6 @@ class App extends Component {
   componentDidMount() {
     this.props.dispatch({ type: 'FETCH_USER' });
   }
-
   render() {
     return (
       <Router>
@@ -96,7 +95,7 @@ class App extends Component {
               // - else shows LandingPage at "/home"
               exact
               path="/home"
-              component={LandingPage}
+              component={LandingPage} //CHANGE TO PRIVATE
               authRedirect="/user"
             />
 
