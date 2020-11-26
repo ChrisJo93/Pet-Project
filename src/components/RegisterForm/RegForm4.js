@@ -25,6 +25,27 @@ class RegForm4 extends Component {
       },
     });
   };
+  // this.props.dispatch({
+  //   type: 'POST_PET',
+  //   payload: {
+  //       ...this.props.store.petReducer,
+  //     weight: this.state.weight,
+  //     birthdate: this.state.birthdate,
+  //     sex: this.state.sex,
+  //   },
+  // });
+  //     setTimeout(() => {
+  //       //slows down the pet registration
+  //       //new user registers, that new id is then primed for pet post.
+  //       this.registerPet();
+  //     }, 2000);
+
+  //   registerPet = () => {
+  //     this.props.dispatch({
+  //       type: 'POST_PET',
+  //       payload: this.props.store.petReducer,
+  //     });
+  //   };
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({

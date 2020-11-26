@@ -24,6 +24,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 router.post('/', rejectUnauthenticated, (req, res) => {
   //mmm, sweet dopamine
+  console.log(req.user.id);
   const pet = req.body;
   const insertPetQuery = `
 INSERT INTO "pet" 
