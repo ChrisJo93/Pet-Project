@@ -13,7 +13,6 @@ function* getPet(action) {
       type: 'SET_PET',
       payload: response.data,
     });
-    console.log('IM IMPORTTANTNTNT', response.data);
   } catch (err) {
     console.log(err);
     yield put({

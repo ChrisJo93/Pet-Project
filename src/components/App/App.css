@@ -110,3 +110,20 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+
+.media {
+  height: 383px;
+  width: 259px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.root {
+  max-width: 345px;
+  margin: 15px;
+}
+
+.item {
+  display: inline-table;
+}
