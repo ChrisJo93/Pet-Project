@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function* petSaga() {
   yield takeLatest('GET_PET', getPet);
+  yield takeLatest('GET_PET_DETAIL', getPetDetail);
   yield takeLatest('POST_PET', postPet);
 }
 
@@ -18,6 +19,23 @@ function* getPet(action) {
     yield put({
       type: 'ERROR_MSG',
       payload: 'There was a problem with PET GET',
+    });
+  }
+}
+
+function* getPetDetail(action) {
+  try {
+    const petDetails = yield axios.get(`/api/pet/details/${action.payload}`);
+    console.log('it pet details saga', action.payload);
+    yield put({
+      type: 'SET_PET_DETAIL',
+      payload: petDetails.data,
+    });
+  } catch (err) {
+    console.log(err);
+    yield put({
+      type: 'SET_ERROR',
+      payload: 'Could not get pet details',
     });
   }
 }

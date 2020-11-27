@@ -15,7 +15,6 @@ import {
 class PetRender extends Component {
   toDetails = (event) => {
     this.props.history.push(`/details/${this.props.pet.id}`);
-    console.log('this shit is fucking dumb', this.props.pet.id);
   };
 
   render() {

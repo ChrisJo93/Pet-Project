@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
-
+//get all pets for a user
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryPet = `SELECT * FROM "pet" WHERE user_id=$1;`;
   //users will only see pets they own
@@ -15,6 +15,20 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     })
     .catch((error) => {
       console.log('error in pet GET', error);
+      res.sendStatus(500);
+    });
+});
+
+// get only 1 pet by id
+router.get('/details/:id', rejectUnauthenticated, (req, res) => {
+  const queryPetID = `SELECT * FROM "pet" WHERE id=$1;`;
+  pool
+    .query(queryPetID, [req.params.id])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log('error in id pet get', error);
       res.sendStatus(500);
     });
 });

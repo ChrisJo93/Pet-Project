@@ -10,3 +10,5 @@ const ownedPetReducer = (state = [], action) => {
 };
 
 export default ownedPetReducer;
+
+//may need to delete this. Not certain how it's used in conjunction with pet details
