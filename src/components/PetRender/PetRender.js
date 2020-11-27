@@ -12,9 +12,17 @@ import {
   Typography,
 } from '@material-ui/core';
 
+//Renders user's pets to userpage.
+//Dispatches a single pet to petDetailReducer
+//to then be rendered on petDetailsPage.
+
 class PetRender extends Component {
   toDetails = (event) => {
-    this.props.history.push(`/details/${this.props.pet.id}`);
+    this.props.dispatch({
+      type: 'SET_PET_DETAIL',
+      payload: this.props.pet,
+    });
+    this.props.history.push('/details');
   };
 
   render() {
@@ -30,7 +38,8 @@ class PetRender extends Component {
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
-                {this.props.pet.name}
+                {this.props.pet.name} {''}
+                {this.props.pet.id}
               </Typography>
               <Typography
                 variant="body2"
