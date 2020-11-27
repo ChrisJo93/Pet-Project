@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@material-ui/core';
 
-//Renders user's pets to userpage.
+//This component renders user's pets to userpage.
 //Dispatches a single pet to petDetailReducer
 //to then be rendered on petDetailsPage.
 
@@ -22,7 +22,7 @@ class PetRender extends Component {
       type: 'SET_PET_DETAIL',
       payload: this.props.pet,
     });
-    this.props.history.push(`/details/${this.props.pet.id}`);
+    this.props.history.push(`/details/${this.props.pet.id}`); //routes user to details of selected pet
   };
 
   render() {
