@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { withRouter } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -13,7 +14,8 @@ import {
 
 class PetRender extends Component {
   toDetails = (event) => {
-    console.log('this shit is fucking dumb');
+    this.props.history.push(`/details/${this.props.pet.id}`);
+    console.log('this shit is fucking dumb', this.props.pet.id);
   };
 
   render() {
@@ -44,4 +46,4 @@ class PetRender extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(PetRender);
+export default withRouter(connect(mapStoreToProps)(PetRender));
