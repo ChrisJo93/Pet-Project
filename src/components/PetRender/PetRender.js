@@ -18,7 +18,7 @@ class PetRender extends Component {
 
   render() {
     return (
-      <div className="item">
+      <div className="item cardItem">
         <Card className="root">
           <CardActionArea>
             <CardMedia
@@ -29,11 +29,13 @@ class PetRender extends Component {
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
-                {this.props.pet.species}
+                {this.props.pet.name}
               </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                {this.props.pet.breed}
-              </Typography>
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                component="p"
+              ></Typography>
             </CardContent>
           </CardActionArea>
         </Card>

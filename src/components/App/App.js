@@ -5,22 +5,18 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
 import { connect } from 'react-redux';
-
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 import AboutPage from '../../pages/AboutPage/AboutPage';
 import UserPage from '../../pages/UserPage/UserPage';
 import InfoPage from '../../pages/InfoPage/InfoPage';
 import LandingPage from '../../pages/LandingPage/LandingPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
 import RegisterPage from '../../pages/RegisterPage/RegisterPage';
-
 import './App.css';
+import PetDetails from '../../pages/PetDetailsPage/PetDetails';
 
 class App extends Component {
   componentDidMount() {
@@ -61,12 +57,12 @@ class App extends Component {
               component={InfoPage}
             />
 
-            {/* <ProtectedRoute
+            <ProtectedRoute
               // TEMPLATE FOR ALL PAGES
               exact
-              path="/info"
-              component={InfoPage}
-            /> */}
+              path="/petPage"
+              component={PetDetails}
+            />
 
             {/* When a value is supplied for the authRedirect prop the user will
             be redirected to the path supplied when logged in, otherwise they will

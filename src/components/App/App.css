@@ -105,6 +105,7 @@ Form Treatment
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }
+/* Custom CSS */
 
 input {
   margin: 5px;
@@ -117,6 +118,7 @@ input {
   margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 25%;
 }
 
 .root {
@@ -126,4 +128,5 @@ input {
 
 .item {
   display: inline-table;
+  box-shadow: 0 0px 1px rgb(0, 0, 0, 0.4);
 }

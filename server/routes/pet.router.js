@@ -5,9 +5,6 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-/**
- * GET route template
- */
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryPet = `SELECT * FROM "pet" WHERE user_id=$1;`;
   //users will only see pets they own
@@ -24,7 +21,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 router.post('/', rejectUnauthenticated, (req, res) => {
   //mmm, sweet dopamine
-  console.log(req.user.id);
   const pet = req.body;
   const insertPetQuery = `
 INSERT INTO "pet" 

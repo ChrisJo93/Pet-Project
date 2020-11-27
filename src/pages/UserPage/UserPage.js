@@ -10,7 +10,7 @@ class UserPage extends Component {
       type: 'GET_PET',
     });
   }
-  // this component doesn't do much to start, just renders some user info to the DOM
+
   render() {
     const ownedPet = this.props.store.ownedPetReducer.map((pet, index) => {
       return <PetRender key={index} pet={pet} />;
