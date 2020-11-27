@@ -26,7 +26,6 @@ function* getPet(action) {
 function* getPetDetail(action) {
   try {
     const petDetails = yield axios.get(`/api/pet/details/${action.payload}`);
-    console.log('it pet details saga', action.payload);
     yield put({
       type: 'SET_PET_DETAIL',
       payload: petDetails.data,

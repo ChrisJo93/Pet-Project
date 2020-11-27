@@ -22,7 +22,7 @@ class PetRender extends Component {
       type: 'SET_PET_DETAIL',
       payload: this.props.pet,
     });
-    this.props.history.push('/details');
+    this.props.history.push(`/details/${this.props.pet.id}`);
   };
 
   render() {
