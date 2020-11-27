@@ -21,3 +21,20 @@ class TemplateClass extends Component {
 }
 
 export default connect(mapStoreToProps)(TemplateClass);
+
+// import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+// import mapStoreToProps from '../../redux/mapStoreToProps';
+
+// class = extends Component {
+
+//   render() {
+//     return (
+//       <div>
+//         <h2></h2>
+//       </div>
+//     );
+//   }
+// }
+
+// export default connect(mapStoreToProps)();

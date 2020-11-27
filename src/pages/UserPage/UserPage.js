@@ -13,7 +13,7 @@ class UserPage extends Component {
 
   render() {
     const ownedPet = this.props.store.ownedPetReducer.map((pet, index) => {
-      return <PetRender key={index} pet={pet} />;
+      return <PetRender key={index} pet={pet} />; //renders owned pets to userpage as component.
     });
     return (
       <div>
@@ -26,5 +26,4 @@ class UserPage extends Component {
   }
 }
 
-// this allows us to use <App /> in index.js
 export default connect(mapStoreToProps)(UserPage);

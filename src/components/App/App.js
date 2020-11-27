@@ -6,17 +6,21 @@ import {
   Switch,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../../pages/AboutPage/AboutPage';
-import UserPage from '../../pages/UserPage/UserPage';
+import FoodPage from '../../pages/FoodPage/FoodPage';
+import Footer from '../Footer/Footer';
+import GroomerPage from '../../pages/GroomerPage/GroomerPage';
 import InfoPage from '../../pages/InfoPage/InfoPage';
 import LandingPage from '../../pages/LandingPage/LandingPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
+import Nav from '../Nav/Nav';
+import PetDetailsPage from '../../pages/PetDetailsPage/PetDetailsPage';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import RegisterPage from '../../pages/RegisterPage/RegisterPage';
+import UserPage from '../../pages/UserPage/UserPage';
+import VetPage from '../../pages/VetPage/VetPage';
 import './App.css';
-import PetDetails from '../../pages/PetDetailsPage/PetDetails';
+import MedicationPage from '../../pages/MedicationPage/MedicationPage';
 
 class App extends Component {
   componentDidMount() {
@@ -56,13 +60,18 @@ class App extends Component {
               path="/info"
               component={InfoPage}
             />
-
+            {/* ------Custom Routes------*/}
+            <ProtectedRoute exact path="/details" component={PetDetailsPage} />
+            <ProtectedRoute exact path="/food" component={FoodPage} />
+            <ProtectedRoute exact path="/groomer" component={GroomerPage} />
+            <ProtectedRoute exact path="/vet" component={VetPage} />
             <ProtectedRoute
-              // TEMPLATE FOR ALL PAGES
               exact
-              path="/petPage"
-              component={PetDetails}
+              path="/medication" //I absolutely hate how prettier spaced this one
+              component={MedicationPage}
             />
+
+            {/* ------Custom Routes------ */}
 
             {/* When a value is supplied for the authRedirect prop the user will
             be redirected to the path supplied when logged in, otherwise they will
