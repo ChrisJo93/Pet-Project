@@ -1,6 +1,7 @@
-.pet_image {
+.pet {
   border-radius: 50%;
   max-width: 200px;
   max-height: 200px;
-  text-align: center;
+  text-align: left;
+  box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.4);
 }
