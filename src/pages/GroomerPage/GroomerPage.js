@@ -4,6 +4,8 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 
 //groomer needs mapbox
 //groomer needs calendar api
+//groomer needs nodemailer
+//groomer needs twillio
 //groomer needs put,post,get,delete by pet id
 
 class GroomerPage extends Component {
