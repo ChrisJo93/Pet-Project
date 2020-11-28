@@ -4,6 +4,9 @@ import LogOutButton from '../../components/LogOutButton/LogOutButton';
 import PetRender from '../../components/PetRender/PetRender';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
+//Userpage holds the PetRender component. PetRender shows all pets by current user.
+//Userpage is done beyond cosmetics.
+
 class UserPage extends Component {
   componentDidMount() {
     this.props.dispatch({

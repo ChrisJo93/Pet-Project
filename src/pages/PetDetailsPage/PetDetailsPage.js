@@ -5,13 +5,11 @@ import { withRouter } from 'react-router-dom';
 import PetItem from '../../components/PetItem/PetItem';
 import { Button, Paper, Grid } from '@material-ui/core';
 
-//renders a single pets details. Will have links to meds, vet, groomer, etc
+//PetDetailsPage holds the PetItem component.
+//PetItem component holds individual pet with icons linking to each of the pet's needs.
+//PetDetailsPage is finished beyond updating cosmetics.
 
 class PetDetailsPage extends Component {
-  //all information of selected pet here
-
-  //Will render components corresponding to vet, groomer, meds, etc.
-
   render() {
     return (
       <div>

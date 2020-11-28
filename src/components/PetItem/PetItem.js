@@ -21,6 +21,19 @@ class PetItem extends Component {
     console.log('This will need to be a gentle alert soon.');
   };
 
+  toFood = (event) => {
+    this.props.history.push('/food');
+  };
+  toGroomer = (event) => {
+    this.props.history.push('/groomer');
+  };
+  toVet = (event) => {
+    this.props.history.push('/vet');
+  };
+  toMedicine = (event) => {
+    this.props.history.push('/medication');
+  };
+
   render() {
     return (
       <Grid container spacing={10} alignItems="center" justify="center">
@@ -32,10 +45,26 @@ class PetItem extends Component {
           <Grid container alignItems="center" justify="space-between">
             {/* Each icon needs an onMouseEnter with title floating above it.
               Each icon needs to link to respective page. */}
-            <Fastfood title="food" />
-            <Bathtub title="groomer" onMouseEnter={this.test} />
-            <LocalHospital title="Vet" />
-            <LocalPharmacy title="Medicine" />
+            <Fastfood
+              title="food"
+              onClick={this.toFood}
+              onMouseEnter={this.test}
+            />
+            <Bathtub
+              title="groomer"
+              onClick={this.toGroomer}
+              onMouseEnter={this.test}
+            />
+            <LocalHospital
+              title="Vet"
+              onClick={this.toVet}
+              onMouseEnter={this.test}
+            />
+            <LocalPharmacy
+              title="Medicine"
+              onClick={this.toMedicine}
+              onMouseEnter={this.test}
+            />
           </Grid>
           <Grid item />
           <Button color="primary" onClick={this.backToUser}>
