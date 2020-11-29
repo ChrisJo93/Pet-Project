@@ -12,10 +12,15 @@ import { Button, Paper, Grid } from '@material-ui/core';
 //Need a component did mount get for selected pet.
 
 class PetDetailsPage extends Component {
+  backToUser = (event) => {
+    this.props.history.push('/user');
+  };
+
   render() {
     return (
       <div>
         <Grid container spacing={3} alignItems="center" justify="center">
+          {/* Rendering this to another component to reduce file bulk. */}
           {this.props.store.petDetailReducer.map((petItem, index) => {
             return (
               <Grid item xs={12}>
@@ -23,6 +28,9 @@ class PetDetailsPage extends Component {
               </Grid>
             );
           })}
+          <Button color="primary" onClick={this.backToUser}>
+            Back
+          </Button>
         </Grid>
       </div>
     );

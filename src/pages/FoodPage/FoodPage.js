@@ -42,6 +42,7 @@ class FoodPage extends Component {
         <h2 className="Food_Heading">
           Here's what {this.props.store.petDetailReducer[0].name} is eating
         </h2>
+        {this.props.store.foodReducer[0].name}
 
         {this.state.scanner === true ? (
           <Scanner />

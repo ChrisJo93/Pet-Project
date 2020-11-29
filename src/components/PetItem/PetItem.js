@@ -16,10 +16,6 @@ import {
 //Need a component did mount for pet to maintain state through refresh
 
 class PetItem extends Component {
-  backToUser = (event) => {
-    this.props.history.push('/user');
-  };
-
   test = (event) => {
     console.log('This will need to be a gentle alert soon.');
   };
@@ -70,9 +66,7 @@ class PetItem extends Component {
             />
           </Grid>
           <Grid item />
-          <Button color="primary" onClick={this.backToUser}>
-            Back
-          </Button>
+
           <Grid />
         </Grid>
       </Grid>

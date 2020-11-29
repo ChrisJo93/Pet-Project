@@ -9,7 +9,7 @@ function* getFood(action) {
   try {
     const response = yield axios.get(`/api/food/${action.payload.id}`);
     yield put({
-      type: 'SET_PET',
+      type: 'SET_FOOD',
       payload: response.data,
     });
   } catch (err) {
@@ -20,3 +20,5 @@ function* getFood(action) {
     });
   }
 }
+
+export default foodSaga;
