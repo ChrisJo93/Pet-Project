@@ -5,7 +5,7 @@ import petReducer from './pet.reducer';
 import registrationReducer from './registration.reducer';
 import ownedPetReducer from './ownedPet.reducer';
 import petDetailReducer from './petDetail.reducer';
-
+import scannerReducer from './scanner.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -19,6 +19,7 @@ const rootReducer = combineReducers({
   registrationReducer,
   ownedPetReducer,
   petDetailReducer,
+  scannerReducer,
 });
 
 export default rootReducer;

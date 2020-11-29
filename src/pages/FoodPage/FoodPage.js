@@ -28,10 +28,14 @@ class FoodPage extends Component {
   render() {
     return (
       <div>
-        {this.state.scanner === true ? <Scanner /> : 'do nothing'}
         <h2>Where pets go for food</h2>
         <p>Add new food?</p>
-        <button onClick={this.addFood}>Add food</button>
+        {this.state.scanner === true ? (
+          <Scanner />
+        ) : (
+          <button onClick={this.addFood}>Add food</button>
+        )}
+        {this.props.store.scannerReducer[0]}
         <button onClick={this.done}>done</button>
       </div>
     );

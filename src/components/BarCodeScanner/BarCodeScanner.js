@@ -12,10 +12,11 @@ function Scanner() {
   return (
     <>
       <BarcodeScannerComponent
-        width={500}
-        height={500}
+        width={300}
+        height={300}
         onUpdate={(err, result) => {
           if (result) setData(result.text);
+          // this.props.dispatch({ type: 'SCANNER', payload: result.text });
           else setData('Not Found');
         }}
       />
