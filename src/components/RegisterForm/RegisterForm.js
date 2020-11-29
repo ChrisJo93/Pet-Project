@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import RegForm1 from './RegForm1';
 
+//---To Do
+//Rewrite forms 1-4 into material ui stepper component.
+
 class RegisterForm extends Component {
   render() {
     return (

@@ -3,9 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import './PetItem.css';
-import { Button, Paper, Grid, makeStyles, Avatar } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import {
-  AccessAlarm,
   Fastfood,
   Bathtub,
   LocalHospital,
@@ -16,6 +15,14 @@ import {
 //Need a component did mount for pet to maintain state through refresh
 
 class PetItem extends Component {
+  componentDidMount() {
+    console.log('IN THE DID MOUNT', this.props.match.params.id);
+    this.props.dispatch({
+      type: 'GET_PET_DETAIL',
+      payload: this.props.match.params.id,
+    });
+  }
+
   test = (event) => {
     console.log('This will need to be a gentle alert soon.');
   };

@@ -22,10 +22,6 @@ import {
 
 class PetRender extends Component {
   toDetails = (event) => {
-    this.props.dispatch({
-      type: 'SET_PET_DETAIL',
-      payload: this.props.pet,
-    });
     this.props.history.push(`/details/${this.props.pet.id}`); //routes user to details of selected pet
   };
 
@@ -39,6 +35,7 @@ class PetRender extends Component {
               image={this.props.pet.image}
               onClick={this.toDetails}
               title={this.props.pet.name}
+              value={this.props.pet.id}
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">

@@ -12,6 +12,14 @@ import { Button, Paper, Grid } from '@material-ui/core';
 //Need a component did mount get for selected pet.
 
 class PetDetailsPage extends Component {
+  componentDidMount() {
+    console.log('IN THE DID MOUNT', this.props.match.params.id);
+    this.props.dispatch({
+      type: 'GET_PET_DETAIL',
+      payload: this.props.match.params.id,
+    });
+  }
+
   backToUser = (event) => {
     this.props.history.push('/user');
   };

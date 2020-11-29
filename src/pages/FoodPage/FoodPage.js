@@ -17,12 +17,12 @@ class FoodPage extends Component {
     scannerData: '', //not currently hooked to anything
   };
 
-  componentDidMount() {
-    this.props.dispatch({
-      type: 'GET_FOOD',
-      payload: this.props.store.petDetailReducer,
-    });
-  }
+  // componentDidMount() {
+  //   this.props.dispatch({
+  //     type: 'GET_FOOD',
+  //     payload: this.props.store.petDetailReducer,
+  //   });
+  // }
 
   addFood = (event) => {
     this.setState({
@@ -42,7 +42,7 @@ class FoodPage extends Component {
         <h2 className="Food_Heading">
           Here's what {this.props.store.petDetailReducer[0].name} is eating
         </h2>
-        {this.props.store.foodReducer[0].name}
+        <div>--GET food goes here-- with delete/edit button here</div>
 
         {this.state.scanner === true ? (
           <Scanner />

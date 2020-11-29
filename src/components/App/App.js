@@ -61,17 +61,17 @@ class App extends Component {
               component={InfoPage}
             />
             {/* ------Custom Routes------*/}
-            <ProtectedRoute
-              exact
-              path="/details/:id"
-              component={PetDetailsPage}
-            />
             <ProtectedRoute exact path="/food" component={FoodPage} />
             <ProtectedRoute exact path="/groomer" component={GroomerPage} />
             <ProtectedRoute exact path="/vet" component={VetPage} />
             <ProtectedRoute
               exact
-              path="/medication" //I absolutely hate how prettier spaced this one
+              path="/details/:id"
+              component={PetDetailsPage}
+            />
+            <ProtectedRoute
+              exact
+              path="/medication"
               component={MedicationPage}
             />
 
