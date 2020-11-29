@@ -7,7 +7,7 @@ import React from 'react';
 
 const InfoPage = () => (
   <div>
-    <p>Info Page</p>
+    <p>This page will be deleted or altered for final product</p>
   </div>
 );
 

@@ -3,9 +3,11 @@ import { connect, useDispatch } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import BarcodeScannerComponent from 'react-webcam-barcode-scanner';
 
-// Basic functional component structure for React with default state
-// value setup. When making a new component be sure to replace the
-// component name TemplateFunction with the name for the new component.
+//--To Do
+//Need to find a way to capture data and off camera automatically.
+//Need an api route for barcode information
+//Need a route to database
+
 function Scanner() {
   const [data, setData] = useState('Not Found');
   const dispatch = useDispatch();

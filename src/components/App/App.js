@@ -13,6 +13,7 @@ import GroomerPage from '../../pages/GroomerPage/GroomerPage';
 import InfoPage from '../../pages/InfoPage/InfoPage';
 import LandingPage from '../../pages/LandingPage/LandingPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
+import MedicationPage from '../../pages/MedicationPage/MedicationPage';
 import Nav from '../Nav/Nav';
 import PetDetailsPage from '../../pages/PetDetailsPage/PetDetailsPage';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -20,7 +21,6 @@ import RegisterPage from '../../pages/RegisterPage/RegisterPage';
 import UserPage from '../../pages/UserPage/UserPage';
 import VetPage from '../../pages/VetPage/VetPage';
 import './App.css';
-import MedicationPage from '../../pages/MedicationPage/MedicationPage';
 
 class App extends Component {
   componentDidMount() {

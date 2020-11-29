@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import LogOutButton from '../../components/LogOutButton/LogOutButton';
 import PetRender from '../../components/PetRender/PetRender';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import './UserPage.css';
 
 //Userpage holds the PetRender component. PetRender shows all pets by current user.
 //Userpage is done beyond cosmetics.
@@ -21,9 +22,8 @@ class UserPage extends Component {
     return (
       <div>
         <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
-        <p>Your ID is: {this.props.store.user.id}</p>
-        {ownedPet}
-        <LogOutButton className="log-in" />
+
+        <div className="Owned_Pet_Render">{ownedPet}</div>
       </div>
     );
   }

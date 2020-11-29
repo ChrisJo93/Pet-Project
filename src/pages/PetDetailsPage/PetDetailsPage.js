@@ -7,13 +7,15 @@ import { Button, Paper, Grid } from '@material-ui/core';
 
 //PetDetailsPage holds the PetItem component.
 //PetItem component holds individual pet with icons linking to each of the pet's needs.
-//PetDetailsPage is finished beyond updating cosmetics.
+
+// --- To Do
+//Need a component did mount get for selected pet.
 
 class PetDetailsPage extends Component {
   render() {
     return (
       <div>
-        <Grid container spacing={3} alightItems="center" justify="center">
+        <Grid container spacing={3} alignItems="center" justify="center">
           {this.props.store.petDetailReducer.map((petItem, index) => {
             return (
               <Grid item xs={12}>

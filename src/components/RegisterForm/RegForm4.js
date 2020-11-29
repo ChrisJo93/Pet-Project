@@ -11,6 +11,7 @@ class RegForm4 extends Component {
   };
 
   addStepFour = (event) => {
+    //dispatches remaining pet information to be registered
     event.preventDefault();
     this.props.dispatch({
       type: 'REGISTER',

@@ -9,7 +9,8 @@ function* registerUser(action) {
 
     // passes the username and password from the payload to the server
     yield axios.post('/api/user/register', action.payload.user);
-    yield put({ type: 'LOGIN', payload: action.payload.user });
+    yield axios.post('/api/user/login', action.payload.user);
+    // yield put({ type: 'LOGIN', payload: action.payload.user });
     yield put({ type: 'POST_PET', payload: action.payload.pet });
 
     // automatically log a user in after registration

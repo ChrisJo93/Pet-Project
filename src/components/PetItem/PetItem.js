@@ -12,6 +12,9 @@ import {
   LocalPharmacy,
 } from '@material-ui/icons';
 
+// -- To Do
+//Need a component did mount for pet to maintain state through refresh
+
 class PetItem extends Component {
   backToUser = (event) => {
     this.props.history.push('/user');

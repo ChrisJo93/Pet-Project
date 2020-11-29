@@ -12,9 +12,13 @@ import {
   Typography,
 } from '@material-ui/core';
 
-//This component renders user's pets to userpage.
 //Dispatches a single pet to petDetailReducer
 //to then be rendered on petDetailsPage.
+
+//--To Do
+//Remove card, set change images to circles with box shadow
+//Center pet images.
+//Create a border around this display with light blue background
 
 class PetRender extends Component {
   toDetails = (event) => {
@@ -38,8 +42,7 @@ class PetRender extends Component {
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
-                {this.props.pet.name} {''}
-                {this.props.pet.id}
+                {this.props.pet.name}
               </Typography>
               <Typography
                 variant="body2"
