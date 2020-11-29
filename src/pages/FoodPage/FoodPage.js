@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
 
-//Food needs npm barcode
+//Food needs npm barcode. Update: scanner imported, need to capture data
 //Food needs twillio
 //food needs a dispatch for get,post,put,delete food by pet id
 
