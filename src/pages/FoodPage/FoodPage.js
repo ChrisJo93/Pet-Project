@@ -44,11 +44,7 @@ class FoodPage extends Component {
           Here's what {this.props.store.petDetailReducer[0].name} is eating
         </h2>
         <div>
-          <tr className="Food_Table">
-            {this.props.store.foodReducer.map((foodItem, index) => {
-              return <FoodItem key={index} foodItem={foodItem} />;
-            })}
-          </tr>
+          <FoodItem />
         </div>
 
         {this.state.scanner === true ? (

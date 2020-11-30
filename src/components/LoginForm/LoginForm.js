@@ -13,6 +13,7 @@ class LoginForm extends Component {
     event.preventDefault();
 
     if (this.state.username && this.state.password) {
+      //unset pet and detail work to prevent second logged in user from viewing previous user's pets
       this.props.dispatch({
         type: 'UNSET_PET',
       });
@@ -26,6 +27,7 @@ class LoginForm extends Component {
           password: this.state.password,
         },
       });
+      //further prevents second user from seeing previous user details by routing them directly to userpage.
       this.props.history.push('/user');
     } else {
       this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
