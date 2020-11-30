@@ -11,20 +11,24 @@ import BarcodeScannerComponent from 'react-webcam-barcode-scanner';
 function Scanner() {
   const [data, setData] = useState('Not Found');
   const dispatch = useDispatch();
+
+  const clickCapture = () => {
+    dispatch({ type: 'SCANNER', payload: { data } });
+  };
+
   return (
     <>
       <BarcodeScannerComponent
         width={300}
         height={300}
         onUpdate={(err, result) => {
+          console.log('in scanner', result);
           if (result) setData(result.text);
           else setData('Not Found');
         }}
       />
       <p>{data}</p>
-      <button onClick={() => dispatch({ type: 'SCANNER', payload: { data } })}>
-        Difficult Capture.
-      </button>
+      <button onClick={clickCapture}>Difficult Capture.</button>
     </>
   );
 }

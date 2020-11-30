@@ -7,7 +7,7 @@ function* foodSaga() {
 
 function* getFood(action) {
   try {
-    const response = yield axios.get(`/api/food/${action.payload.id}`);
+    const response = yield axios.get(`/api/food/${action.payload}`);
     yield put({
       type: 'SET_FOOD',
       payload: response.data,

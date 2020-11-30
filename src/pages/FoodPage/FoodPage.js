@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
 import './FoodPage.css';
+import FoodItem from '../../components/FoodItem/FoodItem';
 
 //--To Do
 
@@ -17,12 +18,12 @@ class FoodPage extends Component {
     scannerData: '', //not currently hooked to anything
   };
 
-  // componentDidMount() {
-  //   this.props.dispatch({
-  //     type: 'GET_FOOD',
-  //     payload: this.props.store.petDetailReducer,
-  //   });
-  // }
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'GET_FOOD',
+      payload: this.props.store.petDetailReducer[0].id,
+    });
+  }
 
   addFood = (event) => {
     this.setState({
@@ -42,7 +43,13 @@ class FoodPage extends Component {
         <h2 className="Food_Heading">
           Here's what {this.props.store.petDetailReducer[0].name} is eating
         </h2>
-        <div>--GET food goes here-- with delete/edit button here</div>
+        <div>
+          <tr className="Food_Table">
+            {this.props.store.foodReducer.map((foodItem, index) => {
+              return <FoodItem key={index} foodItem={foodItem} />;
+            })}
+          </tr>
+        </div>
 
         {this.state.scanner === true ? (
           <Scanner />
