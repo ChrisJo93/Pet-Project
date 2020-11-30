@@ -62,7 +62,7 @@ class App extends Component {
             />
             {/* ------Custom Routes------*/}
             <ProtectedRoute exact path="/food/:id" component={FoodPage} />
-            <ProtectedRoute exact path="/groomer" component={GroomerPage} />
+            <ProtectedRoute exact path="/groomer/:id" component={GroomerPage} />
             <ProtectedRoute exact path="/vet" component={VetPage} />
             <ProtectedRoute
               exact

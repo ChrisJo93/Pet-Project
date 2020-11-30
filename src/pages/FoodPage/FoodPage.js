@@ -13,17 +13,22 @@ import FoodItem from '../../components/FoodItem/FoodItem';
 //food needs an add-FoodForm, scanner should go inside this form.
 
 class FoodPage extends Component {
+  componentDidMount() {
+    console.log('uhhaga', this.props.match);
+    this.props.dispatch({
+      type: 'GET_PET_DETAIL',
+      payload: this.props.match.params.id,
+    });
+    this.props.dispatch({
+      type: 'GET_FOOD',
+      payload: this.props.match.params.id,
+    });
+  }
+
   state = {
     scanner: false,
     scannerData: '', //not currently hooked to anything
   };
-
-  componentDidMount() {
-    this.props.dispatch({
-      type: 'GET_FOOD',
-      payload: this.props.store.petDetailReducer[0].id,
-    });
-  }
 
   addFood = (event) => {
     this.setState({

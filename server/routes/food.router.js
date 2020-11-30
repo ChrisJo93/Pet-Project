@@ -6,11 +6,11 @@ const {
 } = require('../modules/authentication-middleware');
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-  const queryGroomer = `SELECT "food".name, "food".barcode, "food".pet_id FROM "food"
+  const queryFood = `SELECT "food".name, "food".barcode, "food".pet_id FROM "food"
     JOIN "pet" ON "food".pet_id = "pet".id
     WHERE "food".pet_id = $1;`;
   pool
-    .query(queryGroomer, [req.params.id])
+    .query(queryFood, [req.params.id])
     .then((result) => {
       res.send(result.rows);
       res.sendStatus(200);

@@ -1,9 +1,11 @@
 import { all } from 'redux-saga/effects';
 import foodSaga from './food.saga';
+import groomerSaga from './groomer.saga';
 import loginSaga from './login.saga';
 import petSaga from './pet.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
+import vetSaga from './vet.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -15,9 +17,11 @@ import userSaga from './user.saga';
 export default function* rootSaga() {
   yield all([
     foodSaga(),
+    groomerSaga(),
     loginSaga(), // login saga is now registered
     petSaga(),
     registrationSaga(),
     userSaga(),
+    vetSaga(),
   ]);
 }

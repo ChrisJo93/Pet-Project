@@ -25,10 +25,10 @@ function* getPet(action) {
 
 function* getPetDetail(action) {
   try {
-    const petDetails = yield axios.get(`/api/pet/details/${action.payload}`);
+    const response = yield axios.get(`/api/pet/details/${action.payload}`);
     yield put({
       type: 'SET_PET_DETAIL',
-      payload: petDetails.data,
+      payload: response.data,
     });
   } catch (err) {
     console.log(err);

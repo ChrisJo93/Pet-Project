@@ -3,20 +3,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-class FoodItem extends Component {
+class VetItem extends Component {
   componentDidMount() {
     this.props.dispatch({
-      type: 'GET_FOOD',
+      type: 'GET_VET',
       payload: this.props.store.petDetailReducer[0].id,
     });
   }
 
   render() {
-    const foodList = this.props.store.foodReducer.map((foodItem, index) => {
+    const vetList = this.props.store.vetReducer.map((vetItem, index) => {
       return (
         <tr className="tbRow" key={index}>
-          <td>{foodItem.name}</td>
-          <td>{foodItem.barcode}</td>
+          <td>{vetItem.groomer}</td>
+          <td>{vetItem.date}</td>
+          <td>at: {vetItem.location}</td>
         </tr>
       );
     });
@@ -26,14 +27,14 @@ class FoodItem extends Component {
         <table>
           <thead>
             <tr className="thRow">
-              <th colSpan="2">Food Brands</th>
+              <th colSpan="4">Vet Appointments</th>
             </tr>
           </thead>
-          <tbody>{foodList}</tbody>
+          <tbody>{vetList}</tbody>
         </table>
       </div>
     );
   }
 }
 
-export default withRouter(connect(mapStoreToProps)(FoodItem));
+export default withRouter(connect(mapStoreToProps)(VetItem));

@@ -15,14 +15,6 @@ import {
 //Need a component did mount for pet to maintain state through refresh
 
 class PetItem extends Component {
-  componentDidMount() {
-    console.log('IN THE DID MOUNT', this.props.match.params.id);
-    this.props.dispatch({
-      type: 'GET_PET_DETAIL',
-      payload: this.props.match.params.id,
-    });
-  }
-
   test = (event) => {
     console.log('This will need to be a gentle alert soon.');
   };
@@ -31,13 +23,13 @@ class PetItem extends Component {
     this.props.history.push(`/food/${this.props.petItem.id}`);
   };
   toGroomer = (event) => {
-    this.props.history.push('/groomer');
+    this.props.history.push(`/groomer/${this.props.petItem.id}`);
   };
   toVet = (event) => {
-    this.props.history.push('/vet');
+    this.props.history.push(`/vet`);
   };
   toMedicine = (event) => {
-    this.props.history.push('/medication');
+    this.props.history.push(`/medication`);
   };
 
   render() {
