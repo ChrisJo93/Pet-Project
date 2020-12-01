@@ -24,9 +24,7 @@ class GroomerPage extends Component {
   render() {
     return (
       <div>
-        <h2 className="Heading">
-          Here are {this.props.store.petDetailReducer[0].name}'s appointments
-        </h2>
+        <h2 className="Heading">Here are your Pet's Grooming appointments</h2>
         <div>
           <GroomerItem />
         </div>

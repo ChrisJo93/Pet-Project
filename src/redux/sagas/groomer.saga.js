@@ -7,7 +7,7 @@ function* groomerSaga() {
 
 function* getGroomer(action) {
   try {
-    const response = yield axios.get(`/api/groomer/${action.payload}`);
+    const response = yield axios.get(`/api/groomer`);
     yield put({
       type: 'SET_GROOMER',
       payload: response.data,
