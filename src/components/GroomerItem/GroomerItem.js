@@ -6,6 +6,10 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 class GroomerItem extends Component {
   componentDidMount() {
     this.props.dispatch({
+      type: 'GET_PET_DETAIL',
+      payload: this.props.match.params.id,
+    });
+    this.props.dispatch({
       type: 'GET_GROOMER',
       payload: this.props.store.petDetailReducer[0].id,
     });

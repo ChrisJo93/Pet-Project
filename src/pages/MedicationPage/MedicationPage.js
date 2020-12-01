@@ -12,10 +12,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 class MedicationPage extends Component {
   componentDidMount() {
     this.props.dispatch({
-      type: 'GET_PET_DETAIL',
-      payload: this.props.match.params.id,
-    });
-    this.props.dispatch({
       type: 'GET_MEDICATION',
       payload: this.props.match.params.id,
     });
