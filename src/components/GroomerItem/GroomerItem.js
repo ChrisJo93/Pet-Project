@@ -2,6 +2,8 @@ import { withRouter } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { Button } from '@material-ui/core';
+import { DeleteForever } from '@material-ui/icons';
 
 class GroomerItem extends Component {
   componentDidMount() {
@@ -23,6 +25,9 @@ class GroomerItem extends Component {
             <td>{groomerItem.groomer}</td>
             <td>{groomerItem.date}</td>
             <td>{groomerItem.location}</td>
+            <td>
+              <DeleteForever />
+            </td>
           </tr>
         );
       }
@@ -35,7 +40,7 @@ class GroomerItem extends Component {
             <tr className="thRow">
               <th>Groomer</th>
               <th>Date</th>
-              <th>Location</th>
+              <th colSpan="2">Location</th>
             </tr>
           </thead>
           <tbody>{groomerList}</tbody>

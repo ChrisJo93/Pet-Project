@@ -142,7 +142,6 @@ table {
 }
 
 table th {
-  width: 350px;
   padding: 5px 10px;
   border: 2px solid black;
   background-color: rgb(5, 204, 230);
@@ -150,7 +149,6 @@ table th {
 }
 
 table td {
-  width: 350px;
   padding: 5px 10px;
   border: 2px solid black;
 }
