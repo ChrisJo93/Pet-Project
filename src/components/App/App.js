@@ -21,6 +21,7 @@ import RegisterPage from '../../pages/RegisterPage/RegisterPage';
 import UserPage from '../../pages/UserPage/UserPage';
 import VetPage from '../../pages/VetPage/VetPage';
 import './App.css';
+import GroomerDetailPage from '../../pages/GroomerDetailPage/GroomerDetailPage';
 
 class App extends Component {
   componentDidMount() {
@@ -63,7 +64,12 @@ class App extends Component {
             {/* ------Custom Routes------*/}
             <ProtectedRoute exact path="/food/:id" component={FoodPage} />
             <ProtectedRoute exact path="/groomer" component={GroomerPage} />
-            <ProtectedRoute exact path="/vet" component={VetPage} />
+            <ProtectedRoute
+              exact
+              path="/groomer/details/:id"
+              component={GroomerDetailPage}
+            />
+            <ProtectedRoute exact path="/vet/:id" component={VetPage} />
             <ProtectedRoute
               exact
               path="/details/:id"

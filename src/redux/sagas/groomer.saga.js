@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function* groomerSaga() {
   yield takeLatest('GET_GROOMER', getGroomer);
+  yield takeLatest('GET_GROOMER_DETAIL', getGroomerDetail);
 }
 
 function* getGroomer(action) {
@@ -17,6 +18,22 @@ function* getGroomer(action) {
     yield put({
       type: 'ERROR_MSG',
       payload: 'There was a problem with GROOMER GET',
+    });
+  }
+}
+
+function* getGroomerDetail(action) {
+  try {
+    const response = yield axios.get(`/api/groomer/details/${action.payload}`);
+    yield put({
+      type: 'SET_GROOMER_DETAIL',
+      payload: response.data,
+    });
+  } catch (err) {
+    console.log(err);
+    yield put({
+      type: 'SET_ERROR',
+      payload: 'Could not get groomer details',
     });
   }
 }

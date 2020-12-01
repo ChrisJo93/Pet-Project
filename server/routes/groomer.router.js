@@ -8,7 +8,7 @@ const {
 /**
  * GET route template
  */
-router.get('/:id', rejectUnauthenticated, (req, res) => {
+router.get('/details/:id', rejectUnauthenticated, (req, res) => {
   //Grabbing groomer by pet ID
   //the way this is written the other groomers can be accessed but
   //it wont matter client side where only that user's pets are visible
