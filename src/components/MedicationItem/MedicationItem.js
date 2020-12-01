@@ -3,22 +3,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-class GroomerItem extends Component {
+class MedicationItem extends Component {
   componentDidMount() {
     this.props.dispatch({
-      type: 'GET_GROOMER',
+      type: 'GET_MEDICATION',
       payload: this.props.store.petDetailReducer[0].id,
     });
   }
 
   render() {
-    const groomerList = this.props.store.groomerReducer.map(
-      (groomerItem, index) => {
+    const medicationList = this.props.store.medicationReducer.map(
+      (medicationItem, index) => {
         return (
           <tr className="tbRow" key={index}>
-            <td>{groomerItem.groomer}</td>
-            <td>{groomerItem.date}</td>
-            <td>{groomerItem.location}</td>
+            <td>{medicationItem.groomer}</td>
+            <td>{medicationItem.date}</td>
+            <td>{medicationItem.location}</td>
           </tr>
         );
       }
@@ -34,11 +34,11 @@ class GroomerItem extends Component {
               <th>Location</th>
             </tr>
           </thead>
-          <tbody>{groomerList}</tbody>
+          <tbody>{medicationList}</tbody>
         </table>
       </div>
     );
   }
 }
 
-export default withRouter(connect(mapStoreToProps)(GroomerItem));
+export default withRouter(connect(mapStoreToProps)(MedicationItem));

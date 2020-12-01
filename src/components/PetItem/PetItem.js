@@ -26,10 +26,10 @@ class PetItem extends Component {
     this.props.history.push(`/groomer/${this.props.petItem.id}`);
   };
   toVet = (event) => {
-    this.props.history.push(`/vet`);
+    this.props.history.push(`/vet/${this.props.petItem.id}`);
   };
   toMedicine = (event) => {
-    this.props.history.push(`/medication`);
+    this.props.history.push(`/medication/${this.props.petItem.id}`);
   };
 
   render() {
@@ -64,7 +64,6 @@ class PetItem extends Component {
               onMouseEnter={this.test}
             />
           </Grid>
-          <Grid item />
 
           <Grid />
         </Grid>

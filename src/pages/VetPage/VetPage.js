@@ -24,7 +24,7 @@ class VetPage extends Component {
   render() {
     return (
       <div>
-        <h2 className="Vet_Heading">
+        <h2 className="Heading">
           Here are {this.props.store.petDetailReducer[0].name}'s appointments
         </h2>
         <div>

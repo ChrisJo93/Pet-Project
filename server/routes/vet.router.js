@@ -6,7 +6,7 @@ const {
 } = require('../modules/authentication-middleware');
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-  const queryVet = `SELECT "doctor", "reason", "date", "location" FROM "vet"
+  const queryVet = `SELECT * FROM "vet"
       JOIN "pet" ON "vet".pet_id = "pet".id
       WHERE pet_id = $1;`;
   pool

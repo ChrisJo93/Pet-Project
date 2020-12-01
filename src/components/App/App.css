@@ -130,3 +130,32 @@ input {
   display: inline-table;
   box-shadow: 0 0px 1px rgb(0, 0, 0, 0.4);
 }
+
+.Heading {
+  text-align: center;
+}
+
+table {
+  margin: 45px auto;
+  border-collapse: collapse;
+  empty-cells: show;
+}
+
+table th {
+  width: 350px;
+  padding: 5px 10px;
+  border: 2px solid black;
+  background-color: rgb(5, 204, 230);
+  color: black;
+}
+
+table td {
+  width: 350px;
+  padding: 5px 10px;
+  border: 2px solid black;
+}
+
+tr:nth-child(even) {
+  background-color: #45b8eee7;
+  color: black;
+}

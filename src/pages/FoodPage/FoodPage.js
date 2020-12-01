@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
-import './FoodPage.css';
 import FoodItem from '../../components/FoodItem/FoodItem';
 
 //--To Do
@@ -45,7 +44,7 @@ class FoodPage extends Component {
   render() {
     return (
       <div>
-        <h2 className="Food_Heading">
+        <h2 className="Heading">
           Here's what {this.props.store.petDetailReducer[0].name} is eating
         </h2>
         <div>

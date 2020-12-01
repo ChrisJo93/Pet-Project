@@ -26,7 +26,8 @@ class FoodItem extends Component {
         <table>
           <thead>
             <tr className="thRow">
-              <th colSpan="2">Food Brands</th>
+              <th>Brand</th>
+              <th>Barcode</th>
             </tr>
           </thead>
           <tbody>{foodList}</tbody>

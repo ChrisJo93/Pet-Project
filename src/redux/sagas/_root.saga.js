@@ -2,6 +2,7 @@ import { all } from 'redux-saga/effects';
 import foodSaga from './food.saga';
 import groomerSaga from './groomer.saga';
 import loginSaga from './login.saga';
+import medicationSaga from './medication.saga';
 import petSaga from './pet.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
@@ -19,6 +20,7 @@ export default function* rootSaga() {
     foodSaga(),
     groomerSaga(),
     loginSaga(), // login saga is now registered
+    medicationSaga(),
     petSaga(),
     registrationSaga(),
     userSaga(),

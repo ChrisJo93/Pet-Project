@@ -15,9 +15,10 @@ class VetItem extends Component {
     const vetList = this.props.store.vetReducer.map((vetItem, index) => {
       return (
         <tr className="tbRow" key={index}>
-          <td>{vetItem.groomer}</td>
+          <td>{vetItem.doctor}</td>
           <td>{vetItem.date}</td>
-          <td>at: {vetItem.location}</td>
+          <td>{vetItem.location}</td>
+          <td>{vetItem.reason}</td>
         </tr>
       );
     });
@@ -27,7 +28,10 @@ class VetItem extends Component {
         <table>
           <thead>
             <tr className="thRow">
-              <th colSpan="4">Vet Appointments</th>
+              <th>Veterinarian</th>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Reason</th>
             </tr>
           </thead>
           <tbody>{vetList}</tbody>
