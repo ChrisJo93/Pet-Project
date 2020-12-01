@@ -2,7 +2,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* medicationSaga() {
-  yield takeLatest('GET_MEDICINE', getMedication);
+  yield takeLatest('GET_MEDICATION', getMedication);
 }
 
 function* getMedication(action) {

@@ -16,9 +16,12 @@ class MedicationItem extends Component {
       (medicationItem, index) => {
         return (
           <tr className="tbRow" key={index}>
-            <td>{medicationItem.groomer}</td>
-            <td>{medicationItem.date}</td>
-            <td>{medicationItem.location}</td>
+            <td>{medicationItem.name}</td>
+            <td>{medicationItem.dosage}</td>
+            <td>{medicationItem.start_date}</td>
+            <td>{medicationItem.end_date}</td>
+            <td>{medicationItem.doctor}</td>
+            <td>{medicationItem.barcode}</td>
           </tr>
         );
       }
@@ -29,9 +32,12 @@ class MedicationItem extends Component {
         <table>
           <thead>
             <tr className="thRow">
-              <th>Groomer</th>
-              <th>Date</th>
-              <th>Location</th>
+              <th>Brand</th>
+              <th>Dosage</th>
+              <th>Prescribed</th>
+              <th>Completion</th>
+              <th>Veterinarian</th>
+              <th>Barcode</th>
             </tr>
           </thead>
           <tbody>{medicationList}</tbody>
