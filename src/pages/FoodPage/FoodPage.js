@@ -13,11 +13,6 @@ import FoodItem from '../../components/FoodItem/FoodItem';
 
 class FoodPage extends Component {
   componentDidMount() {
-    console.log('uhhaga', this.props.match);
-    this.props.dispatch({
-      type: 'GET_PET_DETAIL',
-      payload: this.props.match.params.id,
-    });
     this.props.dispatch({
       type: 'GET_FOOD',
       payload: this.props.match.params.id,
@@ -44,9 +39,6 @@ class FoodPage extends Component {
   render() {
     return (
       <div>
-        <h2 className="Heading">
-          Here's what {this.props.store.petDetailReducer[0].name} is eating
-        </h2>
         <div>
           <FoodItem />
         </div>

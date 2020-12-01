@@ -17,14 +17,16 @@ function* getMedication(action) {
     console.log(err);
     yield put({
       type: 'ERROR_MSG',
-      payload: 'There was a problem with GROOMER GET',
+      payload: 'There was a problem with MEDICATION GET',
     });
   }
 }
 
 function* getMedicationDetail(action) {
   try {
-    const response = yield axios.get(`/api/medication/${action.payload}`);
+    const response = yield axios.get(
+      `/api/medication/details/${action.payload}`
+    );
     yield put({
       type: 'SET_MEDICATION_DETAIL',
       payload: response.data,

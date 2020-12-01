@@ -2,21 +2,21 @@ import { withRouter } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { Button } from '@material-ui/core';
+import { DeleteForever } from '@material-ui/icons';
 
 class FoodItem extends Component {
-  componentDidMount() {
-    this.props.dispatch({
-      type: 'GET_FOOD',
-      payload: this.props.store.petDetailReducer[0].id,
-    });
-  }
-
   render() {
     const foodList = this.props.store.foodReducer.map((foodItem, index) => {
       return (
         <tr className="tbRow" key={index}>
           <td>{foodItem.name}</td>
           <td>{foodItem.barcode}</td>
+          <td>
+            <DeleteForever
+              onClick={(event) => this.delete(event, foodItem.id)}
+            />
+          </td>
         </tr>
       );
     });
@@ -27,7 +27,7 @@ class FoodItem extends Component {
           <thead>
             <tr className="thRow">
               <th>Brand</th>
-              <th>Barcode</th>
+              <th colSpan="2">Barcode</th>
             </tr>
           </thead>
           <tbody>{foodList}</tbody>

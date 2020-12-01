@@ -19,7 +19,7 @@ class GroomerPage extends Component {
   render() {
     return (
       <div>
-        <h2 className="Heading">Here are your Pet's Grooming appointments</h2>
+        <h2 className="Heading">Grooming Appointments</h2>
         <div>
           <GroomerItem />
         </div>

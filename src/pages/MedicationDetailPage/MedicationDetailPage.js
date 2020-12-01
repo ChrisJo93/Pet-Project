@@ -21,9 +21,12 @@ class MedicationDetailPage extends Component {
       (medItem, index) => {
         return (
           <tr className="tbRow" key={index}>
-            <td>{medItem.groomer}</td>
-            <td>{medItem.date}</td>
-            <td>{medItem.location}</td>
+            <td>{medItem.name}</td>
+            <td>{medItem.dosage}</td>
+            <td>{medItem.start_date}</td>
+            <td>{medItem.end_date}</td>
+            <td>{medItem.doctor}</td>
+            <td>{medItem.barcode}</td>
             <td>
               <DeleteForever
                 onClick={(event) => this.delete(event, medItem.id)}
@@ -40,9 +43,12 @@ class MedicationDetailPage extends Component {
         <table>
           <thead>
             <tr className="thRow">
-              <th>Groomer</th>
-              <th>Date</th>
-              <th colSpan="3">Location</th>
+              <th>Brand</th>
+              <th>Dosage</th>
+              <th>Prescribed</th>
+              <th>Completion</th>
+              <th>Doctor</th>
+              <th colSpan="2">Barcode</th>
             </tr>
           </thead>
           <tbody>{medList}</tbody>
