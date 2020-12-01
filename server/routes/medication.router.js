@@ -5,7 +5,7 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-router.get('/:id', rejectUnauthenticated, (req, res) => {
+router.get('/details/:id', rejectUnauthenticated, (req, res) => {
   const queryMedication = `SELECT 
   "medication".name, 
   "medication".dosage, 
@@ -17,6 +17,26 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
       WHERE "medication".pet_id = $1;`;
   pool
     .query(queryMedication, [req.params.id])
+    .then((result) => {
+      res.send(result.rows);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log('error in get', err);
+      res.sendStatus(500);
+    });
+});
+
+router.get('/', rejectUnauthenticated, (req, res) => {
+  //Grabbing groomer by pet ID
+  //the way this is written the other groomers can be accessed but
+  //it wont matter client side where only that user's pets are visible
+  const queryMedication = `SELECT * FROM "medication"
+  JOIN "pet" ON "medication".pet_id = "pet".id
+  WHERE user_id = $1
+`;
+  pool
+    .query(queryMedication, [req.user.id])
     .then((result) => {
       res.send(result.rows);
       res.sendStatus(200);

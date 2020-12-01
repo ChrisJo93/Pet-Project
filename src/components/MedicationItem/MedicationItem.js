@@ -4,13 +4,6 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class MedicationItem extends Component {
-  componentDidMount() {
-    this.props.dispatch({
-      type: 'GET_MEDICATION',
-      payload: this.props.store.petDetailReducer[0].id,
-    });
-  }
-
   render() {
     const medicationList = this.props.store.medicationReducer.map(
       (medicationItem, index) => {

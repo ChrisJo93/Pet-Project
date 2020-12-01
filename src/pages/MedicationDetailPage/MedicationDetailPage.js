@@ -5,10 +5,10 @@ import { withRouter } from 'react-router-dom';
 import { Button, Paper, Grid } from '@material-ui/core';
 import { DeleteForever } from '@material-ui/icons';
 
-class GroomerDetailPage extends Component {
+class MedicationDetailPage extends Component {
   componentDidMount() {
     this.props.dispatch({
-      type: 'GET_GROOMER_DETAIL',
+      type: 'GET_MEDICATION_DETAIL',
       payload: this.props.match.params.id,
     });
   }
@@ -17,16 +17,16 @@ class GroomerDetailPage extends Component {
   };
 
   render() {
-    const groomerList = this.props.store.groomerDetailReducer.map(
-      (groomerItem, index) => {
+    const medList = this.props.store.medicationDetailReducer.map(
+      (medItem, index) => {
         return (
           <tr className="tbRow" key={index}>
-            <td>{groomerItem.groomer}</td>
-            <td>{groomerItem.date}</td>
-            <td>{groomerItem.location}</td>
+            <td>{medItem.groomer}</td>
+            <td>{medItem.date}</td>
+            <td>{medItem.location}</td>
             <td>
               <DeleteForever
-                onClick={(event) => this.delete(event, groomerItem.id)}
+                onClick={(event) => this.delete(event, medItem.id)}
               />
             </td>
           </tr>
@@ -45,7 +45,7 @@ class GroomerDetailPage extends Component {
               <th colSpan="3">Location</th>
             </tr>
           </thead>
-          <tbody>{groomerList}</tbody>
+          <tbody>{medList}</tbody>
           <Button onClick={this.add}>Add Appointment</Button>
         </table>
       </div>
@@ -53,4 +53,4 @@ class GroomerDetailPage extends Component {
   }
 }
 
-export default withRouter(connect(mapStoreToProps)(GroomerDetailPage));
+export default withRouter(connect(mapStoreToProps)(MedicationDetailPage));

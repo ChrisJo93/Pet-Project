@@ -10,6 +10,7 @@ import AboutPage from '../../pages/AboutPage/AboutPage';
 import FoodPage from '../../pages/FoodPage/FoodPage';
 import Footer from '../Footer/Footer';
 import GroomerPage from '../../pages/GroomerPage/GroomerPage';
+import GroomerDetailPage from '../../pages/GroomerDetailPage/GroomerDetailPage';
 import InfoPage from '../../pages/InfoPage/InfoPage';
 import LandingPage from '../../pages/LandingPage/LandingPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
@@ -21,7 +22,7 @@ import RegisterPage from '../../pages/RegisterPage/RegisterPage';
 import UserPage from '../../pages/UserPage/UserPage';
 import VetPage from '../../pages/VetPage/VetPage';
 import './App.css';
-import GroomerDetailPage from '../../pages/GroomerDetailPage/GroomerDetailPage';
+import MedicationDetailPage from '../../pages/MedicationDetailPage/MedicationDetailPage';
 
 class App extends Component {
   componentDidMount() {
@@ -77,8 +78,13 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
-              path="/medication/:id"
+              path="/medication"
               component={MedicationPage}
+            />
+            <ProtectedRoute
+              exact
+              path="/medication/details/:id"
+              component={MedicationDetailPage}
             />
 
             {/* ------Custom Routes------ */}

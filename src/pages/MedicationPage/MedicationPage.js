@@ -20,9 +20,7 @@ class MedicationPage extends Component {
   render() {
     return (
       <div>
-        <h2 className="Heading">
-          Here are {this.props.store.petDetailReducer[0].name}'s Medications
-        </h2>
+        <h2 className="Heading">Here are Medications</h2>
         <div>
           <MedicationItem />
         </div>
