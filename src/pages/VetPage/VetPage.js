@@ -12,21 +12,14 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 class VetPage extends Component {
   componentDidMount() {
     this.props.dispatch({
-      type: 'GET_PET_DETAIL',
-      payload: this.props.match.params.id,
-    });
-    this.props.dispatch({
       type: 'GET_VET',
-      payload: this.props.match.params.id,
     });
   }
 
   render() {
     return (
       <div>
-        <h2 className="Heading">
-          Here are {this.props.store.petDetailReducer[0].name}'s appointments
-        </h2>
+        <h2 className="Heading">Vet Appointments</h2>
         <div>
           <VetItem />
         </div>

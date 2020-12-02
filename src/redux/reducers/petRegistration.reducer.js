@@ -1,4 +1,4 @@
-const petReducer = (state = {}, action) => {
+const petRegistrationReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_PET_REGISTRATION':
       return { ...state, ...action.payload };
@@ -9,4 +9,4 @@ const petReducer = (state = {}, action) => {
   }
 };
 
-export default petReducer;
+export default petRegistrationReducer;

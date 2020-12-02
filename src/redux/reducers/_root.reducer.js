@@ -3,15 +3,16 @@ import errors from './errors.reducer';
 import foodReducer from './food.reducer';
 import groomerReducer from './groomer.reducer';
 import groomerDetailReducer from './groomerDetails.reducer';
-import medicationReducer from './medication.reducer';
-import medicationDetailReducer from './medicationDetail.reducer';
+import medication from './medication.reducer';
+import medicationDetail from './medicationDetail.reducer';
 import ownedPetReducer from './ownedPet.reducer';
 import petDetailReducer from './petDetail.reducer';
-import petReducer from './pet.reducer';
+import petRegistration from './petRegistration.reducer';
 import registrationReducer from './registration.reducer';
 import scannerReducer from './scanner.reducer';
 import user from './user.reducer';
 import vetReducer from './vet.reducer';
+import vetDetailReducer from './vetDetail.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -23,15 +24,16 @@ const rootReducer = combineReducers({
   foodReducer,
   groomerReducer,
   groomerDetailReducer,
-  medicationReducer,
-  medicationDetailReducer,
+  medication,
+  medicationDetail,
   ownedPetReducer,
   petDetailReducer,
-  petReducer,
+  petRegistration,
   registrationReducer,
   scannerReducer,
   user, // will have an id and username if someone is logged in
   vetReducer,
+  vetDetailReducer,
 });
 
 export default rootReducer;

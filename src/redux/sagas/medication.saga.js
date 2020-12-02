@@ -29,7 +29,7 @@ function* getMedicationDetail(action) {
     );
     yield put({
       type: 'SET_MEDICATION_DETAIL',
-      payload: response.data,
+      payload: response.data[0],
     });
   } catch (err) {
     console.log(err);

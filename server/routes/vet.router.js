@@ -8,9 +8,9 @@ const {
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryVet = `SELECT * FROM "vet"
       JOIN "pet" ON "vet".pet_id = "pet".id
-      WHERE pet_id = $1;`;
+      WHERE user_id = $1`;
   pool
-    .query(queryVet, [req.params.id])
+    .query(queryVet, [req.user.id])
     .then((result) => {
       res.send(result.rows);
       res.sendStatus(200);
@@ -22,19 +22,16 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.get('/details/:id', rejectUnauthenticated, (req, res) => {
-  //Grabbing groomer by pet ID
-  //the way this is written the other groomers can be accessed but
-  //it wont matter client side where only that user's pets are visible
   const queryVet = `SELECT 
   "vet".doctor,
   "vet".reason,
   "vet".date,
   "vet".location
-  FROM "groomer"
-  JOIN "pet" ON "groomer".pet_id = "pet".id
-  WHERE "groomer".pet_id = $1;`;
+  FROM "vet"
+  JOIN "pet" ON "vet".pet_id = "pet".id
+  WHERE "vet".pet_id = $1;`;
   pool
-    .query(queryGroomer, [req.params.id])
+    .query(queryVet, [req.params.id])
     .then((result) => {
       res.send(result.rows);
       res.sendStatus(200);

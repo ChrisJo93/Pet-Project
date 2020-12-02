@@ -18,7 +18,7 @@ class RegForm4 extends Component {
       payload: {
         user: this.props.store.registrationReducer,
         pet: {
-          ...this.props.store.petReducer,
+          ...this.props.store.petRegistration,
           weight: this.state.weight,
           birthdate: this.state.birthdate,
           sex: this.state.sex,

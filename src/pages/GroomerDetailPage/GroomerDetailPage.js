@@ -33,10 +33,16 @@ class GroomerDetailPage extends Component {
         );
       }
     );
+    const groomerImage = this.props.store.groomerDetailReducer.map(
+      (groomer, index) => {
+        return <img src={groomer.image} />;
+      }
+    );
 
     return (
       <div>
         <h2>Current Appointments</h2>
+        <div className="avatar">{groomerImage}</div>
         <table>
           <thead>
             <tr className="thRow">

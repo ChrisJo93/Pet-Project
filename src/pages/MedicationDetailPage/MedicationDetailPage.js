@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import { Button, Paper, Grid } from '@material-ui/core';
-import { DeleteForever } from '@material-ui/icons';
+import { DeleteForever, Edit } from '@material-ui/icons';
 
 class MedicationDetailPage extends Component {
   componentDidMount() {
@@ -17,29 +17,10 @@ class MedicationDetailPage extends Component {
   };
 
   render() {
-    const medList = this.props.store.medicationDetailReducer.map(
-      (medItem, index) => {
-        return (
-          <tr className="tbRow" key={index}>
-            <td>{medItem.name}</td>
-            <td>{medItem.dosage}</td>
-            <td>{medItem.start_date}</td>
-            <td>{medItem.end_date}</td>
-            <td>{medItem.doctor}</td>
-            <td>{medItem.barcode}</td>
-            <td>
-              <DeleteForever
-                onClick={(event) => this.delete(event, medItem.id)}
-              />
-            </td>
-          </tr>
-        );
-      }
-    );
-
     return (
       <div>
-        <h2>Current Appointments</h2>
+        <h2>Current Medications</h2>
+
         <table>
           <thead>
             <tr className="thRow">
@@ -48,10 +29,26 @@ class MedicationDetailPage extends Component {
               <th>Prescribed</th>
               <th>Completion</th>
               <th>Doctor</th>
-              <th colSpan="2">Barcode</th>
+              <th>Barcode</th>
+              <th>Edit</th>
             </tr>
           </thead>
-          <tbody>{medList}</tbody>
+          <tbody>
+            <td>{this.props.store.medicationDetail.brand}</td>
+            <td>{this.props.store.medicationDetail.dosage}</td>
+            <td>{this.props.store.medicationDetail.start_date}</td>
+            <td>{this.props.store.medicationDetail.end_date}</td>
+            <td>{this.props.store.medicationDetail.doctor}</td>
+            <td>{this.props.store.medicationDetail.barcode}</td>
+            <td>
+              <Edit></Edit>
+              <DeleteForever
+                onClick={(event) =>
+                  this.delete(event, this.props.store.medicationDetail.id)
+                }
+              />
+            </td>
+          </tbody>
           <Button onClick={this.add}>Add Appointment</Button>
         </table>
       </div>

@@ -1,6 +1,6 @@
-const medicationDetailReducer = (state = {}, action) => {
+const vetDetailReducer = (state = [], action) => {
   switch (action.type) {
-    case 'SET_MEDICATION_DETAIL':
+    case 'SET_VET_DETAIL':
       return action.payload;
     case 'UNSET_MEDICATION':
       return {};
@@ -9,4 +9,4 @@ const medicationDetailReducer = (state = {}, action) => {
   }
 };
 
-export default medicationDetailReducer;
+export default vetDetailReducer;

@@ -10,7 +10,7 @@ class FoodItem extends Component {
     const foodList = this.props.store.foodReducer.map((foodItem, index) => {
       return (
         <tr className="tbRow" key={index}>
-          <td>{foodItem.name}</td>
+          <td>{foodItem.brand}</td>
           <td>{foodItem.barcode}</td>
           <td>
             <DeleteForever

@@ -2,15 +2,9 @@ import { withRouter } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { DeleteForever, Edit } from '@material-ui/icons';
 
 class VetItem extends Component {
-  componentDidMount() {
-    this.props.dispatch({
-      type: 'GET_VET',
-      payload: this.props.store.petDetailReducer[0].id,
-    });
-  }
-
   render() {
     const vetList = this.props.store.vetReducer.map((vetItem, index) => {
       return (
@@ -19,6 +13,13 @@ class VetItem extends Component {
           <td>{vetItem.date}</td>
           <td>{vetItem.location}</td>
           <td>{vetItem.reason}</td>
+          <td>{vetItem.name}</td>
+          <td>
+            <Edit></Edit>
+            <DeleteForever
+              onClick={(event) => this.delete(event, vetItem.id)}
+            />
+          </td>
         </tr>
       );
     });
@@ -32,6 +33,8 @@ class VetItem extends Component {
               <th>Date</th>
               <th>Location</th>
               <th>Reason</th>
+              <th>For</th>
+              <th>Edit</th>
             </tr>
           </thead>
           <tbody>{vetList}</tbody>

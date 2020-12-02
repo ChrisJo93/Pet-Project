@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Button } from '@material-ui/core';
-import { DeleteForever } from '@material-ui/icons';
+import { DeleteForever, Edit } from '@material-ui/icons';
 
 class GroomerItem extends Component {
   delete = (event, id) => {
@@ -20,6 +20,7 @@ class GroomerItem extends Component {
             <td>{groomerItem.location}</td>
             <td>{groomerItem.name}</td>
             <td>
+              <Edit></Edit>
               <DeleteForever
                 onClick={(event) => this.delete(event, groomerItem.id)}
               />
@@ -37,7 +38,8 @@ class GroomerItem extends Component {
               <th>Groomer</th>
               <th>Date</th>
               <th>Location</th>
-              <th colSpan="2">For</th>
+              <th>For</th>
+              <th>Edit</th>
             </tr>
           </thead>
           <tbody>{groomerList}</tbody>

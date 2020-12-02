@@ -15,14 +15,15 @@ import InfoPage from '../../pages/InfoPage/InfoPage';
 import LandingPage from '../../pages/LandingPage/LandingPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
 import MedicationPage from '../../pages/MedicationPage/MedicationPage';
+import MedicationDetailPage from '../../pages/MedicationDetailPage/MedicationDetailPage';
 import Nav from '../Nav/Nav';
 import PetDetailsPage from '../../pages/PetDetailsPage/PetDetailsPage';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import RegisterPage from '../../pages/RegisterPage/RegisterPage';
 import UserPage from '../../pages/UserPage/UserPage';
 import VetPage from '../../pages/VetPage/VetPage';
+import VetDetailPage from '../../pages/VetPage/VetDetailPage';
 import './App.css';
-import MedicationDetailPage from '../../pages/MedicationDetailPage/MedicationDetailPage';
 
 class App extends Component {
   componentDidMount() {
@@ -70,7 +71,12 @@ class App extends Component {
               path="/groomer/details/:id"
               component={GroomerDetailPage}
             />
-            <ProtectedRoute exact path="/vet/:id" component={VetPage} />
+            <ProtectedRoute exact path="/vet" component={VetPage} />
+            <ProtectedRoute
+              exact
+              path="/vet/details/:id"
+              component={VetDetailPage}
+            />
             <ProtectedRoute
               exact
               path="/details/:id"

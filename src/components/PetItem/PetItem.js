@@ -26,7 +26,7 @@ class PetItem extends Component {
     this.props.history.push(`/groomer/details/${this.props.petItem.id}`);
   };
   toVet = (event) => {
-    this.props.history.push(`/vet/${this.props.petItem.id}`);
+    this.props.history.push(`/vet/details/${this.props.petItem.id}`);
   };
   toMedicine = (event) => {
     this.props.history.push(`/medication/details/${this.props.petItem.id}`);

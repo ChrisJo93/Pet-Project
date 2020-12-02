@@ -12,10 +12,7 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
   //Grabbing groomer by pet ID
   //the way this is written the other groomers can be accessed but
   //it wont matter client side where only that user's pets are visible
-  const queryGroomer = `SELECT 
-  "groomer".groomer, 
-  "groomer".date, 
-  "groomer".location 
+  const queryGroomer = `SELECT *
   FROM "groomer"
   JOIN "pet" ON "groomer".pet_id = "pet".id
   WHERE "groomer".pet_id = $1;`;
