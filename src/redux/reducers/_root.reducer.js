@@ -8,7 +8,7 @@ import medicationDetail from './medicationDetail.reducer';
 import ownedPet from './ownedPet.reducer';
 import petDetail from './petDetail.reducer';
 import petRegistration from './petRegistration.reducer';
-import registrationReducer from './registration.reducer';
+import registration from './registration.reducer';
 import scannerReducer from './scanner.reducer';
 import user from './user.reducer';
 import vetReducer from './vet.reducer';
@@ -29,7 +29,7 @@ const rootReducer = combineReducers({
   ownedPet,
   petDetail,
   petRegistration,
-  registrationReducer,
+  registration,
   scannerReducer,
   user, // will have an id and username if someone is logged in
   vetReducer,

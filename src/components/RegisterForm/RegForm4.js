@@ -16,7 +16,7 @@ class RegForm4 extends Component {
     this.props.dispatch({
       type: 'REGISTER',
       payload: {
-        user: this.props.store.registrationReducer,
+        user: this.props.store.registration,
         pet: {
           ...this.props.store.petRegistration,
           weight: this.state.weight,
@@ -58,6 +58,7 @@ class RegForm4 extends Component {
                 value={this.state.birthdate}
                 placeholder="dd-mm-yy"
                 onChange={this.handleInputChangeFor('birthdate')}
+                required
               />
             </label>
             <br />
