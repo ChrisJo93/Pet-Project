@@ -5,8 +5,8 @@ import groomerReducer from './groomer.reducer';
 import groomerDetailReducer from './groomerDetails.reducer';
 import medication from './medication.reducer';
 import medicationDetail from './medicationDetail.reducer';
-import ownedPetReducer from './ownedPet.reducer';
-import petDetailReducer from './petDetail.reducer';
+import ownedPet from './ownedPet.reducer';
+import petDetail from './petDetail.reducer';
 import petRegistration from './petRegistration.reducer';
 import registrationReducer from './registration.reducer';
 import scannerReducer from './scanner.reducer';
@@ -26,8 +26,8 @@ const rootReducer = combineReducers({
   groomerDetailReducer,
   medication,
   medicationDetail,
-  ownedPetReducer,
-  petDetailReducer,
+  ownedPet,
+  petDetail,
   petRegistration,
   registrationReducer,
   scannerReducer,

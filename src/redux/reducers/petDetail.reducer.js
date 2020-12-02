@@ -1,4 +1,4 @@
-const petDetailReducer = (state = [], action) => {
+const petDetailReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_PET_DETAIL':
       return action.payload;

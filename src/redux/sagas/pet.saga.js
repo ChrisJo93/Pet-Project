@@ -28,7 +28,7 @@ function* getPetDetail(action) {
     const response = yield axios.get(`/api/pet/details/${action.payload}`);
     yield put({
       type: 'SET_PET_DETAIL',
-      payload: response.data,
+      payload: response.data[0],
     });
   } catch (err) {
     console.log(err);
