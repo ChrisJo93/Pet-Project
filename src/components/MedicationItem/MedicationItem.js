@@ -6,6 +6,9 @@ import { Button } from '@material-ui/core';
 import { DeleteForever, Edit } from '@material-ui/icons';
 
 class MedicationItem extends Component {
+  back = (event) => {
+    this.props.history.push(`/user`);
+  };
   render() {
     const medicationList = this.props.store.medication.map(
       (medicationItem, index) => {
@@ -45,6 +48,7 @@ class MedicationItem extends Component {
             </tr>
           </thead>
           <tbody>{medicationList}</tbody>
+          <Button onClick={this.back}>Back</Button>
         </table>
       </div>
     );

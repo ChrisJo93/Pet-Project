@@ -10,6 +10,10 @@ class GroomerItem extends Component {
     console.log('in the delete', id);
   };
 
+  back = (event) => {
+    this.props.history.push(`/user`);
+  };
+
   render() {
     const groomerList = this.props.store.groomer.map((groomerItem, index) => {
       return (
@@ -41,6 +45,7 @@ class GroomerItem extends Component {
             </tr>
           </thead>
           <tbody>{groomerList}</tbody>
+          <Button onClick={this.back}>Back</Button>
           <Button onClick={this.add}>Add Appointment</Button>
         </table>
       </div>

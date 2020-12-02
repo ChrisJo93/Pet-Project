@@ -16,10 +16,16 @@ class MedicationDetailPage extends Component {
     console.log('in the delete', id);
   };
 
+  back = (event) => {
+    this.props.history.push(`/details/${this.props.match.params.id}`);
+  };
+
   render() {
     return (
       <div>
-        <h2>Current Medications</h2>
+        <h2 className="Heading">
+          {this.props.store.medicationDetail.name}'s Medications
+        </h2>
 
         <table>
           <thead>
@@ -49,6 +55,7 @@ class MedicationDetailPage extends Component {
               />
             </td>
           </tbody>
+          <Button onClick={this.back}>Back</Button>
           <Button onClick={this.add}>Add Appointment</Button>
         </table>
       </div>

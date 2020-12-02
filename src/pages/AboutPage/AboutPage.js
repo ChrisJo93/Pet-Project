@@ -10,7 +10,7 @@ import React from 'react';
 const AboutPage = () => (
   <div className="container">
     <div>
-      <p>This about page will be deleted or altered for final product</p>
+      <p>Oh I got something good for this. </p>
     </div>
   </div>
 );

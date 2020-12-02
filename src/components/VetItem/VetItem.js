@@ -3,8 +3,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { DeleteForever, Edit } from '@material-ui/icons';
+import { Button } from '@material-ui/core';
 
 class VetItem extends Component {
+  back = (event) => {
+    this.props.history.push(`/user`);
+  };
+
   render() {
     const vetList = this.props.store.vet.map((vetItem, index) => {
       return (
@@ -38,6 +43,7 @@ class VetItem extends Component {
             </tr>
           </thead>
           <tbody>{vetList}</tbody>
+          <Button onClick={this.back}>Back</Button>
         </table>
       </div>
     );

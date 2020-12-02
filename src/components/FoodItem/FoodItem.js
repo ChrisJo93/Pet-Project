@@ -6,10 +6,14 @@ import { Button } from '@material-ui/core';
 import { DeleteForever, Edit } from '@material-ui/icons';
 
 class FoodItem extends Component {
+  back = (event) => {
+    this.props.history.push(`/details/${this.props.match.params.id}`);
+  };
+
   render() {
     return (
       <div>
-        <h2>{this.props.store.food.name}'s Food</h2>
+        <h2 className="Heading">{this.props.store.food.name}'s Food</h2>
 
         <table>
           <thead>
@@ -33,6 +37,7 @@ class FoodItem extends Component {
               />
             </td>
           </tbody>
+          <Button onClick={this.back}>Back</Button>
           <Button onClick={this.add}>Add Appointment</Button>
         </table>
       </div>

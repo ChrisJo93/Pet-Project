@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   HashRouter as Router,
   Route,
   Redirect,
   Switch,
 } from 'react-router-dom';
-import { connect } from 'react-redux';
+
 import './App.css';
+
+import Nav from '../Nav/Nav';
+
+// Custom Routes
 
 import AboutPage from '../../pages/AboutPage/AboutPage';
 import FoodPage from '../../pages/FoodPage/FoodPage';
@@ -18,7 +23,6 @@ import LandingPage from '../../pages/LandingPage/LandingPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
 import MedicationPage from '../../pages/MedicationPage/MedicationPage';
 import MedicationDetailPage from '../../pages/MedicationPage/MedicationDetailPage';
-import Nav from '../Nav/Nav';
 import PetDetailsPage from '../../pages/PetDetailsPage/PetDetailsPage';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import RegisterPage from '../../pages/RegisterPage/RegisterPage';
