@@ -39,7 +39,9 @@ class VetDetailPage extends Component {
             <td>
               <Edit></Edit>
               <DeleteForever
-                onClick={(event) => this.delete(event, this.props.store.vet.id)}
+                onClick={(event) =>
+                  this.delete(event, this.props.store.vetDetail.id)
+                }
               />
             </td>
           </tbody>

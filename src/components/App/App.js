@@ -6,16 +6,18 @@ import {
   Switch,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
+import './App.css';
+
 import AboutPage from '../../pages/AboutPage/AboutPage';
 import FoodPage from '../../pages/FoodPage/FoodPage';
 import Footer from '../Footer/Footer';
 import GroomerPage from '../../pages/GroomerPage/GroomerPage';
-import GroomerDetailPage from '../../pages/GroomerDetailPage/GroomerDetailPage';
+import GroomerDetailPage from '../../pages/GroomerPage/GroomerDetailPage';
 import InfoPage from '../../pages/InfoPage/InfoPage';
 import LandingPage from '../../pages/LandingPage/LandingPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
 import MedicationPage from '../../pages/MedicationPage/MedicationPage';
-import MedicationDetailPage from '../../pages/MedicationDetailPage/MedicationDetailPage';
+import MedicationDetailPage from '../../pages/MedicationPage/MedicationDetailPage';
 import Nav from '../Nav/Nav';
 import PetDetailsPage from '../../pages/PetDetailsPage/PetDetailsPage';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -23,7 +25,6 @@ import RegisterPage from '../../pages/RegisterPage/RegisterPage';
 import UserPage from '../../pages/UserPage/UserPage';
 import VetPage from '../../pages/VetPage/VetPage';
 import VetDetailPage from '../../pages/VetPage/VetDetailPage';
-import './App.css';
 
 class App extends Component {
   componentDidMount() {

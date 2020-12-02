@@ -6,7 +6,7 @@ import { DeleteForever, Edit } from '@material-ui/icons';
 
 class VetItem extends Component {
   render() {
-    const vetList = this.props.store.vetReducer.map((vetItem, index) => {
+    const vetList = this.props.store.vet.map((vetItem, index) => {
       return (
         <tr className="tbRow" key={index}>
           <td>{vetItem.doctor}</td>
