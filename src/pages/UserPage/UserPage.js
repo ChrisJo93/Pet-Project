@@ -31,7 +31,7 @@ class UserPage extends Component {
     return (
       <div>
         <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
-        <div>{ownedPet}</div>
+        <div className="grid">{ownedPet}</div>
         <AddCircleOutline onClick={this.addPet} />
         {this.state.showForm === true ? <AddPetForm /> : ''}
       </div>

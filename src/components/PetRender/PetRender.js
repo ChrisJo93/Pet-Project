@@ -27,28 +27,20 @@ class PetRender extends Component {
 
   render() {
     return (
-      <div className="item cardItem">
-        <Card className="root">
-          <CardActionArea>
-            <CardMedia
-              className="media"
-              image={this.props.pet.image}
+      <div>
+        <div className="pet-center">
+          <figure>
+            <img
+              className="pet"
+              src={this.props.pet.image}
               onClick={this.toDetails}
-              title={this.props.pet.name}
               value={this.props.pet.id}
             />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {this.props.pet.name}
-              </Typography>
-              <Typography
-                variant="body2"
-                color="textSecondary"
-                component="p"
-              ></Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
+            <figcaption>
+              <strong>{this.props.pet.name}</strong>
+            </figcaption>
+          </figure>
+        </div>
       </div>
     );
   }
