@@ -31,13 +31,6 @@ class MedicationDetailPage extends Component {
     this.props.history.push(`/details/${this.props.match.params.id}`);
   };
 
-  //Add new medication
-  add = (event) => {
-    this.setState({
-      add: true,
-    });
-  };
-
   //open edit inputs
   edit = (event) => {
     this.setState({
@@ -63,6 +56,26 @@ class MedicationDetailPage extends Component {
     this.props.dispatch({
       type: 'GET_MEDICATION_DETAIL',
       payload: this.props.match.params.id,
+    });
+  };
+
+  add = (event) => {
+    this.setState({
+      add: true,
+    });
+  };
+
+  addSave = (event) => {
+    this.props.dispatch({
+      type: 'POST_MEDICATION',
+      payload: { ...this.state.newMedication, id: this.props.match.params.id },
+    });
+    this.props.dispatch({
+      type: 'GET_MEDICATION_DETAIL',
+      payload: this.props.match.params.id,
+    });
+    this.setState({
+      add: false,
     });
   };
 
@@ -163,8 +176,60 @@ class MedicationDetailPage extends Component {
               />
             </td>
           </tbody>
-          <Button onClick={this.back}>Back</Button>
-          <Button onClick={this.add}>Add Medication</Button>
+          {this.state.add ? (
+            <>
+              <td>
+                <input
+                  type="text"
+                  value={this.state.newMedication.brand}
+                  onChange={this.handleInputChangeFor('brand')}
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={this.state.newMedication.dosage}
+                  onChange={this.handleInputChangeFor('dosage')}
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={this.state.newMedication.start_date}
+                  onChange={this.handleInputChangeFor('start_date')}
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={this.state.newMedication.end_date}
+                  onChange={this.handleInputChangeFor('end_date')}
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={this.state.newMedication.doctor}
+                  onChange={this.handleInputChangeFor('doctor')}
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={this.state.newMedication.barcode}
+                  onChange={this.handleInputChangeFor('barcode')}
+                />
+              </td>
+              <td>
+                <Button onClick={this.addSave}>Save</Button>
+              </td>
+            </>
+          ) : (
+            <>
+              <Button onClick={this.back}>Back</Button>
+              <Button onClick={this.add}>Add Brand</Button>
+            </>
+          )}
         </table>
       </div>
     );

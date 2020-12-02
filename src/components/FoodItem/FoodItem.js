@@ -59,6 +59,9 @@ class FoodItem extends Component {
       type: 'POST_FOOD',
       payload: { ...this.state.newFood, id: this.props.match.params.id },
     });
+    this.setState({
+      add: false,
+    });
   };
 
   delete = (event, id) => {
@@ -120,7 +123,7 @@ class FoodItem extends Component {
               />
             </td>
           </tbody>
-          <Button onClick={this.back}>Back</Button>
+
           {this.state.add ? (
             <>
               <td>
@@ -130,6 +133,8 @@ class FoodItem extends Component {
                   placeholder="New Brand"
                   onChange={this.handleInputChangeFor('brand')}
                 />
+              </td>
+              <td>
                 <input
                   type="text"
                   value={this.state.newFood.barcode}
@@ -142,7 +147,10 @@ class FoodItem extends Component {
               </td>
             </>
           ) : (
-            <Button onClick={this.add}>Add Brand</Button>
+            <>
+              <Button onClick={this.back}>Back</Button>
+              <Button onClick={this.add}>Add Brand</Button>
+            </>
           )}
         </table>
       </div>
