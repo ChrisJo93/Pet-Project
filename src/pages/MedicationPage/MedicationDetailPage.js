@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import { Button, Paper, Grid } from '@material-ui/core';
-import { DeleteForever, Edit } from '@material-ui/icons';
+import { DeleteForever, Edit, Save } from '@material-ui/icons';
 
 class MedicationDetailPage extends Component {
   componentDidMount() {
@@ -12,12 +12,67 @@ class MedicationDetailPage extends Component {
       payload: this.props.match.params.id,
     });
   }
-  delete = (event, id) => {
-    console.log('in the delete', id);
+
+  state = {
+    newMedication: {
+      brand: '',
+      dosage: '',
+      start_date: '',
+      end_date: '',
+      doctor: '',
+      barcode: '',
+    },
+    add: false,
+    edit: false,
   };
 
+  //back to details
   back = (event) => {
     this.props.history.push(`/details/${this.props.match.params.id}`);
+  };
+
+  //Add new medication
+  add = (event) => {
+    this.setState({
+      add: true,
+    });
+  };
+
+  //open edit inputs
+  edit = (event) => {
+    this.setState({
+      edit: true,
+      newMedication: {
+        ...this.props.store.medicationDetail,
+      },
+    });
+  };
+
+  //save edit inputs
+  editSave = (event) => {
+    this.props.dispatch({
+      type: 'PUT_MEDICATION',
+      payload: {
+        ...this.props.store.medicationDetail,
+        ...this.state.newMedication,
+      },
+    });
+    this.setState({
+      edit: false,
+    });
+    this.props.dispatch({
+      type: 'GET_MEDICATION_DETAIL',
+      payload: this.props.match.params.id,
+    });
+  };
+
+  handleInputChangeFor = (propertyName) => (event) => {
+    this.setState({
+      newMedication: {
+        ...this.state.newMedication,
+        [propertyName]: event.target.value,
+      },
+    });
   };
 
   render() {
@@ -40,14 +95,67 @@ class MedicationDetailPage extends Component {
             </tr>
           </thead>
           <tbody>
-            <td>{this.props.store.medicationDetail.brand}</td>
-            <td>{this.props.store.medicationDetail.dosage}</td>
-            <td>{this.props.store.medicationDetail.start_date}</td>
-            <td>{this.props.store.medicationDetail.end_date}</td>
-            <td>{this.props.store.medicationDetail.doctor}</td>
-            <td>{this.props.store.medicationDetail.barcode}</td>
+            {this.state.edit ? (
+              <>
+                <td>
+                  <input
+                    type="text"
+                    value={this.state.newMedication.brand}
+                    onChange={this.handleInputChangeFor('brand')}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={this.state.newMedication.dosage}
+                    onChange={this.handleInputChangeFor('dosage')}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={this.state.newMedication.start_date}
+                    onChange={this.handleInputChangeFor('start_date')}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={this.state.newMedication.end_date}
+                    onChange={this.handleInputChangeFor('end_date')}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={this.state.newMedication.doctor}
+                    onChange={this.handleInputChangeFor('doctor')}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={this.state.newMedication.barcode}
+                    onChange={this.handleInputChangeFor('barcode')}
+                  />
+                </td>
+              </>
+            ) : (
+              <>
+                <td>{this.props.store.medicationDetail.brand}</td>
+                <td>{this.props.store.medicationDetail.dosage}</td>
+                <td>{this.props.store.medicationDetail.start_date}</td>
+                <td>{this.props.store.medicationDetail.end_date}</td>
+                <td>{this.props.store.medicationDetail.doctor}</td>
+                <td>{this.props.store.medicationDetail.barcode}</td>
+              </>
+            )}
             <td>
-              <Edit></Edit>
+              {this.state.edit ? (
+                <Save onClick={this.editSave}></Save>
+              ) : (
+                <Edit onClick={this.edit}></Edit>
+              )}
               <DeleteForever
                 onClick={(event) =>
                   this.delete(event, this.props.store.medicationDetail.id)
@@ -56,7 +164,7 @@ class MedicationDetailPage extends Component {
             </td>
           </tbody>
           <Button onClick={this.back}>Back</Button>
-          <Button onClick={this.add}>Add Appointment</Button>
+          <Button onClick={this.add}>Add Medication</Button>
         </table>
       </div>
     );

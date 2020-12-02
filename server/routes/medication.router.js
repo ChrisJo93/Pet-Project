@@ -7,12 +7,16 @@ const {
 
 router.get('/details/:id', rejectUnauthenticated, (req, res) => {
   const queryMedication = `SELECT 
-  "medication".brand, 
-  "medication".dosage, 
+  "medication".id,
+  "medication".brand,
+  "medication".dosage,
   "medication".start_date,
-  "medication".end_date, 
-  "medication".doctor, 
-  "medication".barcode FROM "medication"
+  "medication".end_date,
+  "medication".doctor,
+  "medication".barcode,
+  "medication".pet_id,
+  "pet".name
+  FROM "medication"
       JOIN "pet" ON "medication".pet_id = "pet".id
       WHERE "medication".pet_id = $1;`;
   pool
@@ -28,7 +32,17 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
 });
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-  const queryMedication = `SELECT * FROM "medication"
+  const queryMedication = `SELECT 
+  "medication".id,
+  "medication".brand,
+  "medication".dosage,
+  "medication".start_date,
+  "medication".end_date,
+  "medication".doctor,
+  "medication".barcode,
+  "medication".pet_id,
+  "pet".name 
+  FROM "medication"
   JOIN "pet" ON "medication".pet_id = "pet".id
   WHERE user_id = $1
 `;
@@ -47,10 +61,10 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/:id', rejectUnauthenticated, (req, res) => {
   const medication = req.body;
   const insertMedicationQuery = `INSERT INTO "medication" 
-    ("name" , "dosage" , "start_date" , "end_date" , "doctor" , "barcode" , "pet_id")
+    ("brand" , "dosage" , "start_date" , "end_date" , "doctor" , "barcode" , "pet_id")
     VALUES ($1, $2, $3, $4, $5, $6, $7);`;
   const medicationDetails = [
-    medication.name,
+    medication.brand,
     medication.dosage,
     medication.start_date,
     medication.end_date,
@@ -69,9 +83,38 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
+router.put('/editMedication/:id', rejectUnauthenticated, (req, res) => {
+  const meds = req.body;
+  const editMedicationQuery = `UPDATE medication 
+  SET 
+  brand=$1, 
+  dosage=$2,
+  start_date=$3,
+  end_date=$4,
+  doctor=$5, 
+  barcode=$6  
+  WHERE id=$7;`;
+  pool
+    .query(editMedicationQuery, [
+      meds.brand,
+      meds.dosage,
+      meds.start_date,
+      meds.end_date,
+      meds.doctor,
+      meds.barcode,
+      req.params.id,
+    ])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+});
 
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
-  const deleteMedicationQuery = `DELETE FROM "medication" WHERE "id" =$1;`;
+  const deleteMedicationQuery = `DELETE FROM "medication" WHERE "id"=$1;`;
   const medicationID = [req.params.id];
   pool
     .query(deleteMedicationQuery, medicationID)

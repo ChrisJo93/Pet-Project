@@ -37,10 +37,10 @@ function* foodSaga() {
 
   function* postFood(action) {
     try {
-      yield axios.post('/api/food', action.payload);
-      yield put({ type: 'GET_FOOD' });
+      yield axios.post(`/api/food/${action.payload.id}`, action.payload);
+      yield put({ type: 'GET_FOOD', payload: action.payload.id });
     } catch (err) {
-      console.log('ERROR POSTING food:', action.payload);
+      console.log('ERROR POSTING food:', action.payload.id);
     }
   }
 

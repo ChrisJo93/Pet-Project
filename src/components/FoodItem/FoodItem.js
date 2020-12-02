@@ -14,11 +14,18 @@ class FoodItem extends Component {
       brand: '',
       barcode: '',
     },
+    add: false,
     edit: false,
   };
 
   back = (event) => {
     this.props.history.push(`/details/${this.props.match.params.id}`);
+  };
+
+  add = (event) => {
+    this.setState({
+      add: true,
+    });
   };
 
   edit = (event) => {
@@ -47,6 +54,13 @@ class FoodItem extends Component {
     });
   };
 
+  addSave = (event) => {
+    this.props.dispatch({
+      type: 'POST_FOOD',
+      payload: { ...this.state.newFood, id: this.props.match.params.id },
+    });
+  };
+
   delete = (event, id) => {
     this.props.dispatch({
       type: 'DELETE_FOOD',
@@ -64,7 +78,6 @@ class FoodItem extends Component {
     return (
       <div>
         <h2 className="Heading">{this.props.store.food.name}'s Food</h2>
-
         <table>
           <thead>
             <tr className="thRow">
@@ -108,7 +121,29 @@ class FoodItem extends Component {
             </td>
           </tbody>
           <Button onClick={this.back}>Back</Button>
-          <Button onClick={this.add}>Add Appointment</Button>
+          {this.state.add ? (
+            <>
+              <td>
+                <input
+                  type="text"
+                  value={this.state.newFood.brand}
+                  placeholder="New Brand"
+                  onChange={this.handleInputChangeFor('brand')}
+                />
+                <input
+                  type="text"
+                  value={this.state.newFood.barcode}
+                  placeholder="New Barcode"
+                  onChange={this.handleInputChangeFor('barcode')}
+                />
+              </td>
+              <td>
+                <Button onClick={this.addSave}>Save</Button>
+              </td>
+            </>
+          ) : (
+            <Button onClick={this.add}>Add Brand</Button>
+          )}
         </table>
       </div>
     );

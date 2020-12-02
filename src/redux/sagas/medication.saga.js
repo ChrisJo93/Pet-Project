@@ -4,6 +4,7 @@ import axios from 'axios';
 function* medicationSaga() {
   yield takeLatest('GET_MEDICATION', getMedication);
   yield takeLatest('GET_MEDICATION_DETAIL', getMedicationDetail);
+  yield takeLatest('PUT_MEDICATION', putMedication);
 }
 
 function* getMedication(action) {
@@ -37,6 +38,18 @@ function* getMedicationDetail(action) {
       type: 'ERROR_MSG',
       payload: 'There was a problem with MEDICATION GET',
     });
+  }
+}
+
+function* putMedication(action) {
+  try {
+    console.log('in put', action.payload);
+    yield axios.put(
+      `/api/medication/editMedication/${action.payload.id}`,
+      action.payload
+    );
+  } catch (error) {
+    console.log('Error in put food', error);
   }
 }
 
