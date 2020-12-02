@@ -10,6 +10,7 @@ import {
   CardContent,
   CardMedia,
   Typography,
+  Grid,
 } from '@material-ui/core';
 
 //Dispatches a single pet to petDetailReducer
@@ -27,7 +28,7 @@ class PetRender extends Component {
 
   render() {
     return (
-      <div>
+      <Grid item xs={12} sm={6} md={4}>
         <div className="pet-center">
           <figure>
             <img
@@ -41,7 +42,7 @@ class PetRender extends Component {
             </figcaption>
           </figure>
         </div>
-      </div>
+      </Grid>
     );
   }
 }

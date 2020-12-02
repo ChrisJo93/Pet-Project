@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
-import PetItem from '../../components/PetItem/PetItem';
 import { Button, Paper, Grid } from '@material-ui/core';
 import {
   Bathtub,
@@ -65,14 +64,14 @@ class PetDetailsPage extends Component {
               onClick={this.toGroomer}
               onMouseEnter={this.test}
             />
-            <LocalHospital
-              title="Vet"
-              onClick={this.toVet}
-              onMouseEnter={this.test}
-            />
             <LocalPharmacy
               title="Medicine"
               onClick={this.toMedicine}
+              onMouseEnter={this.test}
+            />
+            <LocalHospital
+              title="Vet"
+              onClick={this.toVet}
               onMouseEnter={this.test}
             />
           </Grid>

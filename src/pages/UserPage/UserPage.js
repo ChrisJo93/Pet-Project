@@ -29,11 +29,18 @@ class UserPage extends Component {
       return <PetRender key={index} pet={pet} />; //renders owned pets to userpage as component.
     });
     return (
-      <div>
+      <div className="container">
         <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
-        <div className="grid">{ownedPet}</div>
-        <AddCircleOutline onClick={this.addPet} />
-        {this.state.showForm === true ? <AddPetForm /> : ''}
+
+        <Grid container spacing={1}>
+          {ownedPet}
+          <Grid item xs={12} sm={6} md={4}>
+            <div className="pet-center">
+              <AddCircleOutline onClick={this.addPet} />
+            </div>
+            {this.state.showForm ? <AddPetForm /> : ''}
+          </Grid>
+        </Grid>
       </div>
     );
   }

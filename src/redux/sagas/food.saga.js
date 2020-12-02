@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function* foodSaga() {
   yield takeLatest('GET_FOOD', getFood);
+  yield takeLatest('PUT_FOOD', putFood);
 }
 
 function* getFood(action) {
@@ -21,4 +22,12 @@ function* getFood(action) {
   }
 }
 
+function* putFood(action) {
+  try {
+    yield axios.put(`/api/food/editFood/${action.payload.id}`, action.payload);
+    // yield put({ type: 'GET_FOOD', payload: this.props.match.params.id });
+  } catch (error) {
+    console.log('Error in put food', error);
+  }
+}
 export default foodSaga;

@@ -34,11 +34,11 @@ const Nav = (props) => {
             <Link className="nav-link" to="/groomer">
               Groomers
             </Link>
-            <Link className="nav-link" to="/vet">
-              Veterinarian
-            </Link>
             <Link className="nav-link" to="/medication">
               Medication
+            </Link>
+            <Link className="nav-link" to="/vet">
+              Veterinarian
             </Link>
 
             <LogOutButton className="nav-link" />
