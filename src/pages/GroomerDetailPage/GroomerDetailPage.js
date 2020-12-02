@@ -49,46 +49,5 @@ class GroomerDetailPage extends Component {
     );
   }
 }
-// const groomerList = this.props.store.groomerDetail.map(
-//   (groomerItem, index) => {
-//     return (
-//       <tr className="tbRow" key={index}>
-//         <td>{groomerItem.groomer}</td>
-//         <td>{groomerItem.date}</td>
-//         <td>{groomerItem.location}</td>
-//         <td>
-//           <DeleteForever
-//             onClick={(event) => this.delete(event, groomerItem.id)}
-//           />
-//         </td>
-//       </tr>
-//     );
-//   }
-// );
-// const groomerImage = this.props.store.groomerDetail.map(
-//   (groomer, index) => {
-//     return <img src={groomer.image} />;
-//   }
-// );
-
-//     return (
-//       <div>
-//         <h2>Current Appointments</h2>
-//         <div className="avatar">{groomerImage}</div>
-//         <table>
-//           <thead>
-//             <tr className="thRow">
-//               <th>Groomer</th>
-//               <th>Date</th>
-//               <th colSpan="3">Location</th>
-//             </tr>
-//           </thead>
-//           <tbody>{groomerList}</tbody>
-//           <Button onClick={this.add}>Add Appointment</Button>
-//         </table>
-//       </div>
-//     );
-//   }
-// }
 
 export default withRouter(connect(mapStoreToProps)(GroomerDetailPage));

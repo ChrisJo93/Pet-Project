@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
-import foodReducer from './food.reducer';
-import groomerReducer from './groomer.reducer';
+import food from './food.reducer';
+import groomer from './groomer.reducer';
 import groomerDetail from './groomerDetails.reducer';
 import medication from './medication.reducer';
 import medicationDetail from './medicationDetail.reducer';
@@ -21,8 +21,8 @@ import vetDetailReducer from './vetDetail.reducer';
 // This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
-  foodReducer,
-  groomerReducer,
+  food,
+  groomer,
   groomerDetail,
   medication,
   medicationDetail,

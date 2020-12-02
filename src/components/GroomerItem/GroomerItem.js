@@ -11,24 +11,22 @@ class GroomerItem extends Component {
   };
 
   render() {
-    const groomerList = this.props.store.groomerReducer.map(
-      (groomerItem, index) => {
-        return (
-          <tr className="tbRow" key={index}>
-            <td>{groomerItem.groomer}</td>
-            <td>{groomerItem.date}</td>
-            <td>{groomerItem.location}</td>
-            <td>{groomerItem.name}</td>
-            <td>
-              <Edit></Edit>
-              <DeleteForever
-                onClick={(event) => this.delete(event, groomerItem.id)}
-              />
-            </td>
-          </tr>
-        );
-      }
-    );
+    const groomerList = this.props.store.groomer.map((groomerItem, index) => {
+      return (
+        <tr className="tbRow" key={index}>
+          <td>{groomerItem.groomer}</td>
+          <td>{groomerItem.date}</td>
+          <td>{groomerItem.location}</td>
+          <td>{groomerItem.name}</td>
+          <td>
+            <Edit></Edit>
+            <DeleteForever
+              onClick={(event) => this.delete(event, groomerItem.id)}
+            />
+          </td>
+        </tr>
+      );
+    });
 
     return (
       <div>

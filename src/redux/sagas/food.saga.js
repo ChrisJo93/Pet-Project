@@ -10,7 +10,7 @@ function* getFood(action) {
     const response = yield axios.get(`/api/food/${action.payload}`);
     yield put({
       type: 'SET_FOOD',
-      payload: response.data,
+      payload: response.data[0],
     });
   } catch (err) {
     console.log(err);
