@@ -10,6 +10,7 @@ import petDetail from './petDetail.reducer';
 import petRegistration from './petRegistration.reducer';
 import registration from './registration.reducer';
 import scannerReducer from './scanner.reducer';
+import showForm from './showForm.reducer';
 import user from './user.reducer';
 import vet from './vet.reducer';
 import vetDetail from './vetDetail.reducer';
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   petRegistration,
   registration,
   scannerReducer,
+  showForm,
   user, // will have an id and username if someone is logged in
   vet,
   vetDetail,

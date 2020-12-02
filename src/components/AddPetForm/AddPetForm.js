@@ -19,6 +19,9 @@ class AddPetForm extends Component {
       type: 'POST_PET',
       payload: this.state,
     });
+    this.props.dispatch({
+      type: 'HIDE_FORM',
+    });
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
