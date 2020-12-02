@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import { Button, Paper, Grid } from '@material-ui/core';
-import { DeleteForever } from '@material-ui/icons';
+import { DeleteForever, Edit } from '@material-ui/icons';
 
 class VetDetailPage extends Component {
   componentDidMount() {
@@ -17,35 +17,32 @@ class VetDetailPage extends Component {
   };
 
   render() {
-    const vetList = this.props.store.vetDetailReducer.map((vetItem, index) => {
-      return (
-        <tr className="tbRow" key={index}>
-          <td>{vetItem.doctor}</td>
-          <td>{vetItem.reason}</td>
-          <td>{vetItem.date}</td>
-          <td>{vetItem.location}</td>
-          <td>
-            <DeleteForever
-              onClick={(event) => this.delete(event, vetItem.id)}
-            />
-          </td>
-        </tr>
-      );
-    });
-
     return (
       <div>
-        <h2>Current Appointments</h2>
+        <h2>{this.props.store.vetDetail.name}'s Veterinarian</h2>
+
         <table>
           <thead>
             <tr className="thRow">
-              <th>Doctor</th>
+              <th>Veterinarian</th>
               <th>Reason</th>
               <th>Date</th>
-              <th colSpan="2">Location</th>
+              <th>Location</th>
+              <th>Edit</th>
             </tr>
           </thead>
-          <tbody>{vetList}</tbody>
+          <tbody>
+            <td>{this.props.store.vetDetail.doctor}</td>
+            <td>{this.props.store.vetDetail.reason}</td>
+            <td>{this.props.store.vetDetail.date}</td>
+            <td>{this.props.store.vetDetail.location}</td>
+            <td>
+              <Edit></Edit>
+              <DeleteForever
+                onClick={(event) => this.delete(event, this.props.store.vet.id)}
+              />
+            </td>
+          </tbody>
           <Button onClick={this.add}>Add Appointment</Button>
         </table>
       </div>

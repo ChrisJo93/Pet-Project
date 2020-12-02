@@ -22,11 +22,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.get('/details/:id', rejectUnauthenticated, (req, res) => {
-  const queryVet = `SELECT 
-  "vet".doctor,
-  "vet".reason,
-  "vet".date,
-  "vet".location
+  const queryVet = `SELECT *
   FROM "vet"
   JOIN "pet" ON "vet".pet_id = "pet".id
   WHERE "vet".pet_id = $1;`;
