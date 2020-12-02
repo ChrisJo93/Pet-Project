@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import foodReducer from './food.reducer';
 import groomerReducer from './groomer.reducer';
-import groomerDetailReducer from './groomerDetails.reducer';
+import groomerDetail from './groomerDetails.reducer';
 import medication from './medication.reducer';
 import medicationDetail from './medicationDetail.reducer';
 import ownedPet from './ownedPet.reducer';
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   foodReducer,
   groomerReducer,
-  groomerDetailReducer,
+  groomerDetail,
   medication,
   medicationDetail,
   ownedPet,

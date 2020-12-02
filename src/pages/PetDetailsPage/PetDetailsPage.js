@@ -11,12 +11,6 @@ import {
   LocalPharmacy,
 } from '@material-ui/icons';
 
-//PetDetailsPage holds the PetItem component.
-//PetItem component holds individual pet with icons linking to each of the pet's needs.
-
-// --- To Do
-//Need a component did mount get for selected pet.
-
 class PetDetailsPage extends Component {
   componentDidMount() {
     this.props.dispatch({

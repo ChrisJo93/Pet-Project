@@ -1,4 +1,4 @@
-const groomerDetailReducer = (state = [], action) => {
+const groomerDetailReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_GROOMER_DETAIL':
       return action.payload;

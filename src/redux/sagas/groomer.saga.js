@@ -27,7 +27,7 @@ function* getGroomerDetail(action) {
     const response = yield axios.get(`/api/groomer/details/${action.payload}`);
     yield put({
       type: 'SET_GROOMER_DETAIL',
-      payload: response.data,
+      payload: response.data[0],
     });
   } catch (err) {
     console.log(err);
