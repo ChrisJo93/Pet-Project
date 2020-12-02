@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import LogOutButton from '../../components/LogOutButton/LogOutButton';
 import PetRender from '../../components/PetRender/PetRender';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import './UserPage.css';
+import { Button, Paper, Grid } from '@material-ui/core';
+import AddPetForm from '../../components/AddPetForm/AddPetForm';
 
 class UserPage extends Component {
   componentDidMount() {
@@ -20,7 +21,8 @@ class UserPage extends Component {
       <div>
         <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
 
-        <div className="Owned_Pet_Render">{ownedPet}</div>
+        <div>{ownedPet}</div>
+        <AddPetForm />
       </div>
     );
   }
