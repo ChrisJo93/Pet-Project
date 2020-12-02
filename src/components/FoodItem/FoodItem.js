@@ -47,6 +47,13 @@ class FoodItem extends Component {
     });
   };
 
+  delete = (event, id) => {
+    this.props.dispatch({
+      type: 'DELETE_FOOD',
+      payload: id,
+    });
+  };
+
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       newFood: { ...this.state.newFood, [propertyName]: event.target.value },

@@ -6,7 +6,12 @@ const {
 } = require('../modules/authentication-middleware');
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-  const queryFood = `SELECT "food".id, "food".brand, "food".barcode, "pet".name FROM "food"
+  const queryFood = `SELECT "food".id, 
+  "food".brand, 
+  "food".barcode, 
+  "food".pet_id,
+  "pet".name
+  FROM "food"
     JOIN "pet" ON "food".pet_id = "pet".id
     WHERE "food".pet_id = $1;`;
   pool
@@ -27,7 +32,7 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
   ("brand" , "barcode" , "pet_id")
   VALUES ($1, $2, $3);`;
   pool
-    .query(insertFoodQuery, [food.name, food.barcode, req.params.id])
+    .query(insertFoodQuery, [food.brand, food.barcode, req.params.id])
     .then((result) => {
       console.log(result.rows);
       res.sendStatus(201);
@@ -52,7 +57,7 @@ router.put('/editFood/:id', rejectUnauthenticated, (req, res) => {
 });
 
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
-  const deleteFoodQuery = `DELETE FROM "food" WHERE "id" =$1;`;
+  const deleteFoodQuery = `DELETE FROM "food" WHERE "food".id=$1;`;
   const foodID = [req.params.id];
   pool
     .query(deleteFoodQuery, foodID)
