@@ -10,6 +10,13 @@ class VetItem extends Component {
     this.props.history.push(`/user`);
   };
 
+  delete = (event, id) => {
+    this.props.dispatch({
+      type: 'DELETE_VET',
+      payload: id,
+    });
+  };
+
   render() {
     const vetList = this.props.store.vet.map((vetItem, index) => {
       return (
@@ -20,7 +27,6 @@ class VetItem extends Component {
           <td>{vetItem.reason}</td>
           <td>{vetItem.name}</td>
           <td>
-            <Edit></Edit>
             <DeleteForever
               onClick={(event) => this.delete(event, vetItem.id)}
             />
@@ -39,7 +45,7 @@ class VetItem extends Component {
               <th>Location</th>
               <th>Reason</th>
               <th>For</th>
-              <th>Edit</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>{vetList}</tbody>

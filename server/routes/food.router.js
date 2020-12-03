@@ -44,7 +44,11 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 router.put('/editFood/:id', rejectUnauthenticated, (req, res) => {
-  const editFoodQuery = `UPDATE food SET brand=$1, barcode=$2  WHERE id=$3;`;
+  const editFoodQuery = `UPDATE food 
+  SET 
+  brand=$1, 
+  barcode=$2  
+  WHERE id=$3;`;
   pool
     .query(editFoodQuery, [req.body.brand, req.body.barcode, req.params.id])
     .then((result) => {

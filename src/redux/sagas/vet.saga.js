@@ -4,6 +4,9 @@ import axios from 'axios';
 function* vetSaga() {
   yield takeLatest('GET_VET', getVet);
   yield takeLatest('GET_VET_DETAIL', getVetDetail);
+  yield takeLatest('DELETE_VET', deleteVet);
+  yield takeLatest('POST_VET', postVet);
+  yield takeLatest('PUT_VET', putVet);
 }
 
 function* getVet(action) {
@@ -35,6 +38,34 @@ function* getVetDetail(action) {
       type: 'ERROR_MSG',
       payload: 'There was a problem with VET GET',
     });
+  }
+}
+
+function* deleteVet(action) {
+  try {
+    yield axios.delete(`/api/vet/${action.payload}`);
+    yield put({ type: 'GET_VET' });
+  } catch (err) {
+    console.log('error deleting vet:', action.payload);
+  }
+}
+
+function* postVet(action) {
+  try {
+    yield axios.post(`/api/vet/${action.payload.id}`, action.payload);
+    console.log('in post', action.payload);
+    yield put({ type: 'GET_VET', payload: action.payload.id });
+  } catch (err) {
+    console.log('ERROR POSTING  Vet:', err, action.payload.id);
+  }
+}
+
+function* putVet(action) {
+  try {
+    console.log('in put', action.payload);
+    yield axios.put(`/api/vet/editVet/${action.payload.id}`, action.payload);
+  } catch (error) {
+    console.log('Error in put food', error);
   }
 }
 

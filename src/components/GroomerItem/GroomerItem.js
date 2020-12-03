@@ -12,7 +12,7 @@ class GroomerItem extends Component {
 
   delete = (event, id) => {
     this.props.dispatch({
-      type: 'DELETE_MEDICATION',
+      type: 'DELETE_GROOMER',
       payload: id,
     });
   };
@@ -26,7 +26,6 @@ class GroomerItem extends Component {
           <td>{groomerItem.location}</td>
           <td>{groomerItem.name}</td>
           <td>
-            <Edit></Edit>
             <DeleteForever
               onClick={(event) => this.delete(event, groomerItem.id)}
             />
@@ -44,7 +43,7 @@ class GroomerItem extends Component {
               <th>Date</th>
               <th>Location</th>
               <th>For</th>
-              <th>Edit</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>{groomerList}</tbody>

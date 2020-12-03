@@ -6,6 +6,7 @@ function* groomerSaga() {
   yield takeLatest('GET_GROOMER_DETAIL', getGroomerDetail);
   yield takeLatest('POST_GROOMER', postGroomer);
   yield takeLatest('DELETE_GROOMER', deleteGroomer);
+  yield takeLatest('PUT_GROOMER', putGroomer);
 }
 
 function* getGroomer(action) {
@@ -43,7 +44,6 @@ function* getGroomerDetail(action) {
 function* postGroomer(action) {
   try {
     yield axios.post(`/api/groomer/${action.payload.id}`, action.payload);
-    console.log('in post', action.payload);
     yield put({ type: 'GET_GROOMER', payload: action.payload.id });
   } catch (err) {
     console.log('ERROR POSTING groomer:', err, action.payload.id);
@@ -56,6 +56,18 @@ function* deleteGroomer(action) {
     yield put({ type: 'GET_GROOMER' });
   } catch (err) {
     console.log('error deleting groomer:', action.payload);
+  }
+}
+
+function* putGroomer(action) {
+  try {
+    console.log('in put', action.payload);
+    yield axios.put(
+      `/api/groomer/editGroomer/${action.payload.id}`,
+      action.payload
+    );
+  } catch (error) {
+    console.log('Error in put groomer', error);
   }
 }
 

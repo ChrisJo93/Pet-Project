@@ -192,6 +192,7 @@ class MedicationDetailPage extends Component {
                   type="text"
                   value={this.state.newMedication.brand}
                   onChange={this.handleInputChangeFor('brand')}
+                  required
                 />
               </td>
               <td>
@@ -206,6 +207,7 @@ class MedicationDetailPage extends Component {
                   type="text"
                   value={this.state.newMedication.start_date}
                   onChange={this.handleInputChangeFor('start_date')}
+                  required
                 />
               </td>
               <td>
@@ -213,6 +215,7 @@ class MedicationDetailPage extends Component {
                   type="text"
                   value={this.state.newMedication.end_date}
                   onChange={this.handleInputChangeFor('end_date')}
+                  required
                 />
               </td>
               <td>
@@ -220,6 +223,7 @@ class MedicationDetailPage extends Component {
                   type="text"
                   value={this.state.newMedication.doctor}
                   onChange={this.handleInputChangeFor('doctor')}
+                  required
                 />
               </td>
               <td>

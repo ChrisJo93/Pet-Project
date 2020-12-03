@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import { Button, Paper, Grid } from '@material-ui/core';
-import { DeleteForever, Edit } from '@material-ui/icons';
+import { DeleteForever, Edit, Save } from '@material-ui/icons';
 
 class VetDetailPage extends Component {
   componentDidMount() {
@@ -12,8 +12,79 @@ class VetDetailPage extends Component {
       payload: this.props.match.params.id,
     });
   }
+
+  state = {
+    newVet: {
+      doctor: '',
+      reason: '',
+      date: '',
+      location: '',
+    },
+    add: false,
+    edit: false,
+  };
+
+  add = (event) => {
+    this.setState({
+      add: true,
+    });
+  };
+
+  addSave = (event) => {
+    this.props.dispatch({
+      type: 'POST_VET',
+      payload: { ...this.state.newVet, id: this.props.match.params.id },
+    });
+    this.props.dispatch({
+      type: 'GET_VET_DETAIL',
+      payload: this.props.match.params.id,
+    });
+    this.setState({
+      add: false,
+    });
+    this.props.history.push('/vet');
+  };
+
+  edit = (event) => {
+    this.setState({
+      edit: true,
+      newVet: {
+        ...this.props.store.vetDetail,
+      },
+    });
+  };
+
+  editSave = (event) => {
+    this.props.dispatch({
+      type: 'PUT_VET',
+      payload: {
+        ...this.props.store.vetDetail,
+        ...this.state.newVet,
+      },
+    });
+    this.setState({
+      edit: false,
+    });
+    this.props.dispatch({
+      type: 'GET_VET_DETAIL',
+      payload: this.props.match.params.id,
+    });
+  };
+
   delete = (event, id) => {
-    console.log('in the delete', id);
+    this.props.dispatch({
+      type: 'DELETE_VET',
+      payload: id,
+    });
+  };
+
+  handleInputChangeFor = (propertyName) => (event) => {
+    this.setState({
+      newVet: {
+        ...this.state.newVet,
+        [propertyName]: event.target.value,
+      },
+    });
   };
 
   back = (event) => {
@@ -38,21 +109,103 @@ class VetDetailPage extends Component {
             </tr>
           </thead>
           <tbody>
-            <td>{this.props.store.vetDetail.doctor}</td>
-            <td>{this.props.store.vetDetail.reason}</td>
-            <td>{this.props.store.vetDetail.date}</td>
-            <td>{this.props.store.vetDetail.location}</td>
+            {this.state.edit ? (
+              <>
+                <td>
+                  <input
+                    type="text"
+                    value={this.state.newVet.doctor}
+                    onChange={this.handleInputChangeFor('doctor')}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={this.state.newVet.reason}
+                    onChange={this.handleInputChangeFor('reason')}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={this.state.newVet.date}
+                    onChange={this.handleInputChangeFor('date')}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={this.state.newVet.location}
+                    onChange={this.handleInputChangeFor('location')}
+                  />
+                </td>
+              </>
+            ) : (
+              <>
+                <td>{this.props.store.vetDetail.doctor}</td>
+                <td>{this.props.store.vetDetail.reason}</td>
+                <td>{this.props.store.vetDetail.date}</td>
+                <td>{this.props.store.vetDetail.location}</td>
+              </>
+            )}
             <td>
-              <Edit></Edit>
-              <DeleteForever
-                onClick={(event) =>
-                  this.delete(event, this.props.store.vetDetail.id)
-                }
-              />
+              {this.state.edit ? (
+                <Save onClick={this.editSave}></Save>
+              ) : (
+                <>
+                  <Edit onClick={this.edit}></Edit>
+                  <DeleteForever
+                    onClick={(event) =>
+                      this.delete(event, this.props.store.vetDetail.id)
+                    }
+                  ></DeleteForever>
+                </>
+              )}
             </td>
           </tbody>
-          <Button onClick={this.back}>Back</Button>
-          <Button onClick={this.add}>Add Appointment</Button>
+          {this.state.add ? (
+            <>
+              <td>
+                <input
+                  type="text"
+                  value={this.state.newVet.doctor}
+                  onChange={this.handleInputChangeFor('doctor')}
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={this.state.newVet.reason}
+                  onChange={this.handleInputChangeFor('reason')}
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={this.state.newVet.date}
+                  onChange={this.handleInputChangeFor('date')}
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={this.state.newVet.location}
+                  onChange={this.handleInputChangeFor('location')}
+                  required
+                />
+              </td>
+              <td>
+                <Button onClick={this.addSave}>Save</Button>
+              </td>
+            </>
+          ) : (
+            <>
+              <Button onClick={this.back}>Back</Button>
+              <Button onClick={this.add}>Add Appointment</Button>
+            </>
+          )}
         </table>
       </div>
     );

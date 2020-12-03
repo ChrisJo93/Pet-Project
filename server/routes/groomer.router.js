@@ -100,4 +100,27 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+router.put('/editGroomer/:id', rejectUnauthenticated, (req, res) => {
+  const editGroomerQuery = `UPDATE groomer 
+  SET 
+  groomer=$1, 
+  date=$2, 
+  location=$3
+   WHERE id=$4;`;
+  pool
+    .query(editGroomerQuery, [
+      req.body.groomer,
+      req.body.date,
+      req.body.location,
+      req.params.id,
+    ])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;

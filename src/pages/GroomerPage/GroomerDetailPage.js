@@ -23,10 +23,29 @@ class GroomerDetailPage extends Component {
     edit: false,
   };
 
-  delete = (event, id) => {
+  edit = (event) => {
+    this.setState({
+      edit: true,
+      newGroomer: {
+        ...this.props.store.groomerDetail,
+      },
+    });
+  };
+
+  editSave = (event) => {
     this.props.dispatch({
-      type: 'DELETE_GROOMER',
-      payload: id,
+      type: 'PUT_GROOMER',
+      payload: {
+        ...this.props.store.groomerDetail,
+        ...this.state.newGroomer,
+      },
+    });
+    this.setState({
+      edit: false,
+    });
+    this.props.dispatch({
+      type: 'GET_GROOMER_DETAIL',
+      payload: this.props.match.params.id,
     });
   };
 
@@ -49,6 +68,13 @@ class GroomerDetailPage extends Component {
       add: false,
     });
     this.props.history.push('/groomer');
+  };
+
+  delete = (event, id) => {
+    this.props.dispatch({
+      type: 'DELETE_GROOMER',
+      payload: id,
+    });
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -81,9 +107,37 @@ class GroomerDetailPage extends Component {
             </tr>
           </thead>
           <tbody>
-            <td>{this.props.store.groomerDetail.groomer}</td>
-            <td>{this.props.store.groomerDetail.date}</td>
-            <td>{this.props.store.groomerDetail.location}</td>
+            {this.state.edit ? (
+              <>
+                <td>
+                  <input
+                    type="text"
+                    value={this.state.newGroomer.groomer}
+                    onChange={this.handleInputChangeFor('groomer')}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={this.state.newGroomer.date}
+                    onChange={this.handleInputChangeFor('date')}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={this.state.newGroomer.location}
+                    onChange={this.handleInputChangeFor('location')}
+                  />
+                </td>
+              </>
+            ) : (
+              <>
+                <td>{this.props.store.groomerDetail.groomer}</td>
+                <td>{this.props.store.groomerDetail.date}</td>
+                <td>{this.props.store.groomerDetail.location}</td>
+              </>
+            )}
             <td>
               {this.state.edit ? (
                 <Save onClick={this.editSave}></Save>
@@ -106,6 +160,7 @@ class GroomerDetailPage extends Component {
                   type="text"
                   value={this.state.newGroomer.groomer}
                   onChange={this.handleInputChangeFor('groomer')}
+                  required
                 />
               </td>
               <td>
@@ -113,6 +168,7 @@ class GroomerDetailPage extends Component {
                   type="text"
                   value={this.state.newGroomer.date}
                   onChange={this.handleInputChangeFor('date')}
+                  required
                 />
               </td>
               <td>
@@ -120,6 +176,7 @@ class GroomerDetailPage extends Component {
                   type="text"
                   value={this.state.newGroomer.location}
                   onChange={this.handleInputChangeFor('location')}
+                  required
                 />
               </td>
               <td>

@@ -6,7 +6,15 @@ const {
 } = require('../modules/authentication-middleware');
 
 router.get('/', rejectUnauthenticated, (req, res) => {
-  const queryVet = `SELECT * FROM "vet"
+  const queryVet = `SELECT
+  "vet".id,
+  "vet".doctor,
+  "vet".reason,
+  "vet".date,
+  "vet".location,
+  "vet".pet_id,
+  "pet".name
+  FROM "vet"
       JOIN "pet" ON "vet".pet_id = "pet".id
       WHERE user_id = $1`;
   pool
@@ -22,7 +30,14 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.get('/details/:id', rejectUnauthenticated, (req, res) => {
-  const queryVet = `SELECT *
+  const queryVet = `SELECT 
+  "vet".id,
+  "vet".doctor,
+  "vet".reason,
+  "vet".date,
+  "vet".location,
+  "vet".pet_id,
+  "pet".name
   FROM "vet"
   JOIN "pet" ON "vet".pet_id = "pet".id
   WHERE "vet".pet_id = $1;`;
@@ -57,6 +72,45 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
     })
     .catch((error) => {
       console.log('Error in FOOD POST', error);
+      res.sendStatus(500);
+    });
+});
+
+router.put('/editVet/:id', rejectUnauthenticated, (req, res) => {
+  const vet = req.body;
+  const editVetQuery = `UPDATE vet 
+  SET 
+  doctor=$1, 
+  reason=$2,
+  date=$3,
+  location=$4  
+  WHERE id=$5;`;
+  pool
+    .query(editVetQuery, [
+      vet.doctor,
+      vet.reason,
+      vet.date,
+      vet.location,
+      req.params.id,
+    ])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+});
+
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  const deleteVetQuery = `DELETE FROM "vet" WHERE "id"=$1;`;
+  pool
+    .query(deleteVetQuery, [req.params.id])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(error);
       res.sendStatus(500);
     });
 });
