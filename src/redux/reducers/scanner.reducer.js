@@ -1,4 +1,4 @@
-const scannerReducer = (state = {}, action) => {
+const scannerReducer = (state = false, action) => {
   switch (action.type) {
     case 'SCANNER':
       console.log('IN SCANNER', action.payload);

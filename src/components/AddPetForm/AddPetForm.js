@@ -42,6 +42,7 @@ class AddPetForm extends Component {
                 name="name"
                 value={this.state.name}
                 required
+                placeholder="Fido"
                 onChange={this.handleInputChangeFor('name')}
               />
             </label>
@@ -53,8 +54,20 @@ class AddPetForm extends Component {
                 name="species"
                 value={this.state.species}
                 required
-                placeholder="Dog?"
+                placeholder="Dog"
                 onChange={this.handleInputChangeFor('species')}
+              />
+            </label>
+            <br />
+            <label htmlFor="birthdate">
+              Birth Day:
+              <input
+                type="text"
+                name="birthdate"
+                value={this.state.birthdate}
+                placeholder="2-20-2020"
+                onChange={this.handleInputChangeFor('birthdate')}
+                required
               />
             </label>
             <br />
@@ -68,6 +81,7 @@ class AddPetForm extends Component {
                 onChange={this.handleInputChangeFor('breed')}
               />
             </label>
+            <br />
             <label htmlFor="weight">
               weight:
               <input
@@ -76,17 +90,6 @@ class AddPetForm extends Component {
                 value={this.state.weight}
                 placeholder="(optional)"
                 onChange={this.handleInputChangeFor('weight')}
-              />
-            </label>
-            <label htmlFor="birthdate">
-              Birth Day:
-              <input
-                type="text"
-                name="birthdate"
-                value={this.state.birthdate}
-                placeholder="dd-mm-yy"
-                onChange={this.handleInputChangeFor('birthdate')}
-                required
               />
             </label>
             <br />

@@ -3,7 +3,7 @@ const groomerReducer = (state = [], action) => {
     case 'SET_GROOMER':
       return action.payload;
     case 'UNSET_GROOMER':
-      return {};
+      return [];
     default:
       return state;
   }

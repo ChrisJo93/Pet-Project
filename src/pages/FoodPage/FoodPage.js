@@ -21,7 +21,7 @@ class FoodPage extends Component {
 
   state = {
     scanner: false,
-    scannerData: '', //not currently hooked to anything
+    scannerData: '',
   };
 
   addFood = (event) => {
@@ -33,6 +33,7 @@ class FoodPage extends Component {
   done = (event) => {
     this.setState({
       scanner: false,
+      scannerData: this.props.store.scannerReducer,
     });
   };
 
@@ -46,10 +47,11 @@ class FoodPage extends Component {
         {this.state.scanner === true ? (
           <Scanner />
         ) : (
-          <button onClick={this.addFood}>Add food</button>
+          <>
+            <button onClick={this.addFood}>Add food</button>
+            <button onClick={this.done}>done</button>
+          </>
         )}
-
-        <button onClick={this.done}>done</button>
       </div>
     );
   }

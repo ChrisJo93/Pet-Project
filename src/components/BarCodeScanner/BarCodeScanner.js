@@ -22,7 +22,6 @@ function Scanner() {
         width={300}
         height={300}
         onUpdate={(err, result) => {
-          console.log('in scanner', result);
           if (result) setData(result.text);
           else setData('Not Found');
         }}

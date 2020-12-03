@@ -35,10 +35,13 @@ class UserPage extends Component {
         <Grid container spacing={1}>
           {ownedPet}
           <Grid item xs={12} sm={6} md={4}>
-            <div className="pet-center">
-              <AddCircleOutline onClick={this.addPet} />
-            </div>
-            {this.state.showForm ? <AddPetForm /> : ''}
+            {this.state.showForm ? (
+              <AddPetForm />
+            ) : (
+              <div className="pet-center">
+                <AddCircleOutline onClick={this.addPet} />
+              </div>
+            )}
           </Grid>
         </Grid>
       </div>
