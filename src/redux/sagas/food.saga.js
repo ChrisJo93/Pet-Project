@@ -3,8 +3,8 @@ import axios from 'axios';
 
 function* foodSaga() {
   yield takeLatest('GET_FOOD', getFood);
-  yield takeLatest('PUT_FOOD', putFood);
   yield takeLatest('POST_FOOD', postFood);
+  yield takeLatest('PUT_FOOD', putFood);
   yield takeLatest('DELETE_FOOD', deleteFood);
 
   function* getFood(action) {
@@ -23,6 +23,15 @@ function* foodSaga() {
     }
   }
 
+  function* postFood(action) {
+    try {
+      yield axios.post(`/api/food/${action.payload.id}`, action.payload);
+      yield put({ type: 'GET_FOOD', payload: action.payload.id });
+    } catch (err) {
+      console.log('ERROR POSTING food:', action.payload.id);
+    }
+  }
+
   function* putFood(action) {
     try {
       yield axios.put(
@@ -31,15 +40,6 @@ function* foodSaga() {
       );
     } catch (error) {
       console.log('Error in put food', error);
-    }
-  }
-
-  function* postFood(action) {
-    try {
-      yield axios.post(`/api/food/${action.payload.id}`, action.payload);
-      yield put({ type: 'GET_FOOD', payload: action.payload.id });
-    } catch (err) {
-      console.log('ERROR POSTING food:', action.payload.id);
     }
   }
 

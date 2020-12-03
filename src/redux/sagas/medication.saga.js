@@ -4,8 +4,8 @@ import axios from 'axios';
 function* medicationSaga() {
   yield takeLatest('GET_MEDICATION', getMedication);
   yield takeLatest('GET_MEDICATION_DETAIL', getMedicationDetail);
-  yield takeLatest('PUT_MEDICATION', putMedication);
   yield takeLatest('POST_MEDICATION', postMedication);
+  yield takeLatest('PUT_MEDICATION', putMedication);
   yield takeLatest('DELETE_MEDICATION', deleteMedication);
 }
 
@@ -43,6 +43,15 @@ function* getMedicationDetail(action) {
   }
 }
 
+function* postMedication(action) {
+  try {
+    yield axios.post(`/api/medication/${action.payload.id}`, action.payload);
+    yield put({ type: 'GET_MEDICATION', payload: action.payload.id });
+  } catch (err) {
+    console.log('ERROR POSTING medication:', action.payload.id);
+  }
+}
+
 function* putMedication(action) {
   try {
     console.log('in put', action.payload);
@@ -52,15 +61,6 @@ function* putMedication(action) {
     );
   } catch (error) {
     console.log('Error in put food', error);
-  }
-}
-
-function* postMedication(action) {
-  try {
-    yield axios.post(`/api/medication/${action.payload.id}`, action.payload);
-    yield put({ type: 'GET_MEDICATION', payload: action.payload.id });
-  } catch (err) {
-    console.log('ERROR POSTING medication:', action.payload.id);
   }
 }
 
