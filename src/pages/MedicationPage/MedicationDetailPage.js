@@ -26,12 +26,6 @@ class MedicationDetailPage extends Component {
     edit: false,
   };
 
-  //back to details
-  back = (event) => {
-    this.props.history.push(`/details/${this.props.match.params.id}`);
-  };
-
-  //open edit inputs
   edit = (event) => {
     this.setState({
       edit: true,
@@ -41,7 +35,6 @@ class MedicationDetailPage extends Component {
     });
   };
 
-  //save edit inputs
   editSave = (event) => {
     this.props.dispatch({
       type: 'PUT_MEDICATION',
@@ -77,6 +70,20 @@ class MedicationDetailPage extends Component {
     this.setState({
       add: false,
     });
+    //a cheat. Med details only renders 1 item. This forwards user to all medications
+    this.props.history.push('/medication');
+  };
+
+  delete = (event, id) => {
+    this.props.dispatch({
+      type: 'DELETE_MEDICATION',
+      payload: id,
+    });
+  };
+
+  //back to details
+  back = (event) => {
+    this.props.history.push(`/details/${this.props.match.params.id}`);
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -167,13 +174,15 @@ class MedicationDetailPage extends Component {
               {this.state.edit ? (
                 <Save onClick={this.editSave}></Save>
               ) : (
-                <Edit onClick={this.edit}></Edit>
+                <>
+                  <Edit onClick={this.edit}></Edit>
+                  <DeleteForever
+                    onClick={(event) =>
+                      this.delete(event, this.props.store.medicationDetail.id)
+                    }
+                  ></DeleteForever>
+                </>
               )}
-              <DeleteForever
-                onClick={(event) =>
-                  this.delete(event, this.props.store.medicationDetail.id)
-                }
-              />
             </td>
           </tbody>
           {this.state.add ? (

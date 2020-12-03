@@ -29,7 +29,6 @@ function* foodSaga() {
         `/api/food/editFood/${action.payload.id}`,
         action.payload
       );
-      // yield put({ type: 'GET_FOOD', payload: this.props.match.params.id });
     } catch (error) {
       console.log('Error in put food', error);
     }

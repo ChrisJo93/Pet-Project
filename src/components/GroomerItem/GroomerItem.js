@@ -6,12 +6,15 @@ import { Button } from '@material-ui/core';
 import { DeleteForever, Edit } from '@material-ui/icons';
 
 class GroomerItem extends Component {
-  delete = (event, id) => {
-    console.log('in the delete', id);
-  };
-
   back = (event) => {
     this.props.history.push(`/user`);
+  };
+
+  delete = (event, id) => {
+    this.props.dispatch({
+      type: 'DELETE_MEDICATION',
+      payload: id,
+    });
   };
 
   render() {
@@ -46,7 +49,6 @@ class GroomerItem extends Component {
           </thead>
           <tbody>{groomerList}</tbody>
           <Button onClick={this.back}>Back</Button>
-          <Button onClick={this.add}>Add Appointment</Button>
         </table>
       </div>
     );

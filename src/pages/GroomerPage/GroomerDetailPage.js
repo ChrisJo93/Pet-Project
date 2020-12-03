@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import { Button, Paper, Grid } from '@material-ui/core';
-import { DeleteForever, Edit } from '@material-ui/icons';
+import { DeleteForever, Edit, Save } from '@material-ui/icons';
 
 class GroomerDetailPage extends Component {
   componentDidMount() {
@@ -12,8 +12,52 @@ class GroomerDetailPage extends Component {
       payload: this.props.match.params.id,
     });
   }
+
+  state = {
+    newGroomer: {
+      groomer: '',
+      date: '',
+      location: '',
+    },
+    add: false,
+    edit: false,
+  };
+
   delete = (event, id) => {
-    console.log('in the delete', id);
+    this.props.dispatch({
+      type: 'DELETE_GROOMER',
+      payload: id,
+    });
+  };
+
+  add = (event) => {
+    this.setState({
+      add: true,
+    });
+  };
+
+  addSave = (event) => {
+    this.props.dispatch({
+      type: 'POST_GROOMER',
+      payload: { ...this.state.newGroomer, id: this.props.match.params.id },
+    });
+    this.props.dispatch({
+      type: 'GET_GROOMER_DETAIL',
+      payload: this.props.match.params.id,
+    });
+    this.setState({
+      add: false,
+    });
+    this.props.history.push('/groomer');
+  };
+
+  handleInputChangeFor = (propertyName) => (event) => {
+    this.setState({
+      newGroomer: {
+        ...this.state.newGroomer,
+        [propertyName]: event.target.value,
+      },
+    });
   };
 
   back = (event) => {
@@ -41,16 +85,53 @@ class GroomerDetailPage extends Component {
             <td>{this.props.store.groomerDetail.date}</td>
             <td>{this.props.store.groomerDetail.location}</td>
             <td>
-              <Edit></Edit>
-              <DeleteForever
-                onClick={(event) =>
-                  this.delete(event, this.props.store.groomerDetail.id)
-                }
-              />
+              {this.state.edit ? (
+                <Save onClick={this.editSave}></Save>
+              ) : (
+                <>
+                  <Edit onClick={this.edit}></Edit>
+                  <DeleteForever
+                    onClick={(event) =>
+                      this.delete(event, this.props.store.groomerDetail.id)
+                    }
+                  ></DeleteForever>
+                </>
+              )}
             </td>
           </tbody>
-          <Button onClick={this.back}>Back</Button>
-          <Button onClick={this.add}>Add Appointment</Button>
+          {this.state.add ? (
+            <>
+              <td>
+                <input
+                  type="text"
+                  value={this.state.newGroomer.groomer}
+                  onChange={this.handleInputChangeFor('groomer')}
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={this.state.newGroomer.date}
+                  onChange={this.handleInputChangeFor('date')}
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={this.state.newGroomer.location}
+                  onChange={this.handleInputChangeFor('location')}
+                />
+              </td>
+              <td>
+                <Button onClick={this.addSave}>Save</Button>
+              </td>
+            </>
+          ) : (
+            <>
+              <Button onClick={this.back}>Back</Button>
+              <Button onClick={this.add}>Add Appointment</Button>
+            </>
+          )}
         </table>
       </div>
     );
