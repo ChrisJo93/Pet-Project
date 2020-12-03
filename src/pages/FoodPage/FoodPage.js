@@ -30,10 +30,12 @@ class FoodPage extends Component {
     });
   };
 
-  scannerOff = (event) => {
+  scannerOff = (status, value) => {
     this.setState({
-      scanner: false,
+      scanner: status,
+      scannerData: value,
     });
+    console.log(value);
   };
 
   render() {
@@ -42,7 +44,7 @@ class FoodPage extends Component {
         <FoodItem />
         {this.state.scanner ? (
           <>
-            <Scanner />
+            <Scanner scannerOff={this.scannerOff} />
             <Button onClick={this.scannerOff}>Done</Button>
           </>
         ) : (

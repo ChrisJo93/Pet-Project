@@ -8,7 +8,7 @@ import BarcodeScannerComponent from 'react-webcam-barcode-scanner';
 //Need an api route for barcode information
 //Need a route to database
 
-function Scanner() {
+const Scanner = (props) => {
   const [data, setData] = useState('Not Found');
   const dispatch = useDispatch();
 
@@ -27,9 +27,10 @@ function Scanner() {
         }}
       />
       <p>{data}</p>
+      <button onClick={() => props.scannerOff(false, data)}>Turn off</button>
       <button onClick={clickCapture}>Difficult Capture.</button>
     </>
   );
-}
+};
 
 export default connect(mapStoreToProps)(Scanner);
