@@ -28,7 +28,6 @@ const Scanner = (props) => {
       />
       <p>{data}</p>
       <button onClick={() => props.scannerOff(false, data)}>Turn off</button>
-      <button onClick={clickCapture}>Difficult Capture.</button>
     </>
   );
 };
