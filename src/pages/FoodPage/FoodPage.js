@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
 import FoodItem from '../../components/FoodItem/FoodItem';
+import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
+import { Button } from '@material-ui/core';
 
 //--To Do
 
@@ -21,36 +22,31 @@ class FoodPage extends Component {
 
   state = {
     scanner: false,
-    scannerData: '',
   };
 
-  addFood = (event) => {
+  scannerOn = (event) => {
     this.setState({
       scanner: true,
     });
   };
 
-  done = (event) => {
+  scannerOff = (event) => {
     this.setState({
       scanner: false,
-      scannerData: this.props.store.scannerReducer,
     });
   };
 
   render() {
     return (
       <div>
-        <div>
-          <FoodItem />
-        </div>
-
-        {this.state.scanner === true ? (
-          <Scanner />
-        ) : (
+        <FoodItem />
+        {this.state.scanner ? (
           <>
-            <button onClick={this.addFood}>Add food</button>
-            <button onClick={this.done}>done</button>
+            <Scanner />
+            <Button onClick={this.scannerOff}>Done</Button>
           </>
+        ) : (
+          <Button onClick={this.scannerOn}>Scan Barcode</Button>
         )}
       </div>
     );
