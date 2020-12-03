@@ -1,9 +1,9 @@
-const foodReducer = (state = {}, action) => {
+const foodReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_FOOD':
       return action.payload;
     case 'UNSET_FOOD':
-      return {};
+      return [];
     default:
       return state;
   }

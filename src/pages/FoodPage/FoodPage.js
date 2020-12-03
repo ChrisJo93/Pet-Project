@@ -15,8 +15,15 @@ import axios from 'axios';
 
 //api testing -
 const apiKey = `5F6C59D38182EFFDA1E04E6120C545D1`;
-const upc = '737257342927';
+const upc = '724089202246';
 const upcSearch = `https://api.upcdatabase.org/product/${upc}?apikey=${apiKey}`;
+const config = {
+  headers: {
+    Authorization: `Basic ${apiKey}`,
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+  },
+};
 
 class FoodPage extends Component {
   state = {
@@ -28,16 +35,15 @@ class FoodPage extends Component {
       type: 'GET_FOOD',
       payload: this.props.match.params.id,
     });
-    this.getSearch();
   }
 
   getSearch = () => {
     axios
-      .get(`${upcSearch}`)
+      .get(`${upcSearch}`, config)
       .then((response) => {
         console.log('in:', response.data.data);
         this.setState({
-          images: response.data.data,
+          data: response.data.data,
         });
       })
       .catch((err) => {
@@ -69,6 +75,8 @@ class FoodPage extends Component {
   render() {
     return (
       <div>
+        {this.state.data}
+        <button onClick={this.getSearch}>Click me</button>
         <FoodItem />
         {this.state.scanner ? (
           <>

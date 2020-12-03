@@ -90,39 +90,7 @@ class FoodItem extends Component {
               <th>Edit</th>
             </tr>
           </thead>
-          <tbody>
-            {this.state.edit ? (
-              <>
-                <td>
-                  <input
-                    type="text"
-                    value={this.state.newFood.brand}
-                    onChange={this.handleInputChangeFor('brand')}
-                  />
-                </td>
-
-                <td>{this.props.store.food.barcode}</td>
-              </>
-            ) : (
-              <>
-                <td>{this.props.store.food.brand}</td>
-                <td>{this.props.store.food.barcode}</td>
-              </>
-            )}
-
-            <td>
-              {this.state.edit ? (
-                <Save onClick={this.editSave}></Save>
-              ) : (
-                <Edit onClick={this.edit}></Edit>
-              )}
-              <DeleteForever
-                onClick={(event) =>
-                  this.delete(event, this.props.store.food.id)
-                }
-              />
-            </td>
-          </tbody>
+          <tbody></tbody>
 
           {this.state.add ? (
             <>
