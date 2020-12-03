@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
-//get all pets for a user
+
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryPet = `SELECT * FROM "pet" WHERE user_id=$1;`;
   //users will only see pets they own
@@ -42,18 +42,17 @@ INSERT INTO "pet"
 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`;
   pool
     .query(insertPetQuery, [
-      pet.name, //required
-      pet.species, //required
+      pet.name,
+      pet.species,
       pet.breed,
       pet.weight,
       pet.birthdate,
       pet.sex,
       pet.image,
       pet.microchip,
-      req.user.id, // required/ Using logged in user for User_ID
+      req.user.id,
     ])
     .then((result) => {
-      console.log('new pet:', result.rows);
       res.sendStatus(201);
     })
     .catch((error) => {

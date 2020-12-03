@@ -5,38 +5,7 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-/**
- * GET route template
- */
-router.get('/details/:id', rejectUnauthenticated, (req, res) => {
-  //Grabbing groomer by pet ID
-  //the way this is written the other groomers can be accessed but
-  //it wont matter client side where only that user's pets are visible
-  const queryGroomer = `SELECT 
-  "groomer".groomer,
-  "groomer".date,
-  "groomer".location,
-  "groomer".id,
-  "groomer".pet_id,
-  "pet".name
-  FROM "groomer"
-  JOIN "pet" ON "groomer".pet_id = "pet".id
-  WHERE "groomer".pet_id = $1;`;
-  pool
-    .query(queryGroomer, [req.params.id])
-    .then((result) => {
-      res.send(result.rows);
-      res.sendStatus(200);
-    })
-    .catch((err) => {
-      console.log('error in get', err);
-      res.sendStatus(500);
-    });
-});
 router.get('/', rejectUnauthenticated, (req, res) => {
-  //Grabbing groomer by pet ID
-  //the way this is written the other groomers can be accessed but
-  //it wont matter client side where only that user's pets are visible
   const queryGroomer = `SELECT 
   "groomer".groomer,
   "groomer".date,
@@ -44,7 +13,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   "groomer".id,
   "groomer".pet_id,
   "pet".name
-   FROM "groomer"
+  
+  FROM "groomer"
   JOIN "pet" ON "groomer".pet_id = "pet".id
   WHERE user_id = $1
 `;
@@ -60,9 +30,30 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
-/**
- * POST route template
- */
+router.get('/details/:id', rejectUnauthenticated, (req, res) => {
+  const queryGroomer = `SELECT 
+  "groomer".groomer,
+  "groomer".date,
+  "groomer".location,
+  "groomer".id,
+  "groomer".pet_id,
+  "pet".name
+
+  FROM "groomer"
+  JOIN "pet" ON "groomer".pet_id = "pet".id
+  WHERE "groomer".pet_id = $1;`;
+  pool
+    .query(queryGroomer, [req.params.id])
+    .then((result) => {
+      res.send(result.rows);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log('error in get', err);
+      res.sendStatus(500);
+    });
+});
+
 router.post('/:id', rejectUnauthenticated, (req, res) => {
   //inserting pet_id into groomer table
   const groomer = req.body;
@@ -88,9 +79,8 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
 
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const deleteGroomerQuery = `DELETE FROM "groomer" WHERE "id" =$1;`;
-  const groomerID = [req.params.id];
   pool
-    .query(deleteGroomerQuery, groomerID)
+    .query(deleteGroomerQuery, [req.params.id])
     .then((result) => {
       res.sendStatus(200);
     })

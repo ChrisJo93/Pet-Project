@@ -14,9 +14,10 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   "vet".location,
   "vet".pet_id,
   "pet".name
+
   FROM "vet"
-      JOIN "pet" ON "vet".pet_id = "pet".id
-      WHERE user_id = $1`;
+  JOIN "pet" ON "vet".pet_id = "pet".id
+  WHERE user_id = $1`;
   pool
     .query(queryVet, [req.user.id])
     .then((result) => {
@@ -38,6 +39,7 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
   "vet".location,
   "vet".pet_id,
   "pet".name
+  
   FROM "vet"
   JOIN "pet" ON "vet".pet_id = "pet".id
   WHERE "vet".pet_id = $1;`;

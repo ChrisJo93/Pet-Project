@@ -11,6 +11,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "food".barcode, 
   "food".pet_id,
   "pet".name
+
   FROM "food"
     JOIN "pet" ON "food".pet_id = "pet".id
     WHERE "food".pet_id = $1;`;
@@ -34,7 +35,6 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
   pool
     .query(insertFoodQuery, [food.brand, food.barcode, req.params.id])
     .then((result) => {
-      console.log(result.rows);
       res.sendStatus(201);
     })
     .catch((error) => {

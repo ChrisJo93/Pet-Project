@@ -5,32 +5,6 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-router.get('/details/:id', rejectUnauthenticated, (req, res) => {
-  const queryMedication = `SELECT 
-  "medication".id,
-  "medication".brand,
-  "medication".dosage,
-  "medication".start_date,
-  "medication".end_date,
-  "medication".doctor,
-  "medication".barcode,
-  "medication".pet_id,
-  "pet".name
-  FROM "medication"
-      JOIN "pet" ON "medication".pet_id = "pet".id
-      WHERE "medication".pet_id = $1;`;
-  pool
-    .query(queryMedication, [req.params.id])
-    .then((result) => {
-      res.send(result.rows);
-      res.sendStatus(200);
-    })
-    .catch((err) => {
-      console.log('error in get', err);
-      res.sendStatus(500);
-    });
-});
-
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryMedication = `SELECT 
   "medication".id,
@@ -42,12 +16,40 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   "medication".barcode,
   "medication".pet_id,
   "pet".name 
+
   FROM "medication"
   JOIN "pet" ON "medication".pet_id = "pet".id
   WHERE user_id = $1
 `;
   pool
     .query(queryMedication, [req.user.id])
+    .then((result) => {
+      res.send(result.rows);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log('error in get', err);
+      res.sendStatus(500);
+    });
+});
+
+router.get('/details/:id', rejectUnauthenticated, (req, res) => {
+  const queryMedication = `SELECT 
+  "medication".id,
+  "medication".brand,
+  "medication".dosage,
+  "medication".start_date,
+  "medication".end_date,
+  "medication".doctor,
+  "medication".barcode,
+  "medication".pet_id,
+  "pet".name
+
+  FROM "medication"
+  JOIN "pet" ON "medication".pet_id = "pet".id
+  WHERE "medication".pet_id = $1;`;
+  pool
+    .query(queryMedication, [req.params.id])
     .then((result) => {
       res.send(result.rows);
       res.sendStatus(200);
@@ -83,6 +85,7 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
+
 router.put('/editMedication/:id', rejectUnauthenticated, (req, res) => {
   const meds = req.body;
   const editMedicationQuery = `UPDATE medication 
@@ -115,9 +118,8 @@ router.put('/editMedication/:id', rejectUnauthenticated, (req, res) => {
 
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const deleteMedicationQuery = `DELETE FROM "medication" WHERE "id"=$1;`;
-  const medicationID = [req.params.id];
   pool
-    .query(deleteMedicationQuery, medicationID)
+    .query(deleteMedicationQuery, [req.params.id])
     .then((result) => {
       res.sendStatus(200);
     })
