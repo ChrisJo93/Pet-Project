@@ -1,9 +1,9 @@
-import { withRouter } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Button } from '@material-ui/core';
-import { DeleteForever, Edit, Save } from '@material-ui/icons';
+import { withRouter } from 'react-router-dom';
+import mapStoreToProps from '../../redux/mapStoreToProps';
+
 import FoodItem from './FoodItem';
 
 class FoodList extends Component {
@@ -23,32 +23,6 @@ class FoodList extends Component {
   add = (event) => {
     this.setState({
       add: true,
-    });
-  };
-
-  edit = (event) => {
-    this.setState({
-      edit: true,
-      newFood: {
-        ...this.props.store.food,
-      },
-    });
-  };
-
-  editSave = (event) => {
-    this.props.dispatch({
-      type: 'PUT_FOOD',
-      payload: {
-        ...this.props.store.food,
-        ...this.state.newFood,
-      },
-    });
-    this.setState({
-      edit: false,
-    });
-    this.props.dispatch({
-      type: 'GET_FOOD',
-      payload: this.props.match.params.id,
     });
   };
 

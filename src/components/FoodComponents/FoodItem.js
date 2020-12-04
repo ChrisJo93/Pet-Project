@@ -1,12 +1,8 @@
-import { withRouter } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Button } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
 import { DeleteForever, Edit, Save } from '@material-ui/icons';
-
-// to-do
-//Barcode scanner for input field
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class FoodItem extends Component {
   state = {
@@ -16,22 +12,6 @@ class FoodItem extends Component {
     },
     add: false,
     edit: false,
-  };
-
-  add = (event) => {
-    this.setState({
-      add: true,
-    });
-  };
-
-  addSave = (event) => {
-    this.props.dispatch({
-      type: 'POST_FOOD',
-      payload: { ...this.state.newFood, id: this.props.match.params.id },
-    });
-    this.setState({
-      add: false,
-    });
   };
 
   edit = (event) => {
