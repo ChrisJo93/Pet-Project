@@ -16,6 +16,8 @@ class UserPage extends Component {
 
   state = {
     showForm: this.props.store.showForm,
+    placeholder:
+      'https://cdn1.iconfinder.com/data/icons/animals-95/300/cat-add-animal-pet-wild-domestic-512.png',
   };
 
   addPet = (event) => {
@@ -39,7 +41,11 @@ class UserPage extends Component {
               <AddPetForm />
             ) : (
               <div className="pet-center">
-                <AddCircleOutline onClick={this.addPet} />
+                <img
+                  src={this.state.placeholder}
+                  className="pet"
+                  onClick={this.addPet}
+                />
               </div>
             )}
           </Grid>
