@@ -4,7 +4,8 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import { Button, Paper, Grid } from '@material-ui/core';
 import { DeleteForever, Edit, Save } from '@material-ui/icons';
-import GroomerList from '../../components/GroomerComponents/GroomerList';
+
+import GroomerItem from '../../components/GroomerComponents/GroomerItem';
 
 class GroomerDetailPage extends Component {
   state = {
@@ -93,7 +94,7 @@ class GroomerDetailPage extends Component {
 
   render() {
     const groomerList = this.props.store.groomerDetail.map((groomer, index) => {
-      return <GroomerList key={index} groomer={groomer} />;
+      return <GroomerItem key={index} groomer={groomer} />;
     });
     return (
       <div>

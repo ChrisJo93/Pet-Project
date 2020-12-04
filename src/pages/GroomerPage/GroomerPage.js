@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import GroomerItem from '../../components/GroomerComponents/GroomerItem';
+import GroomerList from '../../components/GroomerComponents/GroomerList';
+
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class GroomerPage extends Component {
@@ -15,7 +16,7 @@ class GroomerPage extends Component {
       <div>
         <h2 className="Heading">Grooming Appointments</h2>
         <div>
-          <GroomerItem />
+          <GroomerList />
         </div>
       </div>
     );
