@@ -12,6 +12,11 @@ import {
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class PetDetailsPage extends Component {
+  state = {
+    placeholder:
+      'https://www.missingdogsuk.co.uk/wp-content/plugins/wp-job-manager-resumes/assets/images/candidate.png',
+  };
+
   componentDidMount() {
     this.props.dispatch({
       type: 'GET_PET_DETAIL',
@@ -48,7 +53,14 @@ class PetDetailsPage extends Component {
     return (
       <Grid container spacing={10} alignItems="center" justify="center">
         <Grid item>
-          <img src={this.props.store.petDetail.image} className="pet" />
+          <img
+            src={
+              this.props.store.petDetail.image != null
+                ? this.props.store.petDetail.image
+                : this.state.placeholder
+            }
+            className="pet"
+          />
           <p>{this.props.store.petDetail.name}</p>
           <p>{this.props.store.petDetail.breed}</p>
           <br />

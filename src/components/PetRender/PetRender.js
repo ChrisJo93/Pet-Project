@@ -5,6 +5,11 @@ import { withRouter } from 'react-router-dom';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class PetRender extends Component {
+  state = {
+    placeholder:
+      'https://www.missingdogsuk.co.uk/wp-content/plugins/wp-job-manager-resumes/assets/images/candidate.png',
+  };
+
   toDetails = (event) => {
     this.props.history.push(`/details/${this.props.pet.id}`); //routes user to details of selected pet
   };
@@ -16,7 +21,11 @@ class PetRender extends Component {
           <figure>
             <img
               className="pet"
-              src={this.props.pet.image}
+              src={
+                this.props.pet.image != null
+                  ? this.props.pet.image
+                  : this.state.placeholder
+              }
               onClick={this.toDetails}
               value={this.props.pet.id}
             />
