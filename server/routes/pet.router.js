@@ -7,7 +7,7 @@ const {
 
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryPet = `SELECT * FROM "pet" WHERE user_id=$1;`;
-  //users will only see pets they own
+  //Query based on userID. Users will only see their pets
   pool
     .query(queryPet, [req.user.id])
     .then((result) => {
@@ -19,7 +19,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
-// get only 1 pet by id
+//Selects one pet based on petID
 router.get('/details/:id', rejectUnauthenticated, (req, res) => {
   const queryPetID = `SELECT * FROM "pet" WHERE id=$1;`;
   pool

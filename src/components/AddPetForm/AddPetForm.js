@@ -1,8 +1,9 @@
-import { withRouter } from 'react-router-dom';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Button } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
+
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class AddPetForm extends Component {
   state = {

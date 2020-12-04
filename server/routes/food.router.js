@@ -6,6 +6,7 @@ const {
 } = require('../modules/authentication-middleware');
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
+  //Grabbing all food table info and just pet name
   const queryFood = `SELECT "food".id, 
   "food".brand, 
   "food".barcode, 
@@ -13,8 +14,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   "pet".name
 
   FROM "food"
-    JOIN "pet" ON "food".pet_id = "pet".id
-    WHERE "food".pet_id = $1;`;
+  JOIN "pet" ON "food".pet_id = "pet".id
+  WHERE "food".pet_id = $1;`;
   pool
     .query(queryFood, [req.params.id])
     .then((result) => {
