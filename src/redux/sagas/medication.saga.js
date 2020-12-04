@@ -32,7 +32,7 @@ function* getMedicationDetail(action) {
     );
     yield put({
       type: 'SET_MEDICATION_DETAIL',
-      payload: response.data[0],
+      payload: response.data,
     });
   } catch (err) {
     console.log(err);
@@ -59,6 +59,7 @@ function* putMedication(action) {
       `/api/medication/editMedication/${action.payload.id}`,
       action.payload
     );
+    yield put({ type: 'GET_MEDICATION_DETAIL', payload: action.payload.petId });
   } catch (error) {
     console.log('Error in put food', error);
   }
@@ -66,8 +67,9 @@ function* putMedication(action) {
 
 function* deleteMedication(action) {
   try {
-    yield axios.delete(`/api/medication/${action.payload}`);
+    yield axios.delete(`/api/medication/${action.payload.id}`);
     yield put({ type: 'GET_MEDICATION' });
+    yield put({ type: 'GET_MEDICATION_DETAIL', payload: action.payload.petId });
   } catch (err) {
     console.log('error deleting MEDICATION:', action.payload);
   }

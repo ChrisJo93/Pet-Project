@@ -16,27 +16,6 @@ class GroomerItem extends Component {
     edit: false,
   };
 
-  add = (event) => {
-    this.setState({
-      add: true,
-    });
-  };
-
-  addSave = (event) => {
-    this.props.dispatch({
-      type: 'POST_GROOMER',
-      payload: { ...this.state.newGroomer, id: this.props.match.params.id },
-    });
-    this.props.dispatch({
-      type: 'GET_GROOMER_DETAIL',
-      payload: this.props.match.params.id,
-    });
-    this.setState({
-      add: false,
-    });
-    this.props.history.push('/groomer');
-  };
-
   edit = (event) => {
     this.setState({
       edit: true,
@@ -46,7 +25,7 @@ class GroomerItem extends Component {
     });
   };
 
-  editSave = (event, id) => {
+  editSave = (event) => {
     this.props.dispatch({
       type: 'PUT_GROOMER',
       payload: {

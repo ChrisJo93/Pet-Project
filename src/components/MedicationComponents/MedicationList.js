@@ -5,7 +5,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Button } from '@material-ui/core';
 import { DeleteForever, Edit, Save } from '@material-ui/icons';
 
-class MedicationItem extends Component {
+class MedicationList extends Component {
   back = (event) => {
     this.props.history.push(`/user`);
   };
@@ -62,4 +62,4 @@ class MedicationItem extends Component {
   }
 }
 
-export default withRouter(connect(mapStoreToProps)(MedicationItem));
+export default withRouter(connect(mapStoreToProps)(MedicationList));

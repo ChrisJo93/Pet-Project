@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
+import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
-import { Button, Paper, Grid } from '@material-ui/core';
-import { DeleteForever, Edit, Save } from '@material-ui/icons';
+import mapStoreToProps from '../../redux/mapStoreToProps';
+
+import MedicationItem from '../../components/MedicationComponents/MedicationItem';
 
 class MedicationDetailPage extends Component {
-  componentDidMount() {
-    this.props.dispatch({
-      type: 'GET_MEDICATION_DETAIL',
-      payload: this.props.match.params.id,
-    });
-  }
-
   state = {
     newMedication: {
       brand: '',
@@ -26,31 +20,12 @@ class MedicationDetailPage extends Component {
     edit: false,
   };
 
-  edit = (event) => {
-    this.setState({
-      edit: true,
-      newMedication: {
-        ...this.props.store.medicationDetail,
-      },
-    });
-  };
-
-  editSave = (event) => {
-    this.props.dispatch({
-      type: 'PUT_MEDICATION',
-      payload: {
-        ...this.props.store.medicationDetail,
-        ...this.state.newMedication,
-      },
-    });
-    this.setState({
-      edit: false,
-    });
+  componentDidMount() {
     this.props.dispatch({
       type: 'GET_MEDICATION_DETAIL',
       payload: this.props.match.params.id,
     });
-  };
+  }
 
   add = (event) => {
     this.setState({
@@ -70,8 +45,6 @@ class MedicationDetailPage extends Component {
     this.setState({
       add: false,
     });
-    //a cheat. Med details only renders 1 item. This forwards user to all medications
-    this.props.history.push('/medication');
   };
 
   delete = (event, id) => {
@@ -79,11 +52,6 @@ class MedicationDetailPage extends Component {
       type: 'DELETE_MEDICATION',
       payload: id,
     });
-  };
-
-  //back to details
-  back = (event) => {
-    this.props.history.push(`/details/${this.props.match.params.id}`);
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -95,12 +63,19 @@ class MedicationDetailPage extends Component {
     });
   };
 
+  back = (event) => {
+    this.props.history.push(`/details/${this.props.match.params.id}`);
+  };
+
   render() {
+    const medicationList = this.props.store.medicationDetail.map(
+      (med, index) => {
+        return <MedicationItem key={index} med={med} />;
+      }
+    );
     return (
       <div>
-        <h2 className="Heading">
-          {this.props.store.medicationDetail.name}'s Medications
-        </h2>
+        <h2 className="Heading">Medications</h2>
 
         <table>
           <thead>
@@ -114,77 +89,7 @@ class MedicationDetailPage extends Component {
               <th>Edit</th>
             </tr>
           </thead>
-          <tbody>
-            {this.state.edit ? (
-              <>
-                <td>
-                  <input
-                    type="text"
-                    value={this.state.newMedication.brand}
-                    onChange={this.handleInputChangeFor('brand')}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={this.state.newMedication.dosage}
-                    onChange={this.handleInputChangeFor('dosage')}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={this.state.newMedication.start_date}
-                    onChange={this.handleInputChangeFor('start_date')}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={this.state.newMedication.end_date}
-                    onChange={this.handleInputChangeFor('end_date')}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={this.state.newMedication.doctor}
-                    onChange={this.handleInputChangeFor('doctor')}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={this.state.newMedication.barcode}
-                    onChange={this.handleInputChangeFor('barcode')}
-                  />
-                </td>
-              </>
-            ) : (
-              <>
-                <td>{this.props.store.medicationDetail.brand}</td>
-                <td>{this.props.store.medicationDetail.dosage}</td>
-                <td>{this.props.store.medicationDetail.start_date}</td>
-                <td>{this.props.store.medicationDetail.end_date}</td>
-                <td>{this.props.store.medicationDetail.doctor}</td>
-                <td>{this.props.store.medicationDetail.barcode}</td>
-              </>
-            )}
-            <td>
-              {this.state.edit ? (
-                <Save onClick={this.editSave}></Save>
-              ) : (
-                <>
-                  <Edit onClick={this.edit}></Edit>
-                  <DeleteForever
-                    onClick={(event) =>
-                      this.delete(event, this.props.store.medicationDetail.id)
-                    }
-                  ></DeleteForever>
-                </>
-              )}
-            </td>
-          </tbody>
+          <tbody>{medicationList}</tbody>
           {this.state.add ? (
             <>
               <td>

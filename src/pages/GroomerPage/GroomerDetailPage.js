@@ -25,32 +25,6 @@ class GroomerDetailPage extends Component {
     });
   }
 
-  edit = (event) => {
-    this.setState({
-      edit: true,
-      newGroomer: {
-        ...this.props.store.groomerDetail,
-      },
-    });
-  };
-
-  editSave = (event) => {
-    this.props.dispatch({
-      type: 'PUT_GROOMER',
-      payload: {
-        ...this.props.store.groomerDetail,
-        ...this.state.newGroomer,
-      },
-    });
-    this.setState({
-      edit: false,
-    });
-    this.props.dispatch({
-      type: 'GET_GROOMER_DETAIL',
-      payload: this.props.match.params.id,
-    });
-  };
-
   add = (event) => {
     this.setState({
       add: true,
@@ -69,7 +43,6 @@ class GroomerDetailPage extends Component {
     this.setState({
       add: false,
     });
-    this.props.history.push('/groomer');
   };
 
   delete = (event, id) => {

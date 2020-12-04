@@ -1,9 +1,9 @@
-const medicationDetailReducer = (state = {}, action) => {
+const medicationDetailReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_MEDICATION_DETAIL':
       return action.payload;
     case 'UNSET_MEDICATION':
-      return {};
+      return [];
     default:
       return state;
   }

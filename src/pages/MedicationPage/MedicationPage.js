@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import MedicationItem from '../../components/MedicationItem/MedicationItem';
+import MedicationList from '../../components/MedicationComponents/MedicationList';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-
-//medication needs put,post,delete,get by pet id
-//medication needs date check
-//medication needs barcode import
-//medication needs nodemailer
-//medication needs twillio
 
 class MedicationPage extends Component {
   componentDidMount() {
@@ -22,7 +16,7 @@ class MedicationPage extends Component {
       <div>
         <h2 className="Heading">Medications</h2>
         <div>
-          <MedicationItem />
+          <MedicationList />
         </div>
       </div>
     );
