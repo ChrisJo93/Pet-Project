@@ -18,13 +18,19 @@ class FoodItem extends Component {
     edit: false,
   };
 
-  back = (event) => {
-    this.props.history.push(`/details/${this.props.match.params.id}`);
-  };
-
   add = (event) => {
     this.setState({
       add: true,
+    });
+  };
+
+  addSave = (event) => {
+    this.props.dispatch({
+      type: 'POST_FOOD',
+      payload: { ...this.state.newFood, id: this.props.match.params.id },
+    });
+    this.setState({
+      add: false,
     });
   };
 
@@ -37,30 +43,17 @@ class FoodItem extends Component {
     });
   };
 
-  editSave = (event) => {
+  editSave = (event, id) => {
     this.props.dispatch({
       type: 'PUT_FOOD',
       payload: {
         ...this.props.food,
         ...this.state.newFood,
+        petId: this.props.match.params.id,
       },
     });
     this.setState({
       edit: false,
-    });
-    this.props.dispatch({
-      type: 'GET_FOOD',
-      payload: this.props.match.params.id,
-    });
-  };
-
-  addSave = (event) => {
-    this.props.dispatch({
-      type: 'POST_FOOD',
-      payload: { ...this.state.newFood, id: this.props.match.params.id },
-    });
-    this.setState({
-      add: false,
     });
   };
 
@@ -77,6 +70,10 @@ class FoodItem extends Component {
     });
   };
 
+  back = (event) => {
+    this.props.history.push(`/details/${this.props.match.params.id}`);
+  };
+
   render() {
     const foodItem = this.props.food != null ? this.props.food : {};
     return (
@@ -91,8 +88,13 @@ class FoodItem extends Component {
                 onChange={this.handleInputChangeFor('brand')}
               />
             </td>
-
-            <td>{foodItem.barcode}</td>
+            <td>
+              <input
+                type="text"
+                value={this.state.newFood.barcode}
+                onChange={this.handleInputChangeFor('barcode')}
+              />
+            </td>
           </>
         ) : (
           <>
@@ -103,7 +105,7 @@ class FoodItem extends Component {
 
         <td>
           {this.state.edit ? (
-            <Save onClick={this.editSave}></Save>
+            <Save onClick={(event) => this.editSave(event, foodItem.id)}></Save>
           ) : (
             <Edit onClick={this.edit}></Edit>
           )}

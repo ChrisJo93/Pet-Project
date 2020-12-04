@@ -30,7 +30,7 @@ function* getGroomerDetail(action) {
     const response = yield axios.get(`/api/groomer/details/${action.payload}`);
     yield put({
       type: 'SET_GROOMER_DETAIL',
-      payload: response.data[0],
+      payload: response.data,
     });
   } catch (err) {
     console.log(err);
@@ -52,11 +52,11 @@ function* postGroomer(action) {
 
 function* putGroomer(action) {
   try {
-    console.log('in put', action.payload);
     yield axios.put(
       `/api/groomer/editGroomer/${action.payload.id}`,
       action.payload
     );
+    yield put({ type: 'GET_GROOMER_DETAIL', payload: action.payload.petId });
   } catch (error) {
     console.log('Error in put groomer', error);
   }
@@ -64,8 +64,9 @@ function* putGroomer(action) {
 
 function* deleteGroomer(action) {
   try {
-    yield axios.delete(`/api/groomer/${action.payload}`);
+    yield axios.delete(`/api/groomer/${action.payload.id}`);
     yield put({ type: 'GET_GROOMER' });
+    yield put({ type: 'GET_GROOMER_DETAIL', payload: action.payload.petId });
   } catch (err) {
     console.log('error deleting groomer:', action.payload);
   }

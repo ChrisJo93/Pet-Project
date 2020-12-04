@@ -38,6 +38,8 @@ function* foodSaga() {
         `/api/food/editFood/${action.payload.id}`,
         action.payload
       );
+      yield put({ type: 'GET_FOOD', payload: action.payload.petId });
+      console.log(action.payload);
     } catch (error) {
       console.log('Error in put food', error);
     }

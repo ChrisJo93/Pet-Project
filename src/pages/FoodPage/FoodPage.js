@@ -5,7 +5,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
-import FoodList from '../../components/FoodItem/FoodList';
+import FoodList from '../../components/FoodComponents/FoodList';
 
 //--To Do
 

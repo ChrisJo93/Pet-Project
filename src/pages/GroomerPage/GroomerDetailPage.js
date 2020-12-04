@@ -4,15 +4,9 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
 import { Button, Paper, Grid } from '@material-ui/core';
 import { DeleteForever, Edit, Save } from '@material-ui/icons';
+import GroomerList from '../../components/GroomerComponents/GroomerList';
 
 class GroomerDetailPage extends Component {
-  componentDidMount() {
-    this.props.dispatch({
-      type: 'GET_GROOMER_DETAIL',
-      payload: this.props.match.params.id,
-    });
-  }
-
   state = {
     newGroomer: {
       groomer: '',
@@ -22,6 +16,13 @@ class GroomerDetailPage extends Component {
     add: false,
     edit: false,
   };
+
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'GET_GROOMER_DETAIL',
+      payload: this.props.match.params.id,
+    });
+  }
 
   edit = (event) => {
     this.setState({
@@ -91,11 +92,12 @@ class GroomerDetailPage extends Component {
   };
 
   render() {
+    const groomerList = this.props.store.groomerDetail.map((groomer, index) => {
+      return <GroomerList key={index} groomer={groomer} />;
+    });
     return (
       <div>
-        <h2 className="Heading">
-          {this.props.store.groomerDetail.name}'s Grooming Appointment
-        </h2>
+        <h2 className="Heading">Grooming Appointments</h2>
 
         <table>
           <thead>
@@ -106,53 +108,7 @@ class GroomerDetailPage extends Component {
               <th>Edit</th>
             </tr>
           </thead>
-          <tbody>
-            {this.state.edit ? (
-              <>
-                <td>
-                  <input
-                    type="text"
-                    value={this.state.newGroomer.groomer}
-                    onChange={this.handleInputChangeFor('groomer')}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={this.state.newGroomer.date}
-                    onChange={this.handleInputChangeFor('date')}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={this.state.newGroomer.location}
-                    onChange={this.handleInputChangeFor('location')}
-                  />
-                </td>
-              </>
-            ) : (
-              <>
-                <td>{this.props.store.groomerDetail.groomer}</td>
-                <td>{this.props.store.groomerDetail.date}</td>
-                <td>{this.props.store.groomerDetail.location}</td>
-              </>
-            )}
-            <td>
-              {this.state.edit ? (
-                <Save onClick={this.editSave}></Save>
-              ) : (
-                <>
-                  <Edit onClick={this.edit}></Edit>
-                  <DeleteForever
-                    onClick={(event) =>
-                      this.delete(event, this.props.store.groomerDetail.id)
-                    }
-                  ></DeleteForever>
-                </>
-              )}
-            </td>
-          </tbody>
+          <tbody>{groomerList}</tbody>
           {this.state.add ? (
             <>
               <td>
