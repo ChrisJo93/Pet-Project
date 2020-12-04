@@ -1,11 +1,11 @@
-import { withRouter } from 'react-router-dom';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
-import { DeleteForever, Edit } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { DeleteForever } from '@material-ui/icons';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
-class VetItem extends Component {
+class VetList extends Component {
   back = (event) => {
     this.props.history.push(`/user`);
   };
@@ -13,7 +13,7 @@ class VetItem extends Component {
   delete = (event, id) => {
     this.props.dispatch({
       type: 'DELETE_VET',
-      payload: id,
+      payload: { id, petId: this.props.match.params.id },
     });
   };
 
@@ -56,4 +56,4 @@ class VetItem extends Component {
   }
 }
 
-export default withRouter(connect(mapStoreToProps)(VetItem));
+export default withRouter(connect(mapStoreToProps)(VetList));

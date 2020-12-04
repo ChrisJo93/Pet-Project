@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { DeleteForever, Edit, Save } from '@material-ui/icons';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-class GroomerItem extends Component {
+class VetItem extends Component {
   state = {
-    newGroomer: {
-      groomer: '',
+    newVet: {
+      doctor: '',
+      reason: '',
       date: '',
       location: '',
     },
@@ -15,21 +17,49 @@ class GroomerItem extends Component {
     edit: false,
   };
 
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'GET_VET_DETAIL',
+      payload: this.props.match.params.id,
+    });
+  }
+
+  //   add = (event) => {
+  //     this.setState({
+  //       add: true,
+  //     });
+  //   };
+
+  //   addSave = (event) => {
+  //     this.props.dispatch({
+  //       type: 'POST_VET',
+  //       payload: { ...this.state.newVet, id: this.props.match.params.id },
+  //     });
+  //     this.props.dispatch({
+  //       type: 'GET_VET_DETAIL',
+  //       payload: this.props.match.params.id,
+  //     });
+  //     this.setState({
+  //       add: false,
+  //     });
+  //     this.props.history.push('/vet');
+  //   };
+
   edit = (event) => {
     this.setState({
       edit: true,
-      newGroomer: {
-        ...this.props.groomer,
+      newVet: {
+        ...this.props.vet,
       },
     });
   };
 
   editSave = (event) => {
     this.props.dispatch({
-      type: 'PUT_GROOMER',
+      type: 'PUT_VET',
       payload: {
-        ...this.props.groomer,
-        ...this.state.newGroomer,
+        ...this.props.vet,
+        ...this.state.newVet,
         petId: this.props.match.params.id,
       },
     });
@@ -40,15 +70,15 @@ class GroomerItem extends Component {
 
   delete = (event, id) => {
     this.props.dispatch({
-      type: 'DELETE_GROOMER',
+      type: 'DELETE_VET',
       payload: { id, petId: this.props.match.params.id },
     });
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
-      newGroomer: {
-        ...this.state.newGroomer,
+      newVet: {
+        ...this.state.newVet,
         [propertyName]: event.target.value,
       },
     });
@@ -59,7 +89,7 @@ class GroomerItem extends Component {
   };
 
   render() {
-    const groomerItem = this.props.groomer != null ? this.props.groomer : {};
+    const vetItem = this.props.vet != null ? this.props.vet : {};
 
     return (
       <tr>
@@ -68,42 +98,48 @@ class GroomerItem extends Component {
             <td>
               <input
                 type="text"
-                value={this.state.newGroomer.groomer}
-                onChange={this.handleInputChangeFor('groomer')}
+                value={this.state.newVet.doctor}
+                onChange={this.handleInputChangeFor('doctor')}
               />
             </td>
             <td>
               <input
                 type="text"
-                value={this.state.newGroomer.date}
+                value={this.state.newVet.reason}
+                onChange={this.handleInputChangeFor('reason')}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                value={this.state.newVet.date}
                 onChange={this.handleInputChangeFor('date')}
               />
             </td>
             <td>
               <input
                 type="text"
-                value={this.state.newGroomer.location}
+                value={this.state.newVet.location}
                 onChange={this.handleInputChangeFor('location')}
               />
             </td>
           </>
         ) : (
           <>
-            <td>{groomerItem.groomer}</td>
-            <td>{groomerItem.date}</td>
-            <td>{groomerItem.location}</td>
+            <td>{vetItem.doctor}</td>
+            <td>{vetItem.reason}</td>
+            <td>{vetItem.date}</td>
+            <td>{vetItem.location}</td>
           </>
         )}
         <td>
           {this.state.edit ? (
-            <Save
-              onClick={(event) => this.editSave(event, groomerItem.id)}
-            ></Save>
+            <Save onClick={this.editSave}></Save>
           ) : (
             <>
               <Edit onClick={this.edit}></Edit>
               <DeleteForever
-                onClick={(event) => this.delete(event, groomerItem.id)}
+                onClick={(event) => this.delete(event, vetItem.id)}
               ></DeleteForever>
             </>
           )}
@@ -113,4 +149,4 @@ class GroomerItem extends Component {
   }
 }
 
-export default withRouter(connect(mapStoreToProps)(GroomerItem));
+export default withRouter(connect(mapStoreToProps)(VetItem));

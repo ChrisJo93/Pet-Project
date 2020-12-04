@@ -13,7 +13,7 @@ class MedicationList extends Component {
   delete = (event, id) => {
     this.props.dispatch({
       type: 'DELETE_MEDICATION',
-      payload: id,
+      payload: { id, petId: this.props.match.params.id },
     });
   };
 

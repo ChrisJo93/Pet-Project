@@ -70,6 +70,7 @@ class MedicationItem extends Component {
 
   render() {
     const medItem = this.props.med != null ? this.props.med : {};
+
     return (
       <tr>
         {this.state.edit ? (

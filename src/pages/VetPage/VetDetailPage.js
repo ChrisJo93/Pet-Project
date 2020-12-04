@@ -2,17 +2,11 @@ import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { DeleteForever, Edit, Save } from '@material-ui/icons';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-class VetDetailPage extends Component {
-  componentDidMount() {
-    this.props.dispatch({
-      type: 'GET_VET_DETAIL',
-      payload: this.props.match.params.id,
-    });
-  }
+import VetItem from '../../components/VetComponents/VetItem';
 
+class VetDetailPage extends Component {
   state = {
     newVet: {
       doctor: '',
@@ -23,6 +17,13 @@ class VetDetailPage extends Component {
     add: false,
     edit: false,
   };
+
+  componentDidMount() {
+    this.props.dispatch({
+      type: 'GET_VET_DETAIL',
+      payload: this.props.match.params.id,
+    });
+  }
 
   add = (event) => {
     this.setState({
@@ -41,33 +42,6 @@ class VetDetailPage extends Component {
     });
     this.setState({
       add: false,
-    });
-    this.props.history.push('/vet');
-  };
-
-  edit = (event) => {
-    this.setState({
-      edit: true,
-      newVet: {
-        ...this.props.store.vetDetail,
-      },
-    });
-  };
-
-  editSave = (event) => {
-    this.props.dispatch({
-      type: 'PUT_VET',
-      payload: {
-        ...this.props.store.vetDetail,
-        ...this.state.newVet,
-      },
-    });
-    this.setState({
-      edit: false,
-    });
-    this.props.dispatch({
-      type: 'GET_VET_DETAIL',
-      payload: this.props.match.params.id,
     });
   };
 
@@ -92,11 +66,13 @@ class VetDetailPage extends Component {
   };
 
   render() {
+    const vetList = this.props.store.vetDetail.map((vet, index) => {
+      return <VetItem key={index} vet={vet} />;
+    });
+
     return (
       <div>
-        <h2 className="Heading">
-          {this.props.store.vetDetail.name}'s Veterinarian
-        </h2>
+        <h2 className="Heading">Veterinarian</h2>
 
         <table>
           <thead>
@@ -108,61 +84,7 @@ class VetDetailPage extends Component {
               <th>Edit</th>
             </tr>
           </thead>
-          <tbody>
-            {this.state.edit ? (
-              <>
-                <td>
-                  <input
-                    type="text"
-                    value={this.state.newVet.doctor}
-                    onChange={this.handleInputChangeFor('doctor')}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={this.state.newVet.reason}
-                    onChange={this.handleInputChangeFor('reason')}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={this.state.newVet.date}
-                    onChange={this.handleInputChangeFor('date')}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={this.state.newVet.location}
-                    onChange={this.handleInputChangeFor('location')}
-                  />
-                </td>
-              </>
-            ) : (
-              <>
-                <td>{this.props.store.vetDetail.doctor}</td>
-                <td>{this.props.store.vetDetail.reason}</td>
-                <td>{this.props.store.vetDetail.date}</td>
-                <td>{this.props.store.vetDetail.location}</td>
-              </>
-            )}
-            <td>
-              {this.state.edit ? (
-                <Save onClick={this.editSave}></Save>
-              ) : (
-                <>
-                  <Edit onClick={this.edit}></Edit>
-                  <DeleteForever
-                    onClick={(event) =>
-                      this.delete(event, this.props.store.vetDetail.id)
-                    }
-                  ></DeleteForever>
-                </>
-              )}
-            </td>
-          </tbody>
+          <tbody>{vetList}</tbody>
           {this.state.add ? (
             <>
               <td>

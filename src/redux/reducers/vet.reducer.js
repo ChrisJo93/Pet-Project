@@ -3,7 +3,7 @@ const vetReducer = (state = [], action) => {
     case 'SET_VET':
       return action.payload;
     case 'UNSET_VET':
-      return {};
+      return [];
     default:
       return state;
   }

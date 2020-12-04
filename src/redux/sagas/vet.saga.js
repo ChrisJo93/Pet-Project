@@ -30,7 +30,7 @@ function* getVetDetail(action) {
     const response = yield axios.get(`/api/vet/details/${action.payload}`);
     yield put({
       type: 'SET_VET_DETAIL',
-      payload: response.data[0],
+      payload: response.data,
     });
   } catch (err) {
     console.log(err);
@@ -44,7 +44,6 @@ function* getVetDetail(action) {
 function* postVet(action) {
   try {
     yield axios.post(`/api/vet/${action.payload.id}`, action.payload);
-    console.log('in post', action.payload);
     yield put({ type: 'GET_VET', payload: action.payload.id });
   } catch (err) {
     console.log('ERROR POSTING  Vet:', err, action.payload.id);
@@ -55,6 +54,7 @@ function* putVet(action) {
   try {
     console.log('in put', action.payload);
     yield axios.put(`/api/vet/editVet/${action.payload.id}`, action.payload);
+    yield put({ type: 'GET_VET_DETAIL', payload: action.payload.petId });
   } catch (error) {
     console.log('Error in put food', error);
   }
@@ -62,8 +62,9 @@ function* putVet(action) {
 
 function* deleteVet(action) {
   try {
-    yield axios.delete(`/api/vet/${action.payload}`);
+    yield axios.delete(`/api/vet/${action.payload.id}`);
     yield put({ type: 'GET_VET' });
+    yield put({ type: 'GET_VET_DETAIL', payload: action.payload.petId });
   } catch (err) {
     console.log('error deleting vet:', action.payload);
   }
