@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
+import { DateTime } from 'luxon';
 import { withRouter } from 'react-router-dom';
 import { DeleteForever } from '@material-ui/icons';
 import mapStoreToProps from '../../redux/mapStoreToProps';
@@ -19,10 +20,12 @@ class VetList extends Component {
 
   render() {
     const vetList = this.props.store.vet.map((vetItem, index) => {
+      const date = DateTime.fromISO(vetItem.date);
+      const clearDate = date.toLocaleString(DateTime.DATE_SHORT);
       return (
         <tr className="tbRow" key={index}>
           <td>{vetItem.doctor}</td>
-          <td>{vetItem.date}</td>
+          <td>{clearDate}</td>
           <td>{vetItem.location}</td>
           <td>{vetItem.reason}</td>
           <td>{vetItem.name}</td>

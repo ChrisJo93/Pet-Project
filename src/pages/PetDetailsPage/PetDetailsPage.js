@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid } from '@material-ui/core';
 import { connect } from 'react-redux';
+import { DateTime } from 'luxon';
 import { withRouter } from 'react-router-dom';
 import {
   Bathtub,
@@ -50,6 +51,8 @@ class PetDetailsPage extends Component {
   };
 
   render() {
+    const date = DateTime.fromISO(this.props.store.petDetail.birthdate);
+    const clearDate = date.toLocaleString(DateTime.DATE_SHORT);
     return (
       <Grid container spacing={10} alignItems="center" justify="center">
         <Grid item>
@@ -61,8 +64,24 @@ class PetDetailsPage extends Component {
             }
             className="pet"
           />
-          <p>{this.props.store.petDetail.name}</p>
-          <p>{this.props.store.petDetail.breed}</p>
+          <p>
+            <strong>Name:</strong> {this.props.store.petDetail.name}
+          </p>
+          <p>
+            <strong>Species:</strong> {this.props.store.petDetail.species}
+          </p>
+          <p>
+            <strong>Breed:</strong> {this.props.store.petDetail.breed}
+          </p>
+          <p>
+            <strong>Weight:</strong> {this.props.store.petDetail.weight}
+          </p>
+          <p>
+            <strong>Birth Day</strong> {clearDate}
+          </p>
+          <p>
+            <strong>Sex:</strong> {this.props.store.petDetail.sex}
+          </p>
           <br />
           <Grid container alignItems="center" justify="space-between">
             {/* Each icon needs an onMouseEnter with title floating above it.

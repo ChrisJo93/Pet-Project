@@ -8,17 +8,11 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import FoodList from '../../components/FoodComponents/FoodList';
 import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
 
-//--To Do
-
-//Scanner data captures on click of button. Need automatic shut off and capture.
-//Food needs twillio
-//food needs a dispatch for get,post,put,delete food by pet id
-//food needs an add-FoodForm, scanner should go inside this form.
-
-//api testing -
+// api testing -
 // const apiKey = `5F6C59D38182EFFDA1E04E6120C545D1`;
-// const upc = '724089202246';
-// const upcSearch = `https://api.upcdatabase.org/product/${upc}?apikey=${apiKey}`;
+// const upc = '0724089202246';
+// const upcSearch =
+//   'https://api.upcdatabase.org/product/0724089202246?apikey=5F6C59D38182EFFDA1E04E6120C545D1';
 // const config = {
 //   headers: {
 //     Authorization: `Basic ${apiKey}`,
@@ -29,7 +23,8 @@ import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
 
 class FoodPage extends Component {
   state = {
-    data: [],
+    scanner: '',
+    scannerData: false,
   };
 
   componentDidMount() {
@@ -37,11 +32,12 @@ class FoodPage extends Component {
       type: 'GET_FOOD',
       payload: this.props.match.params.id,
     });
+    // this.getSearch();
   }
 
   // getSearch = () => {
   //   axios
-  //     .get(`${upcSearch}`, config)
+  //     .get(`${upcSearch}`)
   //     .then((response) => {
   //       console.log('in:', response.data.data);
   //       this.setState({
@@ -53,10 +49,6 @@ class FoodPage extends Component {
   //       alert('Oh Shoot, I burnt the toast!');
   //     });
   // };
-
-  state = {
-    scanner: false,
-  };
 
   scannerOn = (event) => {
     this.setState({
@@ -77,12 +69,10 @@ class FoodPage extends Component {
   render() {
     return (
       <div>
-        {this.state.data}
-        <FoodList />
+        <FoodList barcodeData={this.state.scannerData} />
         {this.state.scanner ? (
           <>
             <Scanner scannerOff={this.scannerOff} />
-            <Button onClick={this.scannerOff}>Done</Button>
           </>
         ) : (
           <Button onClick={this.scannerOn}>Scan Barcode</Button>

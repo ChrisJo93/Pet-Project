@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
+
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 import FoodItem from './FoodItem';
@@ -51,7 +52,13 @@ class FoodList extends Component {
 
   render() {
     const foodItem = this.props.store.food.map((food, index) => {
-      return <FoodItem key={index} food={food} />; //each row of information
+      return (
+        <FoodItem
+          key={index}
+          food={food}
+          barcodeData={this.props.barcodeData}
+        />
+      ); //each row of information
     });
     return (
       <div>
@@ -61,7 +68,6 @@ class FoodList extends Component {
             <tr className="thRow">
               <th>Brand</th>
               <th>Barcode</th>
-
               <th>Edit</th>
             </tr>
           </thead>

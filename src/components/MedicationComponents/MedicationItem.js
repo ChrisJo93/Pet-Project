@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { DeleteForever, Edit, Save } from '@material-ui/icons';
+import { DateTime } from 'luxon';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class MedicationItem extends Component {
@@ -70,6 +71,10 @@ class MedicationItem extends Component {
 
   render() {
     const medItem = this.props.med != null ? this.props.med : {};
+    const date = DateTime.fromISO(this.props.med.start_date);
+    const clearDate = date.toLocaleString(DateTime.DATE_SHORT);
+    const date2 = DateTime.fromISO(this.props.med.end_date);
+    const clearDate2 = date2.toLocaleString(DateTime.DATE_SHORT);
 
     return (
       <tr>
@@ -122,8 +127,8 @@ class MedicationItem extends Component {
           <>
             <td>{medItem.brand}</td>
             <td>{medItem.dosage}</td>
-            <td>{medItem.start_date}</td>
-            <td>{medItem.end_date}</td>
+            <td>{clearDate}</td>
+            <td>{clearDate2}</td>
             <td>{medItem.doctor}</td>
             <td>{medItem.barcode}</td>
           </>

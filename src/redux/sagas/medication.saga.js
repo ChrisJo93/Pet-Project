@@ -47,6 +47,7 @@ function* postMedication(action) {
   try {
     yield axios.post(`/api/medication/${action.payload.id}`, action.payload);
     yield put({ type: 'GET_MEDICATION', payload: action.payload.id });
+    yield put({ type: 'GET_MEDICATION_DETAIL', payload: action.payload.id });
   } catch (err) {
     console.log('ERROR POSTING medication:', action.payload.id);
   }

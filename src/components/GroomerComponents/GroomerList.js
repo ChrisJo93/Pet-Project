@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
+import { DateTime } from 'luxon';
 import { withRouter } from 'react-router-dom';
 import { DeleteForever } from '@material-ui/icons';
+
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class GroomerList extends Component {
@@ -19,10 +21,12 @@ class GroomerList extends Component {
 
   render() {
     const groomerList = this.props.store.groomer.map((groomerItem, index) => {
+      const date = DateTime.fromISO(groomerItem.date);
+      const clearDate = date.toLocaleString(DateTime.DATE_SHORT);
       return (
         <tr className="tbRow" key={index}>
           <td>{groomerItem.groomer}</td>
-          <td>{groomerItem.date}</td>
+          <td>{clearDate}</td>
           <td>{groomerItem.location}</td>
           <td>{groomerItem.name}</td>
           <td>

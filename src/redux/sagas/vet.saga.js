@@ -45,6 +45,7 @@ function* postVet(action) {
   try {
     yield axios.post(`/api/vet/${action.payload.id}`, action.payload);
     yield put({ type: 'GET_VET', payload: action.payload.id });
+    yield put({ type: 'GET_VET_DETAIL', payload: action.payload.id });
   } catch (err) {
     console.log('ERROR POSTING  Vet:', err, action.payload.id);
   }

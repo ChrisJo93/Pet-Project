@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button } from '@material-ui/core';
 import { connect, useDispatch } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import BarcodeScannerComponent from 'react-webcam-barcode-scanner';
@@ -27,7 +28,7 @@ const Scanner = (props) => {
         }}
       />
       <p>{data}</p>
-      <button onClick={() => props.scannerOff(false, data)}>Turn off</button>
+      <Button onClick={() => props.scannerOff(false, data)}>Capture</Button>
     </>
   );
 };

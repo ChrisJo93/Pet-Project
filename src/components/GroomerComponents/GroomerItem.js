@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { DeleteForever, Edit, Save } from '@material-ui/icons';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { DateTime } from 'luxon';
 
 class GroomerItem extends Component {
   state = {
@@ -60,6 +61,8 @@ class GroomerItem extends Component {
 
   render() {
     const groomerItem = this.props.groomer != null ? this.props.groomer : {};
+    const date = DateTime.fromISO(this.props.groomer.date);
+    const clearDate = date.toLocaleString(DateTime.DATE_SHORT);
 
     return (
       <tr>
@@ -90,7 +93,7 @@ class GroomerItem extends Component {
         ) : (
           <>
             <td>{groomerItem.groomer}</td>
-            <td>{groomerItem.date}</td>
+            <td>{clearDate}</td>
             <td>{groomerItem.location}</td>
           </>
         )}

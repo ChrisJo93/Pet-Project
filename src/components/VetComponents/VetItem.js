@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { DeleteForever, Edit, Save } from '@material-ui/icons';
+import { DateTime } from 'luxon';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class VetItem extends Component {
@@ -23,27 +23,6 @@ class VetItem extends Component {
       payload: this.props.match.params.id,
     });
   }
-
-  //   add = (event) => {
-  //     this.setState({
-  //       add: true,
-  //     });
-  //   };
-
-  //   addSave = (event) => {
-  //     this.props.dispatch({
-  //       type: 'POST_VET',
-  //       payload: { ...this.state.newVet, id: this.props.match.params.id },
-  //     });
-  //     this.props.dispatch({
-  //       type: 'GET_VET_DETAIL',
-  //       payload: this.props.match.params.id,
-  //     });
-  //     this.setState({
-  //       add: false,
-  //     });
-  //     this.props.history.push('/vet');
-  //   };
 
   edit = (event) => {
     this.setState({
@@ -90,6 +69,8 @@ class VetItem extends Component {
 
   render() {
     const vetItem = this.props.vet != null ? this.props.vet : {};
+    const date = DateTime.fromISO(this.props.vet.date);
+    const clearDate = date.toLocaleString(DateTime.DATE_SHORT);
 
     return (
       <tr>
@@ -128,7 +109,7 @@ class VetItem extends Component {
           <>
             <td>{vetItem.doctor}</td>
             <td>{vetItem.reason}</td>
-            <td>{vetItem.date}</td>
+            <td>{clearDate}</td>
             <td>{vetItem.location}</td>
           </>
         )}

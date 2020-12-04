@@ -8,6 +8,8 @@ class RegForm4 extends Component {
     weight: '',
     birthdate: '',
     sex: '',
+    image: '',
+    microchip: '',
   };
 
   addStepFour = (event) => {
@@ -22,6 +24,8 @@ class RegForm4 extends Component {
           weight: this.state.weight,
           birthdate: this.state.birthdate,
           sex: this.state.sex,
+          image: this.state.image,
+          microchip: this.state.microchip,
         },
       },
     });
@@ -70,6 +74,28 @@ class RegForm4 extends Component {
                 value={this.state.sex}
                 placeholder="(optional)"
                 onChange={this.handleInputChangeFor('sex')}
+              />
+            </label>
+            <br />
+            <label htmlFor="image">
+              Image:
+              <input
+                type="text"
+                name="image"
+                value={this.state.image}
+                placeholder="(optional (url))"
+                onChange={this.handleInputChangeFor('image')}
+              />
+            </label>
+            <br />
+            <label htmlFor="microchip">
+              Microchip:
+              <input
+                type="text"
+                name="microchip"
+                value={this.state.microchip}
+                placeholder="(optional)"
+                onChange={this.handleInputChangeFor('microchip')}
               />
             </label>
           </div>

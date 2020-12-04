@@ -79,7 +79,11 @@ class FoodItem extends Component {
         ) : (
           <>
             <td>{foodItem.brand}</td>
-            <td>{foodItem.barcode}</td>
+            <td>
+              {foodItem.barcode !== ''
+                ? foodItem.barcode
+                : this.props.barcodeData}
+            </td>
           </>
         )}
 
