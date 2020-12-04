@@ -12,7 +12,7 @@ function* foodSaga() {
       const response = yield axios.get(`/api/food/${action.payload}`);
       yield put({
         type: 'SET_FOOD',
-        payload: response.data[0],
+        payload: response.data,
       });
     } catch (err) {
       console.log(err);

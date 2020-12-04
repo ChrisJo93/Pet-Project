@@ -32,7 +32,7 @@ class FoodItem extends Component {
     this.setState({
       edit: true,
       newFood: {
-        ...this.props.store.food,
+        ...this.props.food,
       },
     });
   };
@@ -41,7 +41,7 @@ class FoodItem extends Component {
     this.props.dispatch({
       type: 'PUT_FOOD',
       payload: {
-        ...this.props.store.food,
+        ...this.props.food,
         ...this.state.newFood,
       },
     });
@@ -78,82 +78,38 @@ class FoodItem extends Component {
   };
 
   render() {
+    const foodItem = this.props.food != null ? this.props.food : {};
     return (
-      <div>
-        <h2 className="Heading">{this.props.store.food.name}'s Food</h2>
-        <table>
-          <thead>
-            <tr className="thRow">
-              <th>Brand</th>
-              <th>Barcode</th>
-
-              <th>Edit</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.edit ? (
-              <>
-                <td>
-                  <input
-                    type="text"
-                    value={this.state.newFood.brand}
-                    onChange={this.handleInputChangeFor('brand')}
-                  />
-                </td>
-
-                <td>{this.props.store.food.barcode}</td>
-              </>
-            ) : (
-              <>
-                <td>{this.props.store.food.brand}</td>
-                <td>{this.props.store.food.barcode}</td>
-              </>
-            )}
-
+      // outer most element tr as row for foodList
+      <tr>
+        {this.state.edit ? (
+          <>
             <td>
-              {this.state.edit ? (
-                <Save onClick={this.editSave}></Save>
-              ) : (
-                <Edit onClick={this.edit}></Edit>
-              )}
-              <DeleteForever
-                onClick={(event) =>
-                  this.delete(event, this.props.store.food.id)
-                }
+              <input
+                type="text"
+                value={this.state.newFood.brand}
+                onChange={this.handleInputChangeFor('brand')}
               />
             </td>
-          </tbody>
 
-          {this.state.add ? (
-            <>
-              <td>
-                <input
-                  type="text"
-                  value={this.state.newFood.brand}
-                  placeholder="New Brand"
-                  onChange={this.handleInputChangeFor('brand')}
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  value={this.state.newFood.barcode}
-                  placeholder="New Barcode"
-                  onChange={this.handleInputChangeFor('barcode')}
-                />
-              </td>
-              <td>
-                <Button onClick={this.addSave}>Save</Button>
-              </td>
-            </>
+            <td>{foodItem.barcode}</td>
+          </>
+        ) : (
+          <>
+            <td>{foodItem.brand}</td>
+            <td>{foodItem.barcode}</td>
+          </>
+        )}
+
+        <td>
+          {this.state.edit ? (
+            <Save onClick={this.editSave}></Save>
           ) : (
-            <>
-              <Button onClick={this.back}>Back</Button>
-              <Button onClick={this.add}>Add Brand</Button>
-            </>
+            <Edit onClick={this.edit}></Edit>
           )}
-        </table>
-      </div>
+          <DeleteForever onClick={(event) => this.delete(event, foodItem.id)} />
+        </td>
+      </tr>
     );
   }
 }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-import FoodItem from '../../components/FoodItem/FoodItem';
+
 import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
 import { Button } from '@material-ui/core';
 import axios from 'axios';
+import FoodList from '../../components/FoodItem/FoodList';
 
 //--To Do
 
@@ -14,16 +15,16 @@ import axios from 'axios';
 //food needs an add-FoodForm, scanner should go inside this form.
 
 //api testing -
-const apiKey = `5F6C59D38182EFFDA1E04E6120C545D1`;
-const upc = '724089202246';
-const upcSearch = `https://api.upcdatabase.org/product/${upc}?apikey=${apiKey}`;
-const config = {
-  headers: {
-    Authorization: `Basic ${apiKey}`,
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-  },
-};
+// const apiKey = `5F6C59D38182EFFDA1E04E6120C545D1`;
+// const upc = '724089202246';
+// const upcSearch = `https://api.upcdatabase.org/product/${upc}?apikey=${apiKey}`;
+// const config = {
+//   headers: {
+//     Authorization: `Basic ${apiKey}`,
+//     'Access-Control-Allow-Origin': '*',
+//     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+//   },
+// };
 
 class FoodPage extends Component {
   state = {
@@ -37,20 +38,20 @@ class FoodPage extends Component {
     });
   }
 
-  getSearch = () => {
-    axios
-      .get(`${upcSearch}`, config)
-      .then((response) => {
-        console.log('in:', response.data.data);
-        this.setState({
-          data: response.data.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        alert('Oh Shoot, I burnt the toast!');
-      });
-  };
+  // getSearch = () => {
+  //   axios
+  //     .get(`${upcSearch}`, config)
+  //     .then((response) => {
+  //       console.log('in:', response.data.data);
+  //       this.setState({
+  //         data: response.data.data,
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       alert('Oh Shoot, I burnt the toast!');
+  //     });
+  // };
 
   state = {
     scanner: false,
@@ -76,8 +77,7 @@ class FoodPage extends Component {
     return (
       <div>
         {this.state.data}
-        <button onClick={this.getSearch}>Click me</button>
-        <FoodItem />
+        <FoodList />
         {this.state.scanner ? (
           <>
             <Scanner scannerOff={this.scannerOff} />

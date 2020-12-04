@@ -4,11 +4,9 @@ import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Button } from '@material-ui/core';
 import { DeleteForever, Edit, Save } from '@material-ui/icons';
+import FoodItem from './FoodItem';
 
-// to-do
-//Barcode scanner for input field
-
-class FoodItem extends Component {
+class FoodList extends Component {
   state = {
     newFood: {
       brand: '',
@@ -78,9 +76,12 @@ class FoodItem extends Component {
   };
 
   render() {
+    const foodItem = this.props.store.food.map((food, index) => {
+      return <FoodItem key={index} food={food} />; //each row of information
+    });
     return (
       <div>
-        <h2 className="Heading">{this.props.store.food.name}'s Food</h2>
+        <h2 className="Heading"> Food</h2>
         <table>
           <thead>
             <tr className="thRow">
@@ -90,7 +91,7 @@ class FoodItem extends Component {
               <th>Edit</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>{foodItem}</tbody>
 
           {this.state.add ? (
             <>
@@ -126,4 +127,4 @@ class FoodItem extends Component {
   }
 }
 
-export default withRouter(connect(mapStoreToProps)(FoodItem));
+export default withRouter(connect(mapStoreToProps)(FoodList));
