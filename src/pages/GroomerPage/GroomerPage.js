@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import GroomerList from '../../components/GroomerComponents/GroomerList';
-
 import mapStoreToProps from '../../redux/mapStoreToProps';
+
+import GroomerList from '../../components/GroomerComponents/GroomerList';
 
 class GroomerPage extends Component {
   componentDidMount() {

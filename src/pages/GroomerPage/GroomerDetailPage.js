@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
+import { Button } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
-import { Button, Paper, Grid } from '@material-ui/core';
-import { DeleteForever, Edit, Save } from '@material-ui/icons';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 import GroomerItem from '../../components/GroomerComponents/GroomerItem';
 

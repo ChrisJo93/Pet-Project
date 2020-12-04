@@ -1,25 +1,8 @@
 import React, { Component } from 'react';
+import { Grid } from '@material-ui/core';
 import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Typography,
-  Grid,
-} from '@material-ui/core';
-
-//Dispatches a single pet to petDetailReducer
-//to then be rendered on petDetailsPage.
-
-//--To Do
-//Remove card, set change images to circles with box shadow
-//Center pet images.
-//Create a border around this display with light blue background
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class PetRender extends Component {
   toDetails = (event) => {

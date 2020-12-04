@@ -1,9 +1,9 @@
-import { withRouter } from 'react-router-dom';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
 import { Button } from '@material-ui/core';
-import { DeleteForever, Edit, Save } from '@material-ui/icons';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { DeleteForever } from '@material-ui/icons';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class MedicationList extends Component {
   back = (event) => {

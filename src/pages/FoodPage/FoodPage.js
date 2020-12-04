@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button } from '@material-ui/core';
+
+import axios from 'axios';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
-import { Button } from '@material-ui/core';
-import axios from 'axios';
 import FoodList from '../../components/FoodComponents/FoodList';
+import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
 
 //--To Do
 

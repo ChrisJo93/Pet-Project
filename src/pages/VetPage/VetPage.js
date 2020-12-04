@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import VetItem from '../../components/VetItem/VetItem';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-//Vet needs mapbox
-//Vet needs calendar
-//Vet needs nodemailer
-//Vet needs twillio
-//Vet needs put,post,get,delete by pet id
+import VetItem from '../../components/VetItem/VetItem';
 
 class VetPage extends Component {
   componentDidMount() {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { DeleteForever, Edit, Save } from '@material-ui/icons';
 import { withRouter } from 'react-router-dom';
+import { DeleteForever, Edit, Save } from '@material-ui/icons';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class MedicationItem extends Component {

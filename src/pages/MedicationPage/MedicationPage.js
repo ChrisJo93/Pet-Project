@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import MedicationList from '../../components/MedicationComponents/MedicationList';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+
+import MedicationList from '../../components/MedicationComponents/MedicationList';
 
 class MedicationPage extends Component {
   componentDidMount() {

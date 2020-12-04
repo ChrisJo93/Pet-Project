@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import { Grid } from '@material-ui/core';
 import { connect } from 'react-redux';
-import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
-import { Button, Paper, Grid } from '@material-ui/core';
 import {
   Bathtub,
   Fastfood,
   LocalHospital,
   LocalPharmacy,
 } from '@material-ui/icons';
+
+import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class PetDetailsPage extends Component {
   componentDidMount() {

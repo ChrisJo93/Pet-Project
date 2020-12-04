@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import { Grid } from '@material-ui/core';
 import { connect } from 'react-redux';
-import LogOutButton from '../../components/LogOutButton/LogOutButton';
-import PetRender from '../../components/PetRender/PetRender';
-import mapStoreToProps from '../../redux/mapStoreToProps';
-import { Button, Paper, Grid } from '@material-ui/core';
-import AddPetForm from '../../components/AddPetForm/AddPetForm';
 import { AddCircleOutline } from '@material-ui/icons';
+import mapStoreToProps from '../../redux/mapStoreToProps';
+
+import AddPetForm from '../../components/AddPetForm/AddPetForm';
+import PetRender from '../../components/PetRender/PetRender';
 
 class UserPage extends Component {
   componentDidMount() {
