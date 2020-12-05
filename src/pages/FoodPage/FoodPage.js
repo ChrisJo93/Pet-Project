@@ -61,7 +61,6 @@ class FoodPage extends Component {
       scanner: status,
       scannerData: value,
     });
-    console.log(value);
   };
 
   // upc api request here.

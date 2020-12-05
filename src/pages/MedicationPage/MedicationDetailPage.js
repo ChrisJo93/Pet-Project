@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 import MedicationItem from '../../components/MedicationComponents/MedicationItem';
+import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
 
 class MedicationDetailPage extends Component {
   state = {
@@ -18,6 +19,8 @@ class MedicationDetailPage extends Component {
     },
     add: false,
     edit: false,
+    scanner: '',
+    scannerData: false,
   };
 
   componentDidMount() {
@@ -63,6 +66,19 @@ class MedicationDetailPage extends Component {
     });
   };
 
+  scannerOn = (event) => {
+    this.setState({
+      scanner: true,
+    });
+  };
+
+  scannerOff = (status, value) => {
+    this.setState({
+      scanner: status,
+      scannerData: value,
+    });
+  };
+
   back = (event) => {
     this.props.history.push(`/details/${this.props.match.params.id}`);
   };
@@ -70,7 +86,13 @@ class MedicationDetailPage extends Component {
   render() {
     const medicationList = this.props.store.medicationDetail.map(
       (med, index) => {
-        return <MedicationItem key={index} med={med} />;
+        return (
+          <MedicationItem
+            key={index}
+            med={med}
+            barcodeData={this.state.scannerData}
+          />
+        );
       }
     );
     return (
@@ -149,6 +171,13 @@ class MedicationDetailPage extends Component {
             </>
           )}
         </table>
+        {this.state.scanner ? (
+          <>
+            <Scanner scannerOff={this.scannerOff} />
+          </>
+        ) : (
+          <Button onClick={this.scannerOn}>Scan Barcode</Button>
+        )}
       </div>
     );
   }

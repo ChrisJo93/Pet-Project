@@ -28,6 +28,9 @@ const Scanner = (props) => {
         }}
       />
       <p>{data}</p>
+      {data !== 'Not Found'
+        ? props.scannerOff(false, data)
+        : props.scannerOff(true, data)}
       <Button onClick={() => props.scannerOff(false, data)}>Capture</Button>
     </>
   );

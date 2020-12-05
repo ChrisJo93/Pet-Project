@@ -130,7 +130,11 @@ class MedicationItem extends Component {
             <td>{clearDate}</td>
             <td>{clearDate2}</td>
             <td>{medItem.doctor}</td>
-            <td>{medItem.barcode}</td>
+            <td>
+              {medItem.barcode !== ''
+                ? medItem.barcode
+                : this.props.barcodeData}
+            </td>
           </>
         )}
         <td>
