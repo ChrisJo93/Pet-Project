@@ -66,7 +66,14 @@ class MedicationDetailPage extends Component {
         .get(`https://api.upcdatabase.org/product/${value}?apikey=${apiKey}`)
         .then((res) => {
           console.log(res.data);
-          axios.post(`/api/barcode/${this.props.match.params.id}`, res.data);
+          this.props.dispatch({
+            type: 'POST_BARCODE',
+            payload: {
+              id: this.props.match.params.id,
+              data: res.data,
+            },
+          });
+          // axios.post(`/api/barcode/${this.props.match.params.id}`, res.data);
         })
         .catch((error) => {
           console.error(error);
