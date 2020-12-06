@@ -13,6 +13,7 @@ class MedicationItem extends Component {
       start_date: '',
       end_date: '',
       doctor: '',
+      description: '',
       barcode: '',
     },
     add: false,
@@ -118,6 +119,13 @@ class MedicationItem extends Component {
             <td>
               <input
                 type="text"
+                value={this.state.newMedication.description}
+                onChange={this.handleInputChangeFor('description')}
+              />
+            </td>
+            <td>
+              <input
+                type="text"
                 value={this.state.newMedication.barcode}
                 onChange={this.handleInputChangeFor('barcode')}
               />
@@ -130,6 +138,7 @@ class MedicationItem extends Component {
             <td>{clearDate}</td>
             <td>{clearDate2}</td>
             <td>{medItem.doctor}</td>
+            <td>{medItem.description}</td>
             <td>
               {medItem.barcode !== ''
                 ? medItem.barcode

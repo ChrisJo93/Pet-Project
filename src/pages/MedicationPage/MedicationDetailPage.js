@@ -18,6 +18,7 @@ class MedicationDetailPage extends Component {
       start_date: '',
       end_date: '',
       doctor: '',
+      description: '',
       barcode: '',
     },
     add: false,
@@ -133,6 +134,7 @@ class MedicationDetailPage extends Component {
               <th>Prescribed</th>
               <th>Completion</th>
               <th>Doctor</th>
+              <th>Description</th>
               <th>Barcode</th>
               <th>Edit</th>
             </tr>
@@ -177,6 +179,13 @@ class MedicationDetailPage extends Component {
                   value={this.state.newMedication.doctor}
                   onChange={this.handleInputChangeFor('doctor')}
                   required
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={this.state.newMedication.description}
+                  onChange={this.handleInputChangeFor('description')}
                 />
               </td>
               <td>

@@ -32,6 +32,7 @@ class MedicationList extends Component {
             <td>{clearDate}</td>
             <td>{clearDate2}</td>
             <td>{medicationItem.doctor}</td>
+            <td>{medicationItem.description}</td>
             <td>{medicationItem.barcode}</td>
             <td>{medicationItem.name}</td>
             <td>
@@ -54,6 +55,7 @@ class MedicationList extends Component {
               <th>Prescribed</th>
               <th>Completion</th>
               <th>Veterinarian</th>
+              <th>Description</th>
               <th>Barcode</th>
               <th>For</th>
               <th>Delete</th>

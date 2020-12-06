@@ -13,6 +13,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   "medication".start_date,
   "medication".end_date,
   "medication".doctor,
+  "medication".description,
   "medication".barcode,
   "medication".pet_id,
   "pet".name 
@@ -41,6 +42,7 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
   "medication".start_date,
   "medication".end_date,
   "medication".doctor,
+  "medication".description,
   "medication".barcode,
   "medication".pet_id,
   "pet".name
@@ -63,14 +65,15 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
 router.post('/:id', rejectUnauthenticated, (req, res) => {
   const medication = req.body;
   const insertMedicationQuery = `INSERT INTO "medication" 
-    ("brand" , "dosage" , "start_date" , "end_date" , "doctor" , "barcode" , "pet_id")
-    VALUES ($1, $2, $3, $4, $5, $6, $7);`;
+    ("brand" , "dosage" , "start_date" , "end_date" , "doctor" , "description" ,  "barcode" , "pet_id")
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`;
   const medicationDetails = [
     medication.brand,
     medication.dosage,
     medication.start_date,
     medication.end_date,
     medication.doctor,
+    medication.description,
     medication.barcode,
     req.params.id,
   ];
@@ -81,7 +84,7 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
       res.sendStatus(201);
     })
     .catch((error) => {
-      console.log('Error in FOOD POST', error);
+      console.log('Error in medication POST', error);
       res.sendStatus(500);
     });
 });
@@ -94,9 +97,10 @@ router.put('/editMedication/:id', rejectUnauthenticated, (req, res) => {
   dosage=$2,
   start_date=$3,
   end_date=$4,
-  doctor=$5, 
-  barcode=$6  
-  WHERE id=$7;`;
+  doctor=$5,
+  description=$6,
+  barcode=$7  
+  WHERE id=$8;`;
   pool
     .query(editMedicationQuery, [
       meds.brand,
@@ -104,6 +108,7 @@ router.put('/editMedication/:id', rejectUnauthenticated, (req, res) => {
       meds.start_date,
       meds.end_date,
       meds.doctor,
+      meds.description,
       meds.barcode,
       req.params.id,
     ])

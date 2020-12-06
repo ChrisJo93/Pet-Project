@@ -10,10 +10,10 @@ CREATE TABLE "user" (
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL,
     "email" VARCHAR (1000) NOT NULL,
-    "phone" VARCHAR (12)
+    "phone" VARCHAR (12) 
 );
 
-CREATE TABLE "pet" ( 
+CREATE TABLE "pet" (
 	"id" SERIAL PRIMARY KEY,
 	"name" VARCHAR (80) UNIQUE NOT NULL,
 	"species" VARCHAR (80) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE "pet" (
 	"weight" VARCHAR (60),
 	"birthdate" DATE,
 	"sex" VARCHAR (20),
-	"image" VARCHAR (1000),
+	"image" VARCHAR (6000),
 	"microchip" INT,
 	"user_id" INT REFERENCES "user" NOT NULL
 	);
@@ -51,14 +51,16 @@ VALUES ('Natures Choice' , '737257827257' , 2);
 
 CREATE TABLE "medication" (
 	"id" SERIAL PRIMARY KEY,
-	"name" VARCHAR (300) NOT NULL,
+	"brand" VARCHAR (300) NOT NULL,
 	"dosage" VARCHAR (30),
-	"start_date" DATE NOT NULL,
-	"end_date" DATE NOT NULL,
+	"start_date" DATE,
+	"end_date" DATE,
 	"doctor" VARCHAR (120),
+	"description" VARCHAR (10000),
 	"barcode" VARCHAR (120),
 	"pet_id" INT REFERENCES "pet" NOT NULL
 	);
+	
 
 --Test values for medication
 

@@ -8,13 +8,14 @@ const {
 router.post('/:id', rejectUnauthenticated, (req, res) => {
   const barcode = req.body;
   const insertBarcodeQuery = `INSERT INTO "medication" 
-    ("brand" , "start_date", "end_date", "barcode" , "pet_id")
-    VALUES ($1, $2, $3, $4, $5);`;
+    ("brand" , "start_date", "end_date", "description", "barcode" , "pet_id")
+    VALUES ($1, $2, $3, $4, $5, $6);`;
   pool
     .query(insertBarcodeQuery, [
       barcode.brand,
       barcode.added_time,
       barcode.modified_time,
+      barcode.description,
       barcode.barcode,
       req.params.id,
     ])
@@ -22,7 +23,7 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
       res.sendStatus(201);
     })
     .catch((error) => {
-      console.log('Error in FOOD POST', error);
+      console.log('Error in barcode POST', error);
       res.sendStatus(500);
     });
 });
