@@ -9,17 +9,17 @@ import FoodList from '../../components/FoodComponents/FoodList';
 import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
 
 // api testing -
-// const apiKey = `5F6C59D38182EFFDA1E04E6120C545D1`;
-// const upc = '0724089202246';
-// const upcSearch =
-//   'https://api.upcdatabase.org/product/0724089202246?apikey=5F6C59D38182EFFDA1E04E6120C545D1';
-// const config = {
-//   headers: {
-//     Authorization: `Basic ${apiKey}`,
-//     'Access-Control-Allow-Origin': '*',
-//     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-//   },
-// };
+const apiKey = `5F6C59D38182EFFDA1E04E6120C545D1`;
+const upc = '0724089202246';
+const upcSearch = `https://api.upcdatabase.org/product/${upc}?apikey=${apiKey}`;
+
+const config = {
+  headers: {
+    Authorization: `Basic TXlUZXN0QXBwOjA5OGY2YmNkNDYyMWQzNzNjYWRlNGU4MzI2MjdiNGY2`,
+
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+  },
+};
 
 class FoodPage extends Component {
   state = {
@@ -32,23 +32,24 @@ class FoodPage extends Component {
       type: 'GET_FOOD',
       payload: this.props.match.params.id,
     });
-    // this.getSearch();
+    this.getSearch();
   }
 
-  // getSearch = () => {
-  //   axios
-  //     .get(`${upcSearch}`)
-  //     .then((response) => {
-  //       console.log('in:', response.data.data);
-  //       this.setState({
-  //         data: response.data.data,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       alert('Oh Shoot, I burnt the toast!');
-  //     });
-  // };
+  //testing from site
+  getSearch = () => {
+    axios
+      .get(`${upcSearch}`, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   scannerOn = (event) => {
     this.setState({
