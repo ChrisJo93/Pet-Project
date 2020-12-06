@@ -80,6 +80,7 @@ class FoodItem extends Component {
           <>
             <td>{foodItem.brand}</td>
             <td>
+              {/* if the value of barcode is not manually input, use scanner-barcode-data. */}
               {foodItem.barcode !== ''
                 ? foodItem.barcode
                 : this.props.barcodeData}

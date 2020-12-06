@@ -38,11 +38,7 @@ class FoodPage extends Component {
   //testing from site
   getSearch = () => {
     axios
-      .get(`${upcSearch}`, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        },
-      })
+      .get(`${upcSearch}`)
       .then((res) => {
         console.log(res.data);
       })
