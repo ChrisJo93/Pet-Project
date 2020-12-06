@@ -8,7 +8,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import MedicationItem from '../../components/MedicationComponents/MedicationItem';
 import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
 
-const apiKey = `5F6C59D38182EFFDA1E04E6120C545D1`;
+const apiKey = process.env.REACT_APP_UPCLOOKUP;
 
 class MedicationDetailPage extends Component {
   state = {

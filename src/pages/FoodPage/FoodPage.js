@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import axios from 'axios';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 import FoodList from '../../components/FoodComponents/FoodList';
 import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
 
-const apiKey = `5F6C59D38182EFFDA1E04E6120C545D1`;
+const apiKey = process.env.REACT_APP_UPCLOOKUP;
 
 class FoodPage extends Component {
   state = {
@@ -54,16 +54,30 @@ class FoodPage extends Component {
 
   render() {
     return (
-      <div>
+      <Grid
+        container
+        spacing={1}
+        maxWidth="sm"
+        justify="center"
+        alignItems="center"
+      >
         <FoodList barcodeData={this.state.scannerData} />
         {this.state.scanner ? (
           <>
             <Scanner scannerOff={this.scannerOff} />
           </>
         ) : (
-          <Button onClick={this.scannerOn}>Scan Barcode</Button>
+          <Grid
+            container
+            spacing={1}
+            maxWidth="sm"
+            justify="center"
+            alignItems="center"
+          >
+            <Button onClick={this.scannerOn}>Scan Barcode</Button>
+          </Grid>
         )}
-      </div>
+      </Grid>
     );
   }
 }

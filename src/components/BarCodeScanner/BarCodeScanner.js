@@ -27,11 +27,10 @@ const Scanner = (props) => {
           else setData('Not Found');
         }}
       />
-      <p>{data}</p>
+      {/* if data not found, keep scanner on. If data found, turn off and record data. */}
       {data !== 'Not Found'
         ? props.scannerOff(false, data)
         : props.scannerOff(true, data)}
-      <Button onClick={() => props.scannerOff(false, data)}>Capture</Button>
     </>
   );
 };
