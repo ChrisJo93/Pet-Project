@@ -42,7 +42,14 @@ class FoodPage extends Component {
       axios
         .get(`https://api.upcdatabase.org/product/${value}?apikey=${apiKey}`)
         .then((res) => {
-          console.log(res.data);
+          console.log('in food', res.data);
+          this.props.dispatch({
+            type: 'POST_FOOD_BARCODE',
+            payload: {
+              id: this.props.match.params.id,
+              data: res.data,
+            },
+          });
         })
         .catch((error) => {
           console.error(error);

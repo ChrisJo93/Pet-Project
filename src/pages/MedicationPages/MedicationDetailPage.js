@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { Button, Grid } from '@material-ui/core';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 import MedicationItem from '../../components/MedicationComponents/MedicationItem';
@@ -66,15 +66,14 @@ class MedicationDetailPage extends Component {
       axios
         .get(`https://api.upcdatabase.org/product/${value}?apikey=${apiKey}`)
         .then((res) => {
-          console.log(res.data);
+          console.log('in med', res.data);
           this.props.dispatch({
-            type: 'POST_BARCODE',
+            type: 'POST_MED_BARCODE',
             payload: {
               id: this.props.match.params.id,
               data: res.data,
             },
           });
-          // axios.post(`/api/barcode/${this.props.match.params.id}`, res.data);
         })
         .catch((error) => {
           console.error(error);
@@ -206,13 +205,21 @@ class MedicationDetailPage extends Component {
             </>
           )}
         </table>
-        {this.state.scanner ? (
-          <>
-            <Scanner scannerOff={this.scannerOff} />
-          </>
-        ) : (
-          <Button onClick={this.scannerOn}>Scan Barcode</Button>
-        )}
+        <Grid
+          container
+          spacing={1}
+          maxWidth="sm"
+          justify="center"
+          alignItems="center"
+        >
+          {this.state.scanner ? (
+            <>
+              <Scanner scannerOff={this.scannerOff} />
+            </>
+          ) : (
+            <Button onClick={this.scannerOn}>Scan Barcode</Button>
+          )}
+        </Grid>
       </div>
     );
   }

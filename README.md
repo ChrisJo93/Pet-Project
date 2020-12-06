@@ -4,30 +4,15 @@ Pet Project is a pet management app that takes stock of current pet medications,
 
 ## Registration
 
-Registration is a 4 part process. New Users will be asked to sign up using a unique username, a password, their email, and, optionally, their phone. Users will then be asked to include information about their pets. Pet information requires a pet name, a species, and a birth date for pets. It will also ask for weight, sex, breed, an image url, and the microchip should the pet be chipped. Registration will error out if the username is taken, or if the date inputs are not in dd-mm-yyyy format.
+Registration is a 4 part process. New Users will be asked to sign up using a unique username, a password, their email, and, optionally, their phone. Users will then be asked to include information about their pets. Pet information requires a pet name, a species, and a birth date for pets in order to process. It will also ask for weight, sex, breed, an image url, and the microchip should the pet be chipped. Registration will error out if the username is taken, or if the date inputs are not in dd-mm-yyyy format.
 
-## Testing Routes with Postman
+## User Page
 
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
+The user page or landing page is where the new user will find a list of their pets. The user page is where a user can add a new pet by clicking the cat-outline. Clicking this silhouette yields the pet registration form. Pets rendered on the user page are also clickable. Selecting a pet moves the user to the pet details which displays information regarding that particular pet.
 
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
+## Pet Details Page
 
-1. Start the server - `npm run server`
-2. [Import the sample routes JSON file](./PostmanPrimeSoloRoutes.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
-
-After running the login route above, you can try any other route you've created that requires a logged in user!
-
-## Production Build
-
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
-
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
+The Pet Details page includes all these registered information associated with any one pet. This includes their sex, weight, breed, etc. Below the registered information are four (4) icons indicating different pages associated with that pet. From left to right the icons represent the Food Page,
 
 ## Lay of the Land
 
