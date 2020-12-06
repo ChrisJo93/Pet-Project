@@ -15,7 +15,7 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
       barcode.brand,
       barcode.added_time,
       barcode.modified_time,
-      barcode.description,
+      barcode.title,
       barcode.barcode,
       req.params.id,
     ])
