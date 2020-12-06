@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -6,6 +7,8 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 
 import MedicationItem from '../../components/MedicationComponents/MedicationItem';
 import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
+
+const apiKey = `5F6C59D38182EFFDA1E04E6120C545D1`;
 
 class MedicationDetailPage extends Component {
   state = {
@@ -57,6 +60,20 @@ class MedicationDetailPage extends Component {
     });
   };
 
+  getSearch = (value) => {
+    if (value !== 'Not Found') {
+      axios
+        .get(`https://api.upcdatabase.org/product/${value}?apikey=${apiKey}`)
+        .then((res) => {
+          console.log(res.data);
+          axios.post(`/api/barcode/${this.props.match.params.id}`, res.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       newMedication: {
@@ -73,6 +90,8 @@ class MedicationDetailPage extends Component {
   };
 
   scannerOff = (status, value) => {
+    this.getSearch(value);
+    console.log(value);
     this.setState({
       scanner: status,
       scannerData: value,

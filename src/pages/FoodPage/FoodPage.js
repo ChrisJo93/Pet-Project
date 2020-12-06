@@ -1,25 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
-
 import axios from 'axios';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 import FoodList from '../../components/FoodComponents/FoodList';
 import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
 
-// api testing -
 const apiKey = `5F6C59D38182EFFDA1E04E6120C545D1`;
-const upc = '0724089202246';
-const upcSearch = `https://api.upcdatabase.org/product/${upc}?apikey=${apiKey}`;
-
-const config = {
-  headers: {
-    Authorization: `Basic TXlUZXN0QXBwOjA5OGY2YmNkNDYyMWQzNzNjYWRlNGU4MzI2MjdiNGY2`,
-
-    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-  },
-};
 
 class FoodPage extends Component {
   state = {
@@ -32,20 +20,7 @@ class FoodPage extends Component {
       type: 'GET_FOOD',
       payload: this.props.match.params.id,
     });
-    this.getSearch();
   }
-
-  //testing from site
-  getSearch = () => {
-    axios
-      .get(`${upcSearch}`)
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
 
   scannerOn = (event) => {
     this.setState({
@@ -54,10 +29,25 @@ class FoodPage extends Component {
   };
 
   scannerOff = (status, value) => {
+    this.getSearch(value);
+    console.log(value);
     this.setState({
       scanner: status,
       scannerData: value,
     });
+  };
+
+  getSearch = (value) => {
+    if (value !== 'Not Found') {
+      axios
+        .get(`https://api.upcdatabase.org/product/${value}?apikey=${apiKey}`)
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
 
   // upc api request here.

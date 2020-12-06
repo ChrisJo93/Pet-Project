@@ -8,6 +8,7 @@ const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
 
 // Route includes
+const barcodeRouter = require('./routes/barcode.router');
 const foodRouter = require('./routes/food.router');
 const groomerRouter = require('./routes/groomer.router');
 const medicationRouter = require('./routes/medication.router');
@@ -27,6 +28,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /* Routes */
+app.use('/api/barcode', barcodeRouter);
 app.use('/api/food', foodRouter);
 app.use('/api/groomer', groomerRouter);
 app.use('/api/medication', medicationRouter);
