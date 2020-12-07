@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { Button } from '@material-ui/core';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { Button, Grid } from '@material-ui/core';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 import MedicationItem from '../../components/MedicationComponents/MedicationItem';
+import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
+
+const apiKey = process.env.REACT_APP_UPCLOOKUP;
 
 class MedicationDetailPage extends Component {
   state = {
@@ -14,10 +18,13 @@ class MedicationDetailPage extends Component {
       start_date: '',
       end_date: '',
       doctor: '',
+      description: '',
       barcode: '',
     },
     add: false,
     edit: false,
+    scanner: '',
+    scannerData: false,
   };
 
   componentDidMount() {
@@ -54,12 +61,47 @@ class MedicationDetailPage extends Component {
     });
   };
 
+  getSearch = (value) => {
+    if (value !== 'Not Found') {
+      axios
+        .get(`https://api.upcdatabase.org/product/${value}?apikey=${apiKey}`)
+        .then((res) => {
+          console.log('in med', res.data);
+          this.props.dispatch({
+            type: 'POST_MED_BARCODE',
+            payload: {
+              id: this.props.match.params.id,
+              data: res.data,
+            },
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  };
+
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       newMedication: {
         ...this.state.newMedication,
         [propertyName]: event.target.value,
       },
+    });
+  };
+
+  scannerOn = (event) => {
+    this.setState({
+      scanner: true,
+    });
+  };
+
+  scannerOff = (status, value) => {
+    this.getSearch(value);
+    console.log(value);
+    this.setState({
+      scanner: status,
+      scannerData: value,
     });
   };
 
@@ -70,7 +112,13 @@ class MedicationDetailPage extends Component {
   render() {
     const medicationList = this.props.store.medicationDetail.map(
       (med, index) => {
-        return <MedicationItem key={index} med={med} />;
+        return (
+          <MedicationItem
+            key={index}
+            med={med}
+            barcodeData={this.state.scannerData}
+          />
+        );
       }
     );
     return (
@@ -85,6 +133,7 @@ class MedicationDetailPage extends Component {
               <th>Prescribed</th>
               <th>Completion</th>
               <th>Doctor</th>
+              <th>Description</th>
               <th>Barcode</th>
               <th>Edit</th>
             </tr>
@@ -134,6 +183,13 @@ class MedicationDetailPage extends Component {
               <td>
                 <input
                   type="text"
+                  value={this.state.newMedication.description}
+                  onChange={this.handleInputChangeFor('description')}
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
                   value={this.state.newMedication.barcode}
                   onChange={this.handleInputChangeFor('barcode')}
                 />
@@ -149,6 +205,21 @@ class MedicationDetailPage extends Component {
             </>
           )}
         </table>
+        <Grid
+          container
+          spacing={1}
+          maxWidth="sm"
+          justify="center"
+          alignItems="center"
+        >
+          {this.state.scanner ? (
+            <>
+              <Scanner scannerOff={this.scannerOff} />
+            </>
+          ) : (
+            <Button onClick={this.scannerOn}>Scan Barcode</Button>
+          )}
+        </Grid>
       </div>
     );
   }

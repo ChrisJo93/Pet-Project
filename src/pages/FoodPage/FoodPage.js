@@ -1,25 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
-
+import { Button, Grid } from '@material-ui/core';
 import axios from 'axios';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
 import FoodList from '../../components/FoodComponents/FoodList';
 import Scanner from '../../components/BarCodeScanner/BarCodeScanner';
 
-// api testing -
-// const apiKey = `5F6C59D38182EFFDA1E04E6120C545D1`;
-// const upc = '0724089202246';
-// const upcSearch =
-//   'https://api.upcdatabase.org/product/0724089202246?apikey=5F6C59D38182EFFDA1E04E6120C545D1';
-// const config = {
-//   headers: {
-//     Authorization: `Basic ${apiKey}`,
-//     'Access-Control-Allow-Origin': '*',
-//     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-//   },
-// };
+const apiKey = process.env.REACT_APP_UPCLOOKUP;
 
 class FoodPage extends Component {
   state = {
@@ -32,23 +20,7 @@ class FoodPage extends Component {
       type: 'GET_FOOD',
       payload: this.props.match.params.id,
     });
-    // this.getSearch();
   }
-
-  // getSearch = () => {
-  //   axios
-  //     .get(`${upcSearch}`)
-  //     .then((response) => {
-  //       console.log('in:', response.data.data);
-  //       this.setState({
-  //         data: response.data.data,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       alert('Oh Shoot, I burnt the toast!');
-  //     });
-  // };
 
   scannerOn = (event) => {
     this.setState({
@@ -57,27 +29,62 @@ class FoodPage extends Component {
   };
 
   scannerOff = (status, value) => {
+    this.getSearch(value);
+    console.log(value);
     this.setState({
       scanner: status,
       scannerData: value,
     });
-    console.log(value);
+  };
+
+  getSearch = (value) => {
+    if (value !== 'Not Found') {
+      axios
+        .get(`https://api.upcdatabase.org/product/${value}?apikey=${apiKey}`)
+        .then((res) => {
+          console.log('in food', res.data);
+          this.props.dispatch({
+            type: 'POST_FOOD_BARCODE',
+            payload: {
+              id: this.props.match.params.id,
+              data: res.data,
+            },
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
 
   // upc api request here.
 
   render() {
     return (
-      <div>
+      <Grid
+        container
+        spacing={1}
+        maxWidth="sm"
+        justify="center"
+        alignItems="center"
+      >
         <FoodList barcodeData={this.state.scannerData} />
         {this.state.scanner ? (
           <>
             <Scanner scannerOff={this.scannerOff} />
           </>
         ) : (
-          <Button onClick={this.scannerOn}>Scan Barcode</Button>
+          <Grid
+            container
+            spacing={1}
+            maxWidth="sm"
+            justify="center"
+            alignItems="center"
+          >
+            <Button onClick={this.scannerOn}>Scan Barcode</Button>
+          </Grid>
         )}
-      </div>
+      </Grid>
     );
   }
 }

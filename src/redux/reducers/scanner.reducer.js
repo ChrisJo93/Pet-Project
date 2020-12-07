@@ -1,7 +1,6 @@
 const scannerReducer = (state = '', action) => {
   switch (action.type) {
-    case 'SCANNER':
-      console.log('IN SCANNER', action.payload);
+    case 'SET_SCANNER':
       return action.payload;
     case 'STOP_SCANNER':
       return 'No data';

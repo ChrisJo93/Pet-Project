@@ -1,121 +1,47 @@
+## Introduction
 
-# EDA Project
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+Pet Project is a pet management app that takes stock of current pet medications, grooming appointments, veterinarian appointments, and food/treat brands.
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+## Registration
 
-## Use the Template for This Repository (Don't Clone) 
+Registration is a 4 part process. New Users will be asked to sign up using a unique username, a password, their email, and, optionally, their phone. Users will then be asked to include information about their pets. Pet information requires a pet name, a species, and a birth date for pets in order to process. It will also ask for weight, sex, breed, an image url, and the microchip should the pet be chipped. Registration will error out if the username is taken, or if the date inputs are not in dd-mm-yyyy format.
 
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account.
+## User Page
 
+The user page or landing page is where the new user will find a list of their pets. The user page is where a user can add a new pet by clicking the cat-outline. [Add Icon](/documentation/images/addicon.png)
 
-## Prerequisites
+Clicking this silhouette yields the pet registration form. Pets rendered on the user page are also clickable. Selecting a pet moves the user to the pet details which displays information regarding that particular pet.
 
-Before you get started, make sure you have the following software installed on your computer:
+## Pet Details Page
 
-- [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
+The Pet Details page includes all these registered information associated with any one pet. This includes their sex, weight, breed, etc. Below the registered information are four (4) icons indicating different pages associated with that pet. From left to right the icons represent the [Food Details Page](/documentation/images/FoodIcon.png),
+[Groomer Details Page](/documentation/images/GroomerIcon.png),
+[Medicine Details Page](/documentation/images/MedicineIcon.png), and the [Veterinarian Details Page](/documentation/images/VeterinarianIcon.png). These pages are tied to each pet's specific resources. The Groomer Page, Medicine Page, and Veterinarian Pages are a separate, collective of each pets resources which can be found in the top right of the application in the nav bar.
 
-## Create database and table
+## Food Page
 
-Create a new database called `prime_app` and create a `user` table:
+The food page represents all of the food brands and treats associated with the selected pet. Users can scan new food items using the ['Scan Barcode'](/documentation/images/scan.png) button below the food table. In lieu of a barcode, users can also manually enter a new food item by clicking ['add brand'](/documentation/images/addbrand.png). There is no collective page for all pet food brands like there are with groomers, medicines, and veterinarians.
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
+## Groomer Page
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+The Groomer Page is a collective of all registered pet grooming appointments. Users can delete appointments from this page.
 
-## Development Setup Instructions
+## Groomer Details Page
 
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
+Users on the groomer details page can [edit, delete](/documentation/images/edit.png) and add new appointments. The details page will only show appointments for the selected pets.
 
-## Debugging
+## Medicine Page
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
+Medicine Page is a collective of all registered pet medications. Users can delete medications from this page.
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+## Medicine Details Page
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
+This detail page offers barcode scanning similar to the food page. Users can scan medications to add new entries to the database. Likewise there is an 'add brand' button on this page for manually entering dates. Futhermore, users can edit entries
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
+## Veterinarian Page
 
-## Testing Routes with Postman
+Similar to the groomer and medicine pages, the veterinarian page lists all current vet appointments. It, like the other list pages, provides the option to delete an appointment.
 
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
+## Veterinarian Details Page
 
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
-
-1. Start the server - `npm run server`
-2. [Import the sample routes JSON file](./PostmanPrimeSoloRoutes.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
-
-After running the login route above, you can try any other route you've created that requires a logged in user!
-
-## Production Build
-
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
-
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
-
-## Lay of the Land
-
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
-
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
-
-Directory Structure:
-
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+Veterinarian details page lists all appointments for the selected pet. It provides the option to add, delete, or modify appointments.

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
+import { Button, Grid } from '@material-ui/core';
 
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
@@ -61,48 +62,50 @@ class FoodList extends Component {
       ); //each row of information
     });
     return (
-      <div>
-        <h2 className="Heading"> Food</h2>
-        <table>
-          <thead>
-            <tr className="thRow">
-              <th>Brand</th>
-              <th>Barcode</th>
-              <th>Edit</th>
-            </tr>
-          </thead>
-          <tbody>{foodItem}</tbody>
+      <Grid item xs={12}>
+        <div>
+          <h2 className="Heading"> Food</h2>
+          <table>
+            <thead>
+              <tr className="thRow">
+                <th>Brand</th>
+                <th>Barcode</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>{foodItem}</tbody>
 
-          {this.state.add ? (
-            <>
-              <td>
-                <input
-                  type="text"
-                  value={this.state.newFood.brand}
-                  placeholder="New Brand"
-                  onChange={this.handleInputChangeFor('brand')}
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  value={this.state.newFood.barcode}
-                  placeholder="New Barcode"
-                  onChange={this.handleInputChangeFor('barcode')}
-                />
-              </td>
-              <td>
-                <Button onClick={this.addSave}>Save</Button>
-              </td>
-            </>
-          ) : (
-            <>
-              <Button onClick={this.back}>Back</Button>
-              <Button onClick={this.add}>Add Brand</Button>
-            </>
-          )}
-        </table>
-      </div>
+            {this.state.add ? (
+              <>
+                <td>
+                  <input
+                    type="text"
+                    value={this.state.newFood.brand}
+                    placeholder="New Brand"
+                    onChange={this.handleInputChangeFor('brand')}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={this.state.newFood.barcode}
+                    placeholder="New Barcode"
+                    onChange={this.handleInputChangeFor('barcode')}
+                  />
+                </td>
+                <td>
+                  <Button onClick={this.addSave}>Save</Button>
+                </td>
+              </>
+            ) : (
+              <>
+                <Button onClick={this.back}>Back</Button>
+                <Button onClick={this.add}>Add Brand</Button>
+              </>
+            )}
+          </table>
+        </div>
+      </Grid>
     );
   }
 }

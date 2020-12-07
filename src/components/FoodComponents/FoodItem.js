@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { DeleteForever, Edit, Save } from '@material-ui/icons';
@@ -80,6 +81,7 @@ class FoodItem extends Component {
           <>
             <td>{foodItem.brand}</td>
             <td>
+              {/* if the value of barcode is not manually input, use scanner-barcode-data. */}
               {foodItem.barcode !== ''
                 ? foodItem.barcode
                 : this.props.barcodeData}

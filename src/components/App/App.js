@@ -15,19 +15,18 @@ import Nav from '../Nav/Nav';
 
 import FoodPage from '../../pages/FoodPage/FoodPage';
 import Footer from '../Footer/Footer';
-import GroomerPage from '../../pages/GroomerPage/GroomerPage';
-import GroomerDetailPage from '../../pages/GroomerPage/GroomerDetailPage';
-import InfoPage from '../../pages/InfoPage/InfoPage';
+import GroomerPage from '../../pages/GroomerPages/GroomerPage';
+import GroomerDetailPage from '../../pages/GroomerPages/GroomerDetailPage';
 import LandingPage from '../../pages/LandingPage/LandingPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
-import MedicationPage from '../../pages/MedicationPage/MedicationPage';
-import MedicationDetailPage from '../../pages/MedicationPage/MedicationDetailPage';
+import MedicationPage from '../../pages/MedicationPages/MedicationPage';
+import MedicationDetailPage from '../../pages/MedicationPages/MedicationDetailPage';
 import PetDetailsPage from '../../pages/PetDetailsPage/PetDetailsPage';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import RegisterPage from '../../pages/RegisterPage/RegisterPage';
 import UserPage from '../../pages/UserPage/UserPage';
-import VetPage from '../../pages/VetPage/VetPage';
-import VetDetailPage from '../../pages/VetPage/VetDetailPage';
+import VetPage from '../../pages/VetPages/VetPage';
+import VetDetailPage from '../../pages/VetPages/VetDetailPage';
 
 class App extends Component {
   componentDidMount() {
@@ -53,12 +52,6 @@ class App extends Component {
               component={UserPage}
             />
 
-            <ProtectedRoute
-              // logged in shows InfoPage else shows LoginPage
-              exact
-              path="/info"
-              component={InfoPage}
-            />
             {/* ------Custom Routes------*/}
             <ProtectedRoute exact path="/food/:id" component={FoodPage} />
             <ProtectedRoute exact path="/groomer" component={GroomerPage} />
