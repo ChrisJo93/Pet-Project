@@ -24,7 +24,7 @@ class MedicationList extends Component {
         const date = DateTime.fromISO(medicationItem.start_date);
         const clearDate = date.toLocaleString(DateTime.DATE_SHORT);
         const date2 = DateTime.fromISO(medicationItem.end_date);
-        const clearDate2 = date.toLocaleString(DateTime.DATE_SHORT);
+        const clearDate2 = date2.toLocaleString(DateTime.DATE_SHORT);
         return (
           <tr className="tbRow" key={index}>
             <td>{medicationItem.brand}</td>
