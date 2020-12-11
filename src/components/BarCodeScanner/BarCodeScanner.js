@@ -4,11 +4,6 @@ import { connect, useDispatch } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import BarcodeScannerComponent from 'react-webcam-barcode-scanner';
 
-//--To Do
-//Need to find a way to capture data and off camera automatically.
-//Need an api route for barcode information
-//Need a route to database
-
 const Scanner = (props) => {
   const [data, setData] = useState('Not Found');
   const dispatch = useDispatch();

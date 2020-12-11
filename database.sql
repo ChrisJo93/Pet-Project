@@ -39,15 +39,15 @@ VALUES ('Beau', 'dog' , 'Great Pyrenees', '175lbs', '3/3/2014', 'male',
 
 CREATE TABLE "food" (
 	"id" SERIAL PRIMARY KEY,
-	"name" VARCHAR (120) NOT NULL,
+	"brand" VARCHAR (120) NOT NULL,
 	"barcode" VARCHAR (120),
 	"pet_id" INT REFERENCES "pet" NOT NULL
 	);
 
---Test values for food
-INSERT INTO "food" ("name" , "barcode", "pet_id") 
+
+INSERT INTO "food" ("brand" , "barcode", "pet_id") 
 VALUES ('Natures Choice' , '737257827257' , 2);
-----
+
 
 CREATE TABLE "medication" (
 	"id" SERIAL PRIMARY KEY,
@@ -62,13 +62,13 @@ CREATE TABLE "medication" (
 	);
 	
 
---Test values for medication
 
-INSERT INTO "medication" ("name" , "dosage" , "start_date" , "end_date" , 
+
+INSERT INTO "medication" ("brand" , "dosage" , "start_date" , "end_date" , 
 "doctor" , "barcode" , "pet_id") 
 VALUES ('Bravecto' , '250mg' , '2-2-2020' , '3-4-2020' , 
 'Dr. Magic Paws' , '8713184133625' , 2);
-----
+
 
 CREATE TABLE "groomer" (
 	"id" SERIAL PRIMARY KEY,
@@ -78,10 +78,10 @@ CREATE TABLE "groomer" (
 	"pet_id" INT REFERENCES "pet" NOT NULL
 	);
 
---test values for groomer
+
 INSERT INTO "groomer" ("groomer" , "date" , "location" , "pet_id")
 VALUES ('Cindy' , '5-5-2020' , 'Cindy Clip and Snip' , 2);
-----
+
 
 CREATE TABLE "vet" (
 	"id" SERIAL PRIMARY KEY,
@@ -92,6 +92,6 @@ CREATE TABLE "vet" (
 	"pet_id" INT REFERENCES "pet" NOT NULL
 	);
 
---test values for vet
+
 INSERT INTO "vet" ("doctor" , "reason" , "date" , "location" , "pet_id")
 VALUES ('Dr. Powers', 'Routine Checkup' , '7-7-2020' , 'Dr. Powers Clinic' , 2);
