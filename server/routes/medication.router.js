@@ -80,7 +80,6 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
   pool
     .query(insertMedicationQuery, medicationDetails)
     .then((result) => {
-      console.log(result.rows);
       res.sendStatus(201);
     })
     .catch((error) => {

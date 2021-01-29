@@ -30,7 +30,6 @@ router.post('/med/:id', rejectUnauthenticated, (req, res) => {
 
 router.post('/food/:id', rejectUnauthenticated, (req, res) => {
   const barcode = req.body;
-  console.log('in router', req.body);
   const insertFoodBarcodeQuery = `INSERT INTO "food"
     ("brand" , "barcode" , "pet_id")
     VALUES ($1, $2, $3 );`;

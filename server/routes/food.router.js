@@ -23,7 +23,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
       res.sendStatus(200);
     })
     .catch((err) => {
-      console.log('error in get', err);
+      console.log('error in food get', err);
       res.sendStatus(500);
     });
 });
@@ -56,7 +56,7 @@ router.put('/editFood/:id', rejectUnauthenticated, (req, res) => {
       res.sendStatus(200);
     })
     .catch((error) => {
-      console.log(error);
+      console.log("error in food put" , error);
       res.sendStatus(500);
     });
 });
@@ -70,7 +70,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
       res.sendStatus(200);
     })
     .catch((error) => {
-      console.log(error);
+      console.log("error in food delete", error);
       res.sendStatus(500);
     });
 });
