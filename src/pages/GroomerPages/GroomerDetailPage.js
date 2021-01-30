@@ -65,9 +65,11 @@ class GroomerDetailPage extends Component {
   };
 
   render() {
-    const groomerList = this.props.store.groomerDetail.map((groomer, index) => {
-      return <GroomerItem key={index} groomer={groomer} />;
-    });
+    const groomerList = this.props.store.groomer.groomerDetail.map(
+      (groomer, index) => {
+        return <GroomerItem key={index} groomer={groomer} />;
+      }
+    );
     return (
       <div>
         <h2 className="Heading">Grooming Appointments</h2>

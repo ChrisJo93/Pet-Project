@@ -1,4 +1,6 @@
-const groomerReducer = (state = [], action) => {
+import { combineReducers } from 'redux';
+
+const groomer = (state = [], action) => {
   switch (action.type) {
     case 'SET_GROOMER':
       return action.payload;
@@ -9,4 +11,18 @@ const groomerReducer = (state = [], action) => {
   }
 };
 
-export default groomerReducer;
+const groomerDetail = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_GROOMER_DETAIL':
+      return action.payload;
+    case 'UNSET_GROOMER_DETAIL':
+      return [];
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({
+  groomer,
+  groomerDetail,
+});
