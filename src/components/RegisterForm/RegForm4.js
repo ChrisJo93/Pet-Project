@@ -18,9 +18,9 @@ class RegForm4 extends Component {
     this.props.dispatch({
       type: 'REGISTER',
       payload: {
-        user: this.props.store.registration,
+        user: this.props.store.registration.registration,
         pet: {
-          ...this.props.store.petRegistration,
+          ...this.props.store.registration.petRegistration,
           weight: this.state.weight,
           birthdate: this.state.birthdate,
           sex: this.state.sex,

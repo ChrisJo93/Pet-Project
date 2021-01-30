@@ -12,7 +12,7 @@ class RegForm1 extends Component {
 
   addStepOne = (event) => {
     //on click sets step state to 2 and dispatches this
-    //forms info to registration reducer.
+    //form's info to registration reducer.
     event.preventDefault();
     this.setState({
       step: 2,
