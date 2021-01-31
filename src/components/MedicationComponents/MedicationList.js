@@ -19,7 +19,7 @@ class MedicationList extends Component {
   };
 
   render() {
-    const medicationList = this.props.store.medication.map(
+    const medicationList = this.props.store.medication.medication.map(
       (medicationItem, index) => {
         const date = DateTime.fromISO(medicationItem.start_date);
         const clearDate = date.toLocaleString(DateTime.DATE_SHORT);

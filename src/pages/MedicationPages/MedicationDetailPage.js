@@ -110,7 +110,7 @@ class MedicationDetailPage extends Component {
   };
 
   render() {
-    const medicationList = this.props.store.medicationDetail.map(
+    const medicationList = this.props.store.medication.medicationDetail.map(
       (med, index) => {
         return (
           <MedicationItem

@@ -66,7 +66,7 @@ class VetDetailPage extends Component {
   };
 
   render() {
-    const vetList = this.props.store.vetDetail.map((vet, index) => {
+    const vetList = this.props.store.vet.vetDetail.map((vet, index) => {
       return <VetItem key={index} vet={vet} />;
     });
 

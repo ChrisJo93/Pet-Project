@@ -1,4 +1,6 @@
-const vetReducer = (state = [], action) => {
+import { combineReducers } from 'redux';
+
+const vet = (state = [], action) => {
   switch (action.type) {
     case 'SET_VET':
       return action.payload;
@@ -9,4 +11,18 @@ const vetReducer = (state = [], action) => {
   }
 };
 
-export default vetReducer;
+const vetDetail = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_VET_DETAIL':
+      return action.payload;
+    case 'UNSET_MEDICATION':
+      return [];
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({
+  vet,
+  vetDetail,
+});

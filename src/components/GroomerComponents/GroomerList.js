@@ -20,23 +20,25 @@ class GroomerList extends Component {
   };
 
   render() {
-    const groomerList = this.props.store.groomer.map((groomerItem, index) => {
-      const date = DateTime.fromISO(groomerItem.date);
-      const clearDate = date.toLocaleString(DateTime.DATE_SHORT);
-      return (
-        <tr className="tbRow" key={index}>
-          <td>{groomerItem.groomer}</td>
-          <td>{clearDate}</td>
-          <td>{groomerItem.location}</td>
-          <td>{groomerItem.name}</td>
-          <td>
-            <DeleteForever
-              onClick={(event) => this.delete(event, groomerItem.id)}
-            />
-          </td>
-        </tr>
-      );
-    });
+    const groomerList = this.props.store.groomer.groomer.map(
+      (groomerItem, index) => {
+        const date = DateTime.fromISO(groomerItem.date);
+        const clearDate = date.toLocaleString(DateTime.DATE_SHORT);
+        return (
+          <tr className="tbRow" key={index}>
+            <td>{groomerItem.groomer}</td>
+            <td>{clearDate}</td>
+            <td>{groomerItem.location}</td>
+            <td>{groomerItem.name}</td>
+            <td>
+              <DeleteForever
+                onClick={(event) => this.delete(event, groomerItem.id)}
+              />
+            </td>
+          </tr>
+        );
+      }
+    );
 
     return (
       <div>

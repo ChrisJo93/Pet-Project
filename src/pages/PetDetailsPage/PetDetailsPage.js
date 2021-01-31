@@ -34,53 +34,55 @@ class PetDetailsPage extends Component {
   };
 
   toFood = (event) => {
-    this.props.history.push(`/food/${this.props.store.petDetail.id}`);
+    this.props.history.push(`/food/${this.props.store.pet.petDetail.id}`);
   };
   toGroomer = (event) => {
     this.props.history.push(
-      `/groomer/details/${this.props.store.petDetail.id}`
+      `/groomer/details/${this.props.store.pet.petDetail.id}`
     );
   };
   toVet = (event) => {
-    this.props.history.push(`/vet/details/${this.props.store.petDetail.id}`);
+    this.props.history.push(
+      `/vet/details/${this.props.store.pet.petDetail.id}`
+    );
   };
   toMedicine = (event) => {
     this.props.history.push(
-      `/medication/details/${this.props.store.petDetail.id}`
+      `/medication/details/${this.props.store.pet.petDetail.id}`
     );
   };
 
   render() {
-    const date = DateTime.fromISO(this.props.store.petDetail.birthdate);
+    const date = DateTime.fromISO(this.props.store.pet.petDetail.birthdate);
     const clearDate = date.toLocaleString(DateTime.DATE_SHORT);
     return (
       <Grid container spacing={10} alignItems="center" justify="center">
         <Grid item>
           <img
             src={
-              this.props.store.petDetail.image != null
-                ? this.props.store.petDetail.image
+              this.props.store.pet.petDetail.image != null
+                ? this.props.store.pet.petDetail.image
                 : this.state.placeholder
             }
             className="pet"
           />
           <p>
-            <strong>Name:</strong> {this.props.store.petDetail.name}
+            <strong>Name:</strong> {this.props.store.pet.petDetail.name}
           </p>
           <p>
-            <strong>Species:</strong> {this.props.store.petDetail.species}
+            <strong>Species:</strong> {this.props.store.pet.petDetail.species}
           </p>
           <p>
-            <strong>Breed:</strong> {this.props.store.petDetail.breed}
+            <strong>Breed:</strong> {this.props.store.pet.petDetail.breed}
           </p>
           <p>
-            <strong>Weight:</strong> {this.props.store.petDetail.weight}
+            <strong>Weight:</strong> {this.props.store.pet.petDetail.weight}
           </p>
           <p>
             <strong>Birth Day</strong> {clearDate}
           </p>
           <p>
-            <strong>Sex:</strong> {this.props.store.petDetail.sex}
+            <strong>Sex:</strong> {this.props.store.pet.petDetail.sex}
           </p>
           <br />
           <Grid container alignItems="center" justify="space-between">
