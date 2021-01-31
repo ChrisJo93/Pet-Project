@@ -26,7 +26,7 @@ class UserPage extends Component {
   };
 
   render() {
-    const ownedPet = this.props.store.ownedPet.map((pet, index) => {
+    const ownedPet = this.props.store.pet.ownedPet.map((pet, index) => {
       return <PetRender key={index} pet={pet} />; //renders owned pets to userpage as component.
     });
     return (

@@ -19,7 +19,7 @@ class VetList extends Component {
   };
 
   render() {
-    const vetList = this.props.store.vet.map((vetItem, index) => {
+    const vetList = this.props.store.vet.vet.map((vetItem, index) => {
       const date = DateTime.fromISO(vetItem.date);
       const clearDate = date.toLocaleString(DateTime.DATE_SHORT);
       return (
