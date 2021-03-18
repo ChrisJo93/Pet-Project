@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
 
 import mapStoreToProps from '../../redux/mapStoreToProps';

@@ -41,6 +41,7 @@ class UserPage extends Component {
             ) : (
               <div className="pet-center">
                 <img
+                  alt=""
                   src={this.state.placeholder}
                   className="pet"
                   onClick={this.addPet}

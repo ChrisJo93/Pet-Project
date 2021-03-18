@@ -59,6 +59,7 @@ class PetDetailsPage extends Component {
       <Grid container spacing={10} alignItems="center" justify="center">
         <Grid item>
           <img
+            alt=""
             src={
               this.props.store.pet.petDetail.image != null
                 ? this.props.store.pet.petDetail.image

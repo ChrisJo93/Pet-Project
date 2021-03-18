@@ -20,6 +20,7 @@ class PetRender extends Component {
         <div className="pet-center">
           <figure>
             <img
+              alt=""
               className="pet"
               src={
                 this.props.pet.image != null
