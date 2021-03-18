@@ -28,7 +28,7 @@ CREATE TABLE "pet" (
 	
     -- Test Values for user and pet tables respectively
 INSERT INTO "user" ("username", "password" , "email" , "phone") 
-VALUES ('JohnBearon' , 'Bearmatch1' , 'Bears@gmail.com' , '318-555-1050');
+VALUES ('ChrisTest' , 'Test1' , 'Test@gmail.com' , '318-555-1050');
 
 INSERT INTO "pet" ("name", "species" , "breed", "weight", "birthdate", "sex", "image", 
 "microchip", "user_id") 
